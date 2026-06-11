@@ -551,12 +551,12 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
     top: 35% !important; /* Move higher up as requested */
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    pointer-events: auto !important;
+    pointer-events: none !important; /* Click-through so mobile scroll is smooth */
   }
   #global-globe {
     width: 320px !important;
     height: 320px !important;
-    pointer-events: auto !important;
+    pointer-events: none !important; /* Click-through so mobile scroll is smooth */
   }
 
   /* Make Hero content click-through so dragging globe works */
@@ -1771,6 +1771,7 @@ let controlMode = 'translate'; // 'rotate' or 'translate'
 let txOffset = 0, tyOffset = 0;
 let dTx = 0, dTy = 0;
 let infinityT = 0, dInfinityT = 0;
+let autoT = 0;
 
 // Prevent context menu on right click to allow panning
 canvas.addEventListener('contextmenu', e => e.preventDefault());
@@ -2108,13 +2109,18 @@ function animate() {
   const isMobile = window.innerWidth <= 768;
   if (isMobile) {
     tScale = targetState.scale * 0.52; // slightly smaller mini-scale
-    tTx = targetState.tx * 0.22;       // mini-slide sideways
-    // Vertical mini-slide: oscillates slightly to trace a mini 8-loop
-    const verticalOsc = targetState.ty * 0.20; 
+    
+    // Auto standing 8 path loop on mobile
+    autoT += 0.012; // slow smooth movement speed
+    const autoX = 35 * Math.sin(2 * autoT);
+    const autoY = 45 * Math.sin(autoT);
+    
+    tTx = autoX;
+    
     if (svcRect.top < 0 && svcRect.bottom > window.innerHeight) {
-      tTy = 110 + verticalOsc; // lower down in services with oscillation
+      tTy = -15 + autoY; // higher up in services, floating in standing 8
     } else {
-      tTy = 85 + verticalOsc;  // lower down in hero with oscillation
+      tTy = 10 + autoY;  // higher up in hero, floating in standing 8
     }
   } else {
     tScale = targetState.scale;
