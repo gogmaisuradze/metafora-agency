@@ -1335,8 +1335,12 @@ window.addEventListener('mousemove', e => {
 });
 
 // Dynamic values
-let tPhi = phi, tTheta = theta, tScale = 0.77, tTx = 12, tTy = 0;
-let scVal = 0.77, txVal = 12, tyVal = 0;
+const isInitMobile = window.innerWidth <= 768;
+let tPhi = phi, tTheta = theta;
+let tScale = isInitMobile ? 0.78 : 1.5;
+let tTx = isInitMobile ? 14.6 : 66;
+let tTy = isInitMobile ? 89.2 : 21;
+let scVal = tScale, txVal = tTx, tyVal = tTy;
 
 // Orbiting Satellites Setup
 const satellites = [
@@ -1473,9 +1477,9 @@ function getInterpolatedState(percent) {
   // Angle for the figure-8 trajectory with a phase shift of PI/2 to start on the right side
   const theta = percent * 3.2 * Math.PI + (Math.PI / 2);
   
-  // Dynamically scale amplitudes: starts closer to the center at percent=0,
+  // Dynamically scale amplitudes: starts further to the right at percent=0,
   // and expands to full width/height as the user scrolls down.
-  const ampX = 36 + percent * (80 - 36);
+  const ampX = 68 + percent * (80 - 68);
   const ampY = 12 + percent * (22 - 12);
   
   // Raw figure-8 coordinates (lying down / horizontal)
@@ -1485,7 +1489,11 @@ function getInterpolatedState(percent) {
   // Tilt/lean the figure-8 trajectory by -12 degrees (rotated horizontal infinity sign)
   const alpha = -12 * Math.PI / 180;
   const tx = txRaw * Math.cos(alpha) - tyRaw * Math.sin(alpha);
-  const ty = txRaw * Math.sin(alpha) + tyRaw * Math.cos(alpha);
+  
+  // Rotated Y coordinate plus a dynamic offset that pushes the globe down at the start
+  // to prevent it from overlapping the navigation header.
+  const baseTy = 35 * (1 - percent);
+  const ty = (txRaw * Math.sin(alpha) + tyRaw * Math.cos(alpha)) + baseTy;
   
   // Scale (depth zoom): starts zoomed in (closer) in the hero section,
   // then oscillates to create a 3D back-and-forth depth effect.
