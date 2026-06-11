@@ -544,64 +544,91 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    z-index: 3 !important; /* Ensure it's on top of sections to receive touch drag */
   }
   #globe-wrapper {
     width: 320px !important;
     height: 320px !important;
-    top: 75% !important;
+    top: 35% !important; /* Move higher up as requested */
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
+    pointer-events: auto !important;
   }
   #global-globe {
     width: 320px !important;
     height: 320px !important;
+    pointer-events: auto !important;
+  }
+
+  /* Make Hero content click-through so dragging globe works */
+  .hero-content {
+    pointer-events: none !important;
+  }
+  .hero-content > * {
+    pointer-events: none !important;
+  }
+  .hero-content .btn-group,
+  .hero-content .hero-stats,
+  .hero-content .btn-group *,
+  .hero-content .hero-stats * {
+    pointer-events: auto !important;
   }
   
   /* Mobile Services Styles */
   #services-sticky {
-    flex-direction: column-reverse;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     padding-top: 70px;
     align-items: center;
+    gap: 12px;
   }
   .svc-label {
-    position: relative;
-    top: 0;
-    transform: none !important;
-    width: 90vw;
-    margin: 0 auto;
-    left: auto !important;
-    right: auto !important;
+    display: contents; /* Direct children order manipulation */
+  }
+  .svc-num {
+    order: 1;
     text-align: center;
+    margin-bottom: 2px !important;
   }
   .svc-title {
+    order: 2;
+    text-align: center;
     font-size: 24px !important;
     margin-bottom: 8px !important;
   }
-  .svc-desc {
-    font-size: 13.5px !important;
-    line-height: 1.5 !important;
-    margin-bottom: 12px !important;
-  }
-  .svc-chips {
-    justify-content: center;
-    gap: 4px !important;
-  }
-  .svc-chip {
-    padding: 3px 10px !important;
-    font-size: 11px !important;
-  }
   #svc-video-window {
+    order: 3;
     position: relative;
     top: 0;
     transform: none !important;
     width: 85vw;
     aspect-ratio: 16 / 9;
     height: auto;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 12px auto;
     left: auto !important;
     right: auto !important;
     border-radius: 12px;
+  }
+  .svc-desc {
+    order: 4;
+    text-align: center;
+    width: 90vw;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    margin: 0 auto 8px auto !important;
+  }
+  .svc-chips {
+    order: 5;
+    display: flex;
+    justify-content: center;
+    gap: 4px !important;
+    width: 90vw;
+    margin: 0 auto !important;
+  }
+  .svc-chip {
+    padding: 3px 10px !important;
+    font-size: 11px !important;
   }
   #video-overlay-text {
     right: 15px !important;
@@ -1820,7 +1847,7 @@ canvas.addEventListener('touchstart', e => {
   if (tapLength < 300 && tapLength > 0) {
     // Double tap detected!
     const controls = document.getElementById('globe-controls');
-    controls.classList.toggle('show');
+    if (controls) controls.classList.toggle('show');
   }
   lastTap = currentTime;
 
@@ -1840,7 +1867,7 @@ canvas.addEventListener('touchstart', e => {
       dTheta = theta;
     }
   }
-}, { passive: true });
+}, { passive: false });
 
 window.addEventListener('touchend', () => {
   isDrag = false;
@@ -1849,6 +1876,7 @@ window.addEventListener('touchend', () => {
 window.addEventListener('touchmove', e => {
   if (!isDrag) return;
   if (e.touches.length === 1) {
+    if (e.cancelable) e.preventDefault();
     const touch = e.touches[0];
     if (dragMode === 'rotate') {
       phi = dPhi - (touch.clientX - lx) / 200;
@@ -1858,7 +1886,7 @@ window.addEventListener('touchmove', e => {
       tyOffset = dTy + (touch.clientY - ly) / 5;
     }
   }
-}, { passive: true });
+}, { passive: false });
 
 // Dynamic values
 const isInitMobile = window.innerWidth <= 768;
