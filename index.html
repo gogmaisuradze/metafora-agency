@@ -970,12 +970,14 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   border: 1px solid var(--border);
   border-radius: 24px;
   width: 100%;
-  max-width: 640px;
-  padding: 40px;
+  max-width: 680px;
+  padding: 36px;
   position: relative;
   transform: translateY(20px);
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .booking-modal-overlay.open .booking-modal-content {
   transform: translateY(0);
@@ -991,6 +993,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   cursor: pointer;
   transition: color 0.2s;
   line-height: 1;
+  z-index: 10;
 }
 .booking-modal-close:hover {
   color: var(--text);
@@ -999,16 +1002,16 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   font-size: clamp(22px, 3vw, 28px);
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: var(--text);
 }
 .booking-modal-content h3 span {
   color: var(--acc);
 }
 .booking-modal-sub {
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--text2);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   line-height: 1.5;
 }
 .booking-form-row {
@@ -1019,7 +1022,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
 }
 @media(max-width: 576px) {
   .booking-form-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 }
 .booking-form-group {
@@ -1029,14 +1032,13 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   margin-bottom: 16px;
 }
 .booking-form-group label {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text3);
 }
 .booking-form-group input[type="text"],
-.booking-form-group input[type="datetime-local"],
 .booking-form-group textarea {
   background: var(--dark2);
   border: 1px solid var(--border);
@@ -1106,6 +1108,169 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   background: var(--acc2);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(232, 82, 26, 0.3);
+}
+
+/* CUSTOM CALENDAR STYLES */
+.calendar-widget {
+  background: var(--dark);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  margin-bottom: 8px;
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.calendar-month-year {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.calendar-nav-btn {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--text2);
+  transition: all 0.2s ease;
+  outline: none;
+}
+.calendar-nav-btn:hover {
+  background: var(--dark3);
+  color: var(--text);
+  border-color: var(--acc);
+}
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.calendar-day {
+  aspect-ratio: 1;
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+.calendar-day:hover:not(.inactive):not(.selected) {
+  background: var(--dark3);
+  border-color: var(--acc);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+.calendar-day.inactive {
+  opacity: 0.25;
+  cursor: not-allowed;
+  background: transparent;
+  box-shadow: none;
+  border-color: transparent;
+}
+.calendar-day.selected {
+  background: var(--acc);
+  color: #FFFFFF;
+  border-color: var(--acc);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(232, 82, 26, 0.3);
+}
+.calendar-day-dots {
+  position: absolute;
+  bottom: 6px;
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  width: 100%;
+}
+.calendar-day-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--acc);
+}
+.calendar-day.selected .calendar-day-dot {
+  background: #FFFFFF;
+}
+
+/* Time slots styling */
+.calendar-time-slots {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  animation: fadeIn 0.3s ease;
+}
+.time-slot-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+.time-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+}
+.time-slot-btn {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+.time-slot-btn:hover:not(.selected) {
+  background: var(--dark3);
+  border-color: var(--acc);
+  transform: translateY(-1px);
+}
+.time-slot-btn.selected {
+  background: var(--acc);
+  color: #FFFFFF;
+  border-color: var(--acc);
+  box-shadow: 0 6px 15px rgba(232, 82, 26, 0.25);
+  transform: scale(1.02);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -1198,28 +1363,49 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
         </div>
       </div>
       
-      <div class="booking-form-row">
+      <div class="booking-form-row" style="grid-template-columns: 1.2fr 0.8fr; align-items: start;">
         <div class="booking-form-group">
-          <label for="booking-date">თარიღი და დრო</label>
-          <input type="datetime-local" id="booking-date" required>
+          <label>თარიღი და საათი</label>
+          <div class="calendar-widget">
+            <div class="calendar-header">
+              <button type="button" class="calendar-nav-btn" onclick="prevMonth()">‹</button>
+              <span class="calendar-month-year" id="calendar-month-year">ნოემბერი 2026</span>
+              <button type="button" class="calendar-nav-btn" onclick="nextMonth()">›</button>
+            </div>
+            <div class="calendar-weekdays">
+              <div>ორშ</div><div>სამ</div><div>ოთხ</div><div>ხუთ</div><div>პარ</div><div>შაბ</div><div>კვ</div>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="calendar-time-slots" id="calendar-time-slots" style="display: none;">
+              <span class="time-slot-title">აირჩიეთ დრო:</span>
+              <div class="time-slots-grid" id="time-slots-grid">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="booking-form-group">
-          <label>შეხვედრის ფორმატი</label>
-          <div class="booking-format-options">
-            <label class="format-option">
-              <input type="radio" name="booking-format" value="online" checked>
-              <span class="format-card">
-                <span class="icon">💻</span>
-                <span class="label-text">ონლაინ</span>
-              </span>
-            </label>
-            <label class="format-option">
-              <input type="radio" name="booking-format" value="inperson">
-              <span class="format-card">
-                <span class="icon">🤝</span>
-                <span class="label-text">პირადად</span>
-              </span>
-            </label>
+        
+        <div class="booking-form-group" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <label>შეხვედრის ფორმატი</label>
+            <div class="booking-format-options" style="grid-template-columns: 1fr; gap: 12px; margin-bottom: 16px;">
+              <label class="format-option">
+                <input type="radio" name="booking-format" value="online" checked>
+                <span class="format-card" style="padding: 16px;">
+                  <span class="icon">💻</span>
+                  <span class="label-text">ონლაინ</span>
+                </span>
+              </label>
+              <label class="format-option">
+                <input type="radio" name="booking-format" value="inperson">
+                <span class="format-card" style="padding: 16px;">
+                  <span class="icon">🤝</span>
+                  <span class="label-text">პირადად</span>
+                </span>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -2266,11 +2452,140 @@ function getBotReply(userText) {
 }
 
 // Booking Modal functions
+let calDate = new Date();
+let currentYear = calDate.getFullYear();
+let currentMonth = calDate.getMonth();
+let selectedDate = null;
+let selectedTime = null;
+
+const MONTH_NAMES_GE = [
+  'იანვარი', 'თებერვალი', 'მარტი', 'აპრილი', 'მაისი', 'ივნისი',
+  'ივლისი', 'აგვისტო', 'სექტემბერი', 'ოქტომბერი', 'ნოემბერი', 'დეკემბერი'
+];
+
+function renderCalendar() {
+  const monthYearSpan = document.getElementById('calendar-month-year');
+  const grid = document.getElementById('calendar-grid');
+  if (!monthYearSpan || !grid) return;
+
+  monthYearSpan.textContent = `${MONTH_NAMES_GE[currentMonth]} ${currentYear}`;
+  grid.innerHTML = '';
+
+  const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
+  let startOffset = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
+
+  const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const prevTotalDays = new Date(currentYear, currentMonth, 0).getDate();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Previous month inactive days
+  for (let i = startOffset; i > 0; i--) {
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'calendar-day inactive';
+    dayDiv.textContent = prevTotalDays - i + 1;
+    grid.appendChild(dayDiv);
+  }
+
+  // Current month active days
+  for (let day = 1; day <= totalDays; day++) {
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'calendar-day';
+    dayDiv.textContent = day;
+
+    const thisDate = new Date(currentYear, currentMonth, day);
+    thisDate.setHours(0, 0, 0, 0);
+
+    if (thisDate < today) {
+      dayDiv.classList.add('inactive');
+    } else {
+      const dotContainer = document.createElement('div');
+      dotContainer.className = 'calendar-day-dots';
+      const numDots = Math.floor(Math.random() * 3) + 1;
+      for (let d = 0; d < numDots; d++) {
+        const dot = document.createElement('div');
+        dot.className = 'calendar-day-dot';
+        dotContainer.appendChild(dot);
+      }
+      dayDiv.appendChild(dotContainer);
+
+      if (selectedDate && selectedDate.toDateString() === thisDate.toDateString()) {
+        dayDiv.classList.add('selected');
+      }
+
+      dayDiv.addEventListener('click', () => {
+        selectDay(day);
+      });
+    }
+    grid.appendChild(dayDiv);
+  }
+
+  const totalCells = grid.children.length;
+  const remainingCells = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (let i = 1; i <= remainingCells; i++) {
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'calendar-day inactive';
+    dayDiv.textContent = i;
+    grid.appendChild(dayDiv);
+  }
+}
+
+function prevMonth() {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  renderCalendar();
+}
+
+function nextMonth() {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  renderCalendar();
+}
+
+function selectDay(day) {
+  selectedDate = new Date(currentYear, currentMonth, day);
+  selectedTime = null;
+  renderCalendar();
+
+  const timeSlotsDiv = document.getElementById('calendar-time-slots');
+  const slotsGrid = document.getElementById('time-slots-grid');
+  if (timeSlotsDiv && slotsGrid) {
+    timeSlotsDiv.style.display = 'block';
+    slotsGrid.innerHTML = '';
+
+    const slots = ['10:00', '11:30', '13:00', '14:30', '16:00', '17:30'];
+    slots.forEach(slot => {
+      const slotBtn = document.createElement('div');
+      slotBtn.className = 'time-slot-btn';
+      slotBtn.textContent = slot;
+      slotBtn.addEventListener('click', () => {
+        document.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
+        slotBtn.classList.add('selected');
+        selectedTime = slot;
+      });
+      slotsGrid.appendChild(slotBtn);
+    });
+  }
+}
+
 function openBookingModal() {
   const modal = document.getElementById('booking-modal');
   if (modal) {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+    
+    selectedDate = null;
+    selectedTime = null;
+    const timeSlotsDiv = document.getElementById('calendar-time-slots');
+    if (timeSlotsDiv) timeSlotsDiv.style.display = 'none';
+    
+    renderCalendar();
   }
 }
 function closeBookingModal() {
@@ -2288,14 +2603,25 @@ window.addEventListener('click', (e) => {
 });
 function handleBookingSubmit(event) {
   event.preventDefault();
+  
+  if (!selectedDate) {
+    alert('გთხოვთ აირჩიოთ თარიღი კალენდარში.');
+    return;
+  }
+  if (!selectedTime) {
+    alert('გთხოვთ აირჩიოთ შეხვედრის საათი.');
+    return;
+  }
+  
   const name = document.getElementById('booking-name').value;
   const contact = document.getElementById('booking-contact').value;
-  const date = document.getElementById('booking-date').value;
   const format = document.querySelector('input[name="booking-format"]:checked').value;
   const desc = document.getElementById('booking-desc').value;
-  const formatGeo = format === 'online' ? 'ონლაინ' : 'პირადად';
   
-  alert(`კონსულტაცია წარმატებით დაიჯავშნა!\n\nსახელი: ${name}\nკონტაქტი: ${contact}\nთარიღი: ${date}\nფორმატი: ${formatGeo}\nაღწერა: ${desc}`);
+  const formatGeo = format === 'online' ? 'ონლაინ' : 'პირადად';
+  const formattedDate = `${selectedDate.getDate()} ${MONTH_NAMES_GE[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`;
+  
+  alert(`კონსულტაცია წარმატებით დაიჯავშნა!\n\nსახელი: ${name}\nკონტაქტი: ${contact}\nთარიღი: ${formattedDate}\nსაათი: ${selectedTime}\nფორმატი: ${formatGeo}\nაღწერა: ${desc}`);
   
   document.getElementById('booking-form').reset();
   closeBookingModal();
