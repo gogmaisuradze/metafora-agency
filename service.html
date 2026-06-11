@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>სერვისის დეტალები - Metaფორა Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --acc:#E8521A;
+  --acc2:#FF6B35;
+  --dark:#FFFFFF;
+  --dark2:#F7F7FA;
+  --dark3:#EEEEF2;
+  --border:rgba(0,0,0,0.08);
+  --text:#0A0A0A;
+  --text2:#4A4A4F;
+  --text3:#8A8A8F;
+}
+body{background:var(--dark);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow: 0 4px 20px rgba(0,0,0,0.02);transition:all .3s;}
+.nav-logo{font-size:18px;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:var(--text);}
+.nav-logo span{color:var(--acc);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:13px;color:var(--text2);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--acc);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .2s;text-decoration:none;}
+.nav-cta:hover{opacity:.88;}
+
+/* Back Button */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s, transform 0.2s;
+  margin-bottom: 24px;
+}
+.back-btn:hover {
+  color: var(--acc);
+  transform: translateX(-4px);
+}
+
+/* HERO */
+.service-hero {
+  padding: 160px 48px 80px 48px;
+  background: radial-gradient(circle at 90% 10%, rgba(232, 82, 26, 0.04) 0%, transparent 60%);
+  border-bottom: 1px solid var(--border);
+}
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: .15em;
+  color: var(--acc);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.service-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  margin-bottom: 24px;
+  max-width: 800px;
+}
+.service-title span {
+  background: linear-gradient(135deg, var(--acc2) 0%, var(--acc) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.service-desc {
+  font-size: 18px;
+  color: var(--text2);
+  line-height: 1.7;
+  max-width: 680px;
+  margin-bottom: 32px;
+}
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.service-chip {
+  background: rgba(232, 82, 26, 0.05);
+  border: 1px solid rgba(232, 82, 26, 0.15);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
+  color: var(--acc);
+  font-weight: 500;
+}
+
+/* SUB-SERVICES GRID */
+.details-section {
+  padding: 100px 48px;
+  background: var(--dark2);
+}
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-header h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+.section-header h2 span {
+  color: var(--acc);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+.sub-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+}
+.sub-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(232, 82, 26, 0.06);
+  border-color: rgba(232, 82, 26, 0.2);
+}
+.card-icon-wrapper {
+  padding: 32px 32px 16px 32px;
+}
+.card-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(232, 82, 26, 0.06);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--acc);
+}
+.card-body {
+  padding: 0 32px 32px 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.card-desc {
+  font-size: 14.5px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.feature-list {
+  list-style: none;
+}
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--text2);
+  margin-bottom: 10px;
+}
+.feature-item svg {
+  flex-shrink: 0;
+  color: #4CAF50;
+  margin-top: 2px;
+}
+
+/* CONTACT SECTION */
+.contact-section {
+  padding: 100px 48px;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+.contact-container {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+}
+.contact-form {
+  margin-top: 40px;
+  background: var(--dark2);
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.form-group {
+  margin-bottom: 24px;
+}
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  margin-bottom: 8px;
+}
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff;
+  transition: border-color 0.2s;
+}
+.form-control:focus {
+  border-color: var(--acc);
+}
+.form-btn {
+  width: 100%;
+  background: var(--acc);
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.form-btn:hover {
+  opacity: 0.92;
+}
+
+/* FOOTER */
+footer {
+  background: var(--dark3);
+  padding: 48px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer-text {
+  font-size: 13px;
+  color: var(--text3);
+}
+
+/* Chatbot Widget Styles */
+#chatbot-button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-image: url('chatbot_transparent.png');
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 24px rgba(232, 82, 26, 0.35);
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+#chatbot-button:hover {
+  transform: scale(1.08) translateY(-4px);
+  box-shadow: 0 12px 28px rgba(232, 82, 26, 0.5);
+  border-color: var(--acc);
+}
+#chatbot-button::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: #4CAF50;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.8);
+}
+.chatbot-badge {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  background: var(--acc);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  animation: chatbot-pulse 2s infinite;
+}
+@keyframes chatbot-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+#chatbot-window {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  width: 360px;
+  height: 480px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+#chatbot-window.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.chatbot-header {
+  background: linear-gradient(135deg, #FF6B35, #E8521A);
+  padding: 16px 20px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chatbot-header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chatbot-header-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.8);
+  object-fit: cover;
+}
+.chatbot-header-name {
+  font-weight: 700;
+  font-size: 15px;
+}
+.chatbot-header-status {
+  font-size: 11px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px #4CAF50;
+}
+.chatbot-close-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+.chatbot-close-btn:hover {
+  opacity: 1;
+}
+.chatbot-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(247, 247, 250, 0.5);
+}
+.chat-message {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+.chat-message.bot {
+  background: #ffffff;
+  color: var(--text);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+.chat-message.user {
+  background: var(--acc);
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 12px rgba(232, 82, 26, 0.15);
+}
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  align-self: flex-start;
+}
+.quick-reply-btn {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+.quick-reply-btn:hover {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(232, 82, 26, 0.15);
+  transform: translateY(-1px);
+}
+.chatbot-input-container {
+  padding: 12px 16px;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#chatbot-input {
+  flex: 1;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#chatbot-input:focus {
+  border-color: var(--acc);
+}
+#chatbot-send-btn {
+  background: var(--acc);
+  color: #ffffff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 3px 8px rgba(232, 82, 26, 0.2);
+}
+#chatbot-send-btn:hover {
+  background: #ff6830;
+  transform: scale(1.05);
+}
+@media(max-width:480px) {
+  #chatbot-window {
+    right: 12px;
+    bottom: 84px;
+    width: calc(100% - 24px);
+    height: 400px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Meta<span>ფორა</span></a>
+  <div class="nav-links">
+    <a href="index.html#hero">მთავარი</a>
+    <a href="index.html#services-scroll">სერვისები</a>
+    <a href="index.html#portfolio">პორტფოლიო</a>
+    <a href="index.html#contact">კონტაქტი</a>
+  </div>
+  <a href="#contact" class="nav-cta">კონსულტაცია</a>
+</nav>
+
+<!-- HERO -->
+<section class="service-hero">
+  <div class="hero-container">
+    <a href="index.html#services-scroll" class="back-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      უკან დაბრუნება
+    </a>
+    <div class="eyebrow" id="service-eyebrow">სერვისები</div>
+    <h1 class="service-title" id="service-title">დაიტვირთება...</h1>
+    <p class="service-desc" id="service-desc">დეტალური აღწერა დაიტვირთება უახლოეს წამებში.</p>
+    <div class="chips-container" id="service-chips"></div>
+  </div>
+</section>
+
+<!-- SUB-SERVICES -->
+<section class="details-section">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>რას <span>გთავაზობთ?</span></h2>
+    </div>
+    <div class="grid-container" id="sub-services-grid"></div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" id="contact">
+  <div class="contact-container">
+    <div class="eyebrow">დაუკავშირდით ჩვენს გუნდს</div>
+    <h2>ინდივიდუალური <span>შეთავაზება</span></h2>
+    <p style="margin-top:12px; color:var(--text2);">მოგვწერეთ თქვენი პროექტის შესახებ და მიიღეთ დეტალური ხარჯთაღრიცხვა 24 საათში.</p>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('მადლობა! შეტყობინება წარმატებით გაიგზავნა. ჩვენი გუნდი მალე დაგიკავშირდებათ.'); this.reset();">
+      <div class="form-group">
+        <label for="contact-name">სახელი, გვარი</label>
+        <input type="text" id="contact-name" class="form-control" required placeholder="მაგ. გიორგი ბერიძე">
+      </div>
+      <div class="form-group">
+        <label for="contact-email">ელ-ფოსტა</label>
+        <input type="email" id="contact-email" class="form-control" required placeholder="giorgi@company.com">
+      </div>
+      <div class="form-group">
+        <label for="contact-service">არჩეული სერვისი</label>
+        <input type="text" id="contact-service" class="form-control" readonly>
+      </div>
+      <div class="form-group">
+        <label for="contact-msg">პროექტის აღწერა (არასავალდებულო)</label>
+        <textarea id="contact-msg" class="form-control" rows="4" placeholder="მოგვიყევით თქვენი იდეის შესახებ..."></textarea>
+      </div>
+      <button type="submit" class="form-btn">მოითხოვე შეთავაზება</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-text">&copy; 2026 Metaფორა Agency. ყველა უფლება დაცულია.</p>
+</footer>
+
+<!-- Chatbot Button -->
+<div id="chatbot-button" onclick="toggleChat()">
+  <span class="chatbot-badge">1</span>
+</div>
+
+<!-- Chatbot Window -->
+<div id="chatbot-window">
+  <div class="chatbot-header">
+    <div class="chatbot-header-info">
+      <img src="chatbot_transparent.png" alt="Bot Avatar" class="chatbot-header-avatar">
+      <div>
+        <div class="chatbot-header-name">Metaფორა ასისტენტი</div>
+        <div class="chatbot-header-status"><span class="status-dot"></span>აქტიურია</div>
+      </div>
+    </div>
+    <button class="chatbot-close-btn" onclick="toggleChat()">&times;</button>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages">
+    <div class="chat-message bot">
+      <div class="message-content">გამარჯობა! 😊 მე ვარ Metaფორას ვირტუალური ასისტენტი. რით შემიძლია დაგეხმაროთ დღეს?</div>
+      <div class="quick-replies">
+        <button class="quick-reply-btn" onclick="sendQuickReply('რა სერვისები გაქვთ?')">რა სერვისები გაქვთ?</button>
+        <button class="quick-reply-btn" onclick="sendQuickReply('როგორ დაგიკავშირდეთ?')">როგორ დაგიკავშირდეთ?</button>
+      </div>
+    </div>
+  </div>
+  <div class="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="ჩაწერეთ შეტყობინება..." onkeypress="handleChatKeyPress(event)">
+    <button id="chatbot-send-btn" onclick="sendChatMessage()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+const SERVICES_DATA = {
+  branding: {
+    eyebrow: "ბრენდინგი & დიზაინი",
+    title: "პრინტი და <span>ბრენდინგი</span>",
+    desc: "ჩვენ ვქმნით ვიზუალურ იდენტობებს, რომლებიც ზუსტად გადმოსცემენ თქვენი კომპანიის ხასიათსა და ღირებულებებს. ლოგოდან დაწყებული სრულ ბრენდბუქამდე, ჩვენ ვზრუნავთ, რომ თქვენი ბრენდი გამორჩეული და დასამახსოვრებელი იყოს.",
+    chips: ["ლოგო", "ბრენდბუქი", "ბეჭდვა", "შეფუთვა", "სამერჩი"],
+    subServices: [
+      {
+        title: "ლოგო და ვიზუალური იდენტობა",
+        desc: "ლოგოს დიზაინი, ფერების პალიტრა და ტიპოგრაფია, რომელიც თქვენს ბრენდს კონკურენტებისგან გამოარჩევს და მყარ პირველ შთაბეჭდილებას დატოვებს.",
+        features: ["ლოგოს ვარიაციები", "ფერების კოდები", "ბრენდირებული ფონტები", "გამოყენების წესები"]
+      },
+      {
+        title: "სრული ბრენდბუქი (Brandbook)",
+        desc: "კორპორატიული წესების კრებული, რომელიც განსაზღვრავს ბრენდის ყველა დიზაინ-ელემენტის სწორად გამოყენებას ნებისმიერ პლატფორმაზე.",
+        features: ["ბრენდის ფილოსოფია", "ვიზუალური გიდლაინები", "სოც. მედიის შაბლონები", "Mockup-ების პრეზენტაცია"]
+      },
+      {
+        title: "პრინტი და სარეკლამო მასალები",
+        desc: "სავიზიტო ბარათები, ბროშურები, კატალოგები, ფლაერები და შეფუთვის დიზაინი, რომელიც მზად არის უმაღლესი ხარისხით დასაბეჭდად.",
+        features: ["პოლიგრაფიული მომზადება", "სავიზიტო ბარათები", "კორპორატიული ფოლდერები", "შეფუთვის ილუსტრაციები"]
+      }
+    ]
+  },
+  ooh: {
+    eyebrow: "გარე რეკლამა",
+    title: "გარე რეკლამა <span>(OOH)</span>",
+    desc: "სტრატეგიულად შერჩეული გარე სარეკლამო გადაწყვეტილებები, რომლებიც უზრუნველყოფენ მაქსიმალურ წვდომას და ხილვადობას ფართო აუდიტორიისთვის. ქალაქის ცენტრალური ქუჩებიდან რეგიონულ მაგისტრალებამდე.",
+    chips: ["ბილბორდი", "City Light", "ტრანსპორტი", "LED ეკრანი", "3D ანამორფული"],
+    subServices: [
+      {
+        title: "ქალაქის ბილბორდები & მაგისტრალები",
+        desc: "დიდი ზომის სარეკლამო ფარები ყველაზე აქტიურ საგზაო მონაკვეთებსა და ცენტრალურ ქუჩებზე, რაც ბრენდის ცნობადობას მყისიერად ზრდის.",
+        features: ["ცენტრალური ლოკაციები", "მაღალი ხილვადობა 24/7", "განათების მონტაჟი", "სპეციალური კონსტრუქციები"]
+      },
+      {
+        title: "City Light & ავტობუსის გაჩერებები",
+        desc: "ფეხით მოსიარულეებზე გათვლილი ეფექტური სარეკლამო ყუთები, რომლებიც განთავსებულია საზოგადოებრივი ტრანსპორტის გაჩერებებთან და მოედნებზე.",
+        features: ["შიდა განათება", "ფეხით მოსიარულეთა დაფარვა", "ლოკალური მარკეტინგი", "მაღალი რეზოლუციის ბეჭდვა"]
+      },
+      {
+        title: "ტრანსპორტის ბრენდირება",
+        desc: "მოძრავი რეკლამა მთელი ქალაქის მასშტაბით – ავტობუსების, მიკროავტობუსებისა და კორპორატიული მანქანების სრული ან ნაწილობრივი შეფუთვა.",
+        features: ["სარეკლამო ფირები", "ქალაქის მასშტაბით დაფარვა", "გრძელვადიანი გარანტია", "გამორჩეული დიზაინი"]
+      }
+    ]
+  },
+  video: {
+    eyebrow: "ვიდეო წარმოება",
+    title: "ვიდეო <span>პროდუქცია</span>",
+    desc: "ჩვენ ვახდენთ იდეების ვიზუალიზაციას მაღალი დონის სარეკლამო რგოლებით, ანიმაციებითა და სოციალური მედიის დინამიური კონტენტით. ვიდეო წარმოება სცენარიდან საბოლოო მონტაჟამდე.",
+    chips: ["Reels", "Motion Graphics", "პრომო ვიდეო", "სცენარი", "Color Grading"],
+    subServices: [
+      {
+        title: "სარეკლამო ვიდეო რგოლები (TV & Digital)",
+        desc: "კინემატოგრაფიული ხარისხის ვიდეოები, სრული გადამღები ჯგუფი, პროფესიონალური კამერები, განათება და ხმის რეჟისურა თქვენი ბრენდის წარმატებისთვის.",
+        features: ["კასტინგი და ლოკაციები", "სცენარის დაწერა", "Post-production / მონტაჟი", "Color Correction"]
+      },
+      {
+        title: "Motion Graphics & 2D/3D ანიმაცია",
+        desc: "ანიმაციური ვიდეოები, რომლებიც ვიზუალური ეფექტებისა და დინამიური გრაფიკის მეშვეობით მარტივად ხსნიან რთულ პროდუქტებსა თუ სერვისებს.",
+        features: ["ინფოგრაფიკის ანიმაცია", "ლოგოს ანიმაცია", "3D პროდუქტის რენდერი", "Sound Design / ხმოვანი ეფექტები"]
+      },
+      {
+        title: "Reels / TikTok & მოკლე ვიდეოები",
+        desc: "დინამიური, ტრენდული და სწრაფი ვერტიკალური ვიდეოები, რომლებიც სპეციალურად შექმნილია სოციალური ქსელების ალგორითმებისთვის.",
+        features: ["სატრენდო იდეები", "სწრაფი მონტაჟი", "სუბტიტრების დადება", "აუდიტორიის ჩართულობა"]
+      }
+    ]
+  },
+  web: {
+    eyebrow: "ვებ დეველოპმენტი",
+    title: "ვებ-გვერდების <span>დეველოპმენტი</span>",
+    desc: "ჩვენ ვქმნით თანამედროვე, სრულად ადაპტირებად და გაყიდვებზე ორიენტირებულ ვებ-გვერდებს, რომლებიც უზრუნველყოფენ საუკეთესო მომხმარებლის გამოცდილებას (UX/UI) ნებისმიერ მოწყობილობაზე.",
+    chips: ["Landing Page", "E-Commerce", "UI/UX დიზაინი", "SEO", "Responsive"],
+    subServices: [
+      {
+        title: "Landing Page & სავიზიტო საიტები",
+        desc: "ერთგვერდიანი, კონვერტაციაზე ორიენტირებული ვებ-გვერდები, რომლებიც იდეალურია კონკრეტული სერვისის თუ აქციის წარსადგენად.",
+        features: ["უნიკალური UI/UX", "სწრაფი ჩატვირთვა", "ფორმების ინტეგრაცია", "სრული მობილური ადაპტაცია"]
+      },
+      {
+        title: "E-Commerce / ონლაინ მაღაზიები",
+        desc: "მძლავრი ელ-კომერციის საიტები, სადაც მომხმარებლებს შეუძლიათ მარტივად აირჩიონ პროდუქტი, გადაიხადონ ბარათით და მიიღონ მომსახურება.",
+        features: ["გადახდების ინტეგრაცია (ბანკები)", "პროდუქციის კატალოგი", "ადმინ პანელი მართვისთვის", "შეკვეთების თრექინგი"]
+      },
+      {
+        title: "SEO ოპტიმიზაცია & მხარდაჭერა",
+        desc: "თქვენი საიტის საძიებო სისტემებში (Google) წინა პოზიციებზე გამოყვანა, რათა მიიღოთ მეტი ორგანული მომხმარებელი უფასოდ.",
+        features: ["Technical SEO", "Keywords ანალიზი", "Google Analytics დაყენება", "ყოველთვიური რეპორტინგი"]
+      }
+    ]
+  },
+  smm: {
+    eyebrow: "სოციალური მედია",
+    title: "სოციალური <span>მედია</span>",
+    desc: "ბრენდის სოციალური მედიის ყოველდღიური მართვა: სტრატეგიის შემუშავებიდან, კრეატიული პოსტების შექმნამდე და რეკლამის მიზნობრივ ოპტიმიზაციამდე, რათა მიიღოთ რეალური გაყიდვები.",
+    chips: ["Instagram", "Facebook", "TikTok", "Targeting", "Chatbot Auto"],
+    subServices: [
+      {
+        title: "სრული SMM მართვა & კონტენტი",
+        desc: "ყოველთვიური კონტენტ-გეგმის შედგენა, პოსტების გრაფიკული დიზაინი, ქოფირაითინგი, მომხმარებელთან კომუნიკაცია და რეპორტინგი.",
+        features: ["უნიკალური ვიზუალური სტილი", "ინტერაქციული სთორები", "კომენტარების მოდერაცია", "სტატისტიკის ანალიზი"]
+      },
+      {
+        title: "მიზნობრივი რეკლამა (Meta / TikTok Ads)",
+        desc: "სარეკლამო კამპანიების დაგეგმვა, სწორი სამიზნე აუდიტორიის შერჩევა, ბიუჯეტის განაწილება და გაყიდვების ოპტიმიზაცია.",
+        features: ["A/B ტესტირება", "პიქსელის დაყენება", "კამპანიის რეპორტები", "Lead Generation"]
+      },
+      {
+        title: "ჩატბოტების ავტომატიზაცია (ManyChat)",
+        desc: "ჭკვიანი ჩატბოტების აწყობა Messenger-სა და Instagram Direct-ში, რომლებიც მომხმარებლის კითხვებს პასუხობენ 24/7 და ზრდიან კონვერტაციას.",
+        features: ["ავტომატური პასუხები", "შეკვეთების მიღება ბოტში", "მომხმარებელთა სეგმენტაცია", "სარეკლამო ფაბრიკა"]
+      }
+    ]
+  }
+};
+
+// Parse URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+const serviceKey = urlParams.get('service') || 'branding';
+const data = SERVICES_DATA[serviceKey] || SERVICES_DATA.branding;
+
+// Populate DOM
+document.getElementById('service-eyebrow').textContent = data.eyebrow;
+document.getElementById('service-title').innerHTML = data.title;
+document.getElementById('service-desc').textContent = data.desc;
+document.getElementById('contact-service').value = data.eyebrow;
+
+// Set title tag
+document.title = `${data.eyebrow} - Metaფორა Agency`;
+
+// Render chips
+const chipsContainer = document.getElementById('service-chips');
+chipsContainer.innerHTML = data.chips.map(chip => `<span class="service-chip">${chip}</span>`).join('');
+
+// Render sub-services
+const grid = document.getElementById('sub-services-grid');
+grid.innerHTML = data.subServices.map(sub => `
+  <div class="sub-card">
+    <div class="card-icon-wrapper">
+      <div class="card-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">${sub.title}</h3>
+      <p class="card-desc">${sub.desc}</p>
+      <ul class="feature-list">
+        ${sub.features.map(f => `
+          <li class="feature-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            ${f}
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  </div>
+`).join('');
+
+// Chatbot functionality
+function toggleChat() {
+  const win = document.getElementById('chatbot-window');
+  const badge = document.querySelector('.chatbot-badge');
+  win.classList.toggle('open');
+  if (win.classList.contains('open') && badge) {
+    badge.style.display = 'none';
+  }
+}
+
+function handleChatKeyPress(e) {
+  if (e.key === 'Enter') {
+    sendChatMessage();
+  }
+}
+
+function sendChatMessage() {
+  const input = document.getElementById('chatbot-input');
+  const text = input.value.trim();
+  if (!text) return;
+  
+  appendMessage(text, 'user');
+  input.value = '';
+  
+  setTimeout(() => {
+    const reply = getBotReply(text);
+    appendMessage(reply, 'bot');
+  }, 600);
+}
+
+function sendQuickReply(text) {
+  appendMessage(text, 'user');
+  const qr = document.querySelector('.quick-replies');
+  if (qr) qr.style.display = 'none';
+  
+  setTimeout(() => {
+    const reply = getBotReply(text);
+    appendMessage(reply, 'bot');
+  }, 600);
+}
+
+function appendMessage(text, sender) {
+  const container = document.getElementById('chatbot-messages');
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `chat-message ${sender}`;
+  
+  const formattedText = text.replace(/\n/g, '<br>');
+  msgDiv.innerHTML = `<div class="message-content">${formattedText}</div>`;
+  
+  container.appendChild(msgDiv);
+  container.scrollTop = container.scrollHeight;
+}
+
+function getBotReply(userText) {
+  const cleanText = userText.toLowerCase();
+  
+  if (cleanText.includes('სერვის') || cleanText.includes('რას აკეთებთ') || cleanText.includes('service')) {
+    return `ჩვენ გთავაზობთ ციფრული მარკეტინგის სრულ სერვისებს:\n\n` +
+           `1. 🏷️ ბრენდინგი & დიზაინი (ლოგო, ბრენდბუქი, ბეჭდვა)\n` +
+           `2. 💻 ვებ დეველოპმენტი (საიტების დამზადება, UX/UI, SEO)\n` +
+           `3. 📈 OOH & გარე რეკლამა (ბილბორდები, გამოფენები)\n` +
+           `4. 🎥 ვიდეო წარმოება (Reels, TikTok, პრომო ვიდეოები)\n` +
+           `5. 📱 სოციალური მედია (SMM, კონტენტი, ავტომატიზაცია)`;
+  }
+  
+  if (cleanText.includes('კონტაქტ') || cleanText.includes('ტელეფონ') || cleanText.includes('დაგიკავშირდეთ') || cleanText.includes('contact') || cleanText.includes('ნომერი')) {
+    return `ჩვენთან დაკავშირება შეგიძლიათ:\n\n` +
+           `📞 ტელეფონი: +995 599 00 00 00\n` +
+           `📧 ელ.ფოსტა: info@metafora.ge\n\n` +
+           `ან შეავსეთ გვერდის ბოლოში მოცემული საკონტაქტო ფორმა და ჩვენი გუნდი თავად დაგიკავშირდებათ!`;
+  }
+  
+  if (cleanText.includes('ოფისი') || cleanText.includes('მისამართი') || cleanText.includes('სად ხართ') || cleanText.includes('office') || cleanText.includes('მდებარეობს')) {
+    return `📍 ჩვენი ოფისი მდებარეობს თბილისში, ილია ჭავჭავაძის გამზირზე.\n\nშეგიძლიათ მობრძანდეთ ყავაზე და ერთად განვიხილოთ თქვენი პროექტი! ☕`;
+  }
+  
+  if (cleanText.includes('ფასი') || cleanText.includes('ღირს') || cleanText.includes('price')) {
+    return `პროექტის ღირებულება ინდივიდუალურია და დამოკიდებულია თქვენს მოთხოვნებზე. დაგვიკავშირდით ნომერზე ან შეავსეთ საკონტაქტო ფორმა გვერდის ბოლოში, რათა მიიღოთ უფასო კონსულტაცია და დეტალური ხარჯთაღრიცხვა.`;
+  }
+  
+  if (cleanText.includes('გამარჯობა') || cleanText.includes('სალამი') || cleanText.includes('hello') || cleanText.includes('hi') || cleanText.includes('სალამ')) {
+    return `გამარჯობა! 😊 რით შემიძლია დაგეხმაროთ დღეს? გსურთ გაეცნოთ ჩვენს სერვისებს თუ დაგვიკავშირდეთ?`;
+  }
+  
+  return `მადლობა შეტყობინებისთვის! 🙌\n\nმე ჯერ კიდევ ვსწავლობ, მაგრამ შეგიძლიათ დაგვიკავშირდეთ ნომერზე ან მოგვწეროთ ელ-ფოსტაზე: info@metafora.ge. ჩვენი გუნდი უმოკლეს დროში გიპასუხებთ!`;
+}
+</script>
+
+</body>
+</html>

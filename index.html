@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Metaფორა Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --acc:#E8521A;
+  --acc2:#FF6B35;
+  --dark:#FFFFFF;
+  --dark2:#F7F7FA;
+  --dark3:#EEEEF2;
+  --border:rgba(0,0,0,0.08);
+  --text:#0A0A0A;
+  --text2:#4A4A4F;
+  --text3:#8A8A8F;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+#globe-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+#globe-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 560px;
+  height: 560px;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  pointer-events: none;
+  transition: transform 0.1s linear;
+}
+#global-globe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  cursor: all-scroll;
+  pointer-events: auto;
+}
+.sat-overlay {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.2s;
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:1px solid transparent;transition:all .3s;}
+nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-color:var(--border);box-shadow: 0 4px 20px rgba(0,0,0,0.02);}
+.nav-logo{font-size:18px;font-weight:800;letter-spacing:-.02em;}
+.nav-logo span{color:var(--acc);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:13px;color:var(--text2);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--acc);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .2s;}
+.nav-cta:hover{opacity:.88;}
+
+/* HERO */
+#hero{position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;z-index:2;}
+.hero-content{position:relative;z-index:2;padding:0 80px;max-width:600px;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(232,82,26,0.08);border:1px solid rgba(232,82,26,0.2);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--acc);margin-bottom:24px;font-weight:500;}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acc);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1{font-size:clamp(40px,5vw,68px);font-weight:900;line-height:1.0;letter-spacing:-.03em;margin-bottom:20px;}
+h1 .acc{
+  background: linear-gradient(135deg, var(--acc2) 0%, var(--acc) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+.hero-sub{font-size:16px;color:var(--text2);line-height:1.7;margin-bottom:36px;max-width:460px;}
+.btn-group{display:flex;gap:12px;}
+.btn-primary{background:var(--acc);color:#fff;border:none;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:transform .15s,opacity .15s;}
+.btn-primary:hover{transform:translateY(-1px);opacity:.92;}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);padding:14px 24px;border-radius:10px;font-size:15px;cursor:pointer;transition:border-color .2s;}
+.btn-outline:hover{border-color:rgba(0,0,0,0.3);}
+.hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:40px;border-top:1px solid var(--border);}
+.stat-item .num{font-size:32px;font-weight:800;color:var(--acc);}
+.stat-item .lbl{font-size:12px;color:var(--text3);margin-top:2px;}
+
+/* SERVICES SCROLL */
+#services-scroll{position:relative;z-index:2;}
+#services-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:2;}
+.services-scroll-driver{height:500vh;}
+.svc-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32vw;
+  transition: opacity .4s cubic-bezier(0.25, 0.8, 0.25, 1), transform .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 10;
+  pointer-events: none;
+}
+.svc-num{font-size:12px;letter-spacing:.15em;color:var(--acc);margin-bottom:12px;font-weight:600;}
+.svc-title{font-size:clamp(32px,4vw,46px);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:16px;}
+.svc-desc{font-size:17px;color:var(--text2);line-height:1.6;margin-bottom:24px;}
+.svc-chips{display:flex;flex-wrap:wrap;gap:6px;pointer-events: auto;}
+.svc-chip{background:rgba(0,0,0,0.04);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:12px;color:var(--text2);}
+
+/* Side-by-Side Large Video Window */
+#svc-video-window {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44vw;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 5;
+}
+#svc-video-window img, #svc-video-window video {
+  transition: transform 0.5s ease;
+}
+/* Video overlay button */
+#svc-video-window:hover img,
+#svc-video-window:hover video {
+  transform: scale(1.02);
+}
+
+/* Tablet‑shaped overlay button */
+#video-overlay-text {
+  position: absolute;
+  right: 35px;            /* aligns with the round spot */
+  bottom: 35px;
+  width: 96px;           /* wider for tablet shape */
+  height: 36px;
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  border: 2px solid #fff;
+  border-radius: 12px;  /* rounded corners, not fully circular */
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background .4s ease, border-color .4s ease, box-shadow .4s ease, transform .4s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  text-shadow: 0 1px 2px rgba(0,0,0,.3);
+  font-family: inherit;
+  white-space: nowrap;
+}
+#video-overlay-text:hover {
+  background: linear-gradient(45deg, #ff9a70, #ffb880);
+  border-color: #fff;
+  transform: scale(1.07);
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+#video-overlay-text.ended-orange {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #ffffff;
+  box-shadow: 0 0 20px var(--acc), 0 4px 15px rgba(232, 82, 26, 0.4);
+}
+
+#video-overlay-text.ended-orange:hover {
+  background: #ff6830;
+  border-color: #ff6830;
+  transform: scale(1.07);
+  box-shadow: 0 0 25px #ff6830, 0 6px 20px rgba(255, 104, 48, 0.5);
+}
+
+/* Nav Dropdown styling */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-trigger {
+  cursor: pointer;
+}
+.dropdown-content {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  min-width: 260px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 8px 0;
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+.nav-dropdown:hover .dropdown-content {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-content a {
+  color: var(--text2) !important;
+  padding: 11px 20px !important;
+  text-decoration: none;
+  display: block;
+  font-size: 13px !important;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  text-align: left;
+}
+.dropdown-content a:hover {
+  background: rgba(232, 82, 26, 0.05) !important;
+  color: var(--acc) !important;
+  padding-left: 24px !important;
+}
+.dot-nav{
+  position:absolute;
+  right:48px;    /* move to the right side */
+  top:50%;       /* vertically center to accompany the services content */
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:12px;      /* elegant spacing */
+  z-index: 100;
+}
+
+.dot{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:rgba(0,0,0,0.15);
+  transition:all .3s;
+  cursor:pointer;
+}
+.dot.active{background:var(--acc);transform:scale(1.5);}
+.section-header{text-align:center;margin-bottom:64px;}
+.section-header .eyebrow{font-size:11px;letter-spacing:.15em;color:var(--acc);font-weight:600;margin-bottom:12px;}
+.section-header h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;}
+.section-header h2 span{color:var(--acc);}
+.section-header p{font-size:16px;color:var(--text2);margin-top:12px;line-height:1.6;}
+
+/* SECTIONS */
+section{position:relative;z-index:2;padding:100px 48px;}
+.divider{width:1px;height:60px;background:var(--border);margin:0 auto;position:relative;z-index:2;}
+
+/* PORTFOLIO */
+.portfolio-filters{display:flex;gap:8px;justify-content:center;margin-bottom:40px;}
+.filter-btn{background:transparent;border:1px solid var(--border);color:var(--text2);padding:7px 18px;border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s;}
+.filter-btn.active,.filter-btn:hover{background:var(--acc);border-color:var(--acc);color:#fff;}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.case-card{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--dark2);transition:transform .2s,border-color .2s;}
+.case-card:hover{transform:translateY(-4px);border-color:rgba(232,82,26,0.3);}
+.case-thumb{height:160px;background:var(--dark3);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);}
+.case-thumb svg{opacity:.25;}
+.case-body{padding:20px;}
+.case-tag{font-size:11px;color:var(--acc);font-weight:600;letter-spacing:.08em;margin-bottom:6px;}
+.case-title{font-size:16px;font-weight:600;margin-bottom:6px;}
+.case-result{font-size:13px;color:var(--text2);}
+
+/* METAPHORS */
+.metaphor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.meta-card{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color .2s;}
+.meta-card:hover{border-color:rgba(232,82,26,0.25);}
+.meta-arrow{font-size:20px;color:var(--acc);margin:16px 0 8px;}
+.meta-before{font-size:13px;color:var(--text3);text-decoration:line-through;margin-bottom:4px;}
+.meta-after{font-size:14px;color:var(--acc);font-weight:600;}
+.meta-icon{font-size:32px;margin-bottom:8px;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.about-nums{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
+.about-num-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
+.about-num-card .big{font-size:36px;font-weight:800;color:var(--acc);}
+.about-num-card .sm{font-size:12px;color:var(--text3);margin-top:2px;}
+.check-list{display:flex;flex-direction:column;gap:12px;margin-top:24px;}
+.check-item{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text2);}
+.check-item::before{content:'';width:18px;height:18px;border-radius:50%;background:rgba(232,82,26,0.15);border:1px solid rgba(232,82,26,0.4);flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E8521A' stroke-width='2.5'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E");background-size:12px;background-repeat:no-repeat;background-position:center;}
+
+/* BLOG */
+.blog-list{display:flex;flex-direction:column;gap:16px;}
+.blog-card{display:flex;gap:20px;padding:20px;background:var(--dark2);border:1px solid var(--border);border-radius:14px;transition:border-color .2s;cursor:pointer;}
+.blog-card:hover{border-color:rgba(232,82,26,0.25);}
+.blog-img{width:72px;height:72px;border-radius:10px;background:var(--dark3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.blog-tag{font-size:11px;color:var(--acc);font-weight:600;letter-spacing:.08em;margin-bottom:4px;}
+.blog-title{font-size:15px;font-weight:600;line-height:1.4;margin-bottom:6px;}
+.blog-meta{font-size:12px;color:var(--text3);}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start;}
+.contact-info{display:flex;flex-direction:column;gap:16px;margin-top:28px;}
+.contact-row{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--text2);}
+.contact-icon{width:36px;height:36px;border-radius:8px;background:rgba(232,82,26,0.1);border:1px solid rgba(232,82,26,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.form{background:var(--dark2);border:1px solid var(--border);border-radius:18px;padding:32px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.form input,.form select,.form textarea{background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:14px;color:var(--text);font-family:'Inter',sans-serif;width:100%;outline:none;transition:border-color .2s;}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:rgba(232,82,26,0.4);}
+.form select option{background:var(--dark3);}
+.form textarea{resize:none;}
+.form-submit{width:100%;margin-top:4px;}
+
+/* FOOTER */
+footer{background:transparent;border-top:1px solid var(--border);padding:48px 48px 28px;position:relative;z-index:2;}
+.footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:40px;}
+.footer-col h4{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--text3);margin-bottom:14px;}
+.footer-col a{display:block;font-size:14px;color:var(--text2);text-decoration:none;margin-bottom:8px;transition:color .2s;}
+.footer-col a:hover{color:var(--text);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{font-size:12px;color:var(--text3);}
+.socials{display:flex;gap:12px;}
+.social-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:border-color .2s;text-decoration:none;}
+.social-btn:hover{border-color:rgba(255,255,255,0.3);}
+
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-links{display:none;}
+  section{padding:60px 20px;}
+  .hero-content{padding:0 20px;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .portfolio-grid{grid-template-columns:1fr;}
+  .metaphor-grid{grid-template-columns:1fr;}
+  .footer-top{flex-direction:column;}
+  #globe-wrap{right:-120px;}
+  h1{font-size:36px;}
+  
+  /* Mobile Services Styles */
+  #services-sticky {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 80px;
+    align-items: center;
+  }
+  .svc-label {
+    position: relative;
+    top: 0;
+    transform: none !important;
+    width: 90vw;
+    margin: 0 auto;
+    left: auto !important;
+    right: auto !important;
+    text-align: center;
+  }
+  .svc-chips {
+    justify-content: center;
+  }
+  #svc-video-window {
+    position: relative;
+    top: 20px;
+    transform: none !important;
+    width: 90vw;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    margin: 0 auto;
+    left: auto !important;
+    right: auto !important;
+    border-radius: 12px;
+  }
+}
+#globe-tooltip {
+  position: fixed;
+  padding: 8px 14px;
+  background: rgba(10, 10, 10, 0.94);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--acc);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 10000;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+#globe-controls {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  padding: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+  z-index: 1000;
+}
+#globe-controls button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+#globe-controls button svg {
+  transition: transform 0.3s ease;
+}
+#globe-controls button:hover {
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.04);
+}
+#globe-controls button.active {
+  background: var(--acc);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(232, 82, 26, 0.25);
+}
+#globe-controls button.active svg {
+  transform: rotate(15deg);
+}
+#globe-bg-shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  height: 320px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.07) 0%, rgba(0, 0, 0, 0.02) 45%, rgba(0, 0, 0, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+}
+
+/* Chatbot Widget Styles */
+#chatbot-button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-image: url('chatbot_transparent.png');
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 24px rgba(232, 82, 26, 0.35);
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+#chatbot-button:hover {
+  transform: scale(1.08) translateY(-4px);
+  box-shadow: 0 12px 28px rgba(232, 82, 26, 0.5);
+  border-color: var(--acc);
+}
+#chatbot-button::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: #4CAF50;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.8);
+}
+.chatbot-badge {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  background: var(--acc);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  animation: chatbot-pulse 2s infinite;
+}
+@keyframes chatbot-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+#chatbot-window {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  width: 360px;
+  height: 480px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+#chatbot-window.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.chatbot-header {
+  background: linear-gradient(135deg, #FF6B35, #E8521A);
+  padding: 16px 20px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chatbot-header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chatbot-header-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.8);
+  object-fit: cover;
+}
+.chatbot-header-name {
+  font-weight: 700;
+  font-size: 15px;
+}
+.chatbot-header-status {
+  font-size: 11px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px #4CAF50;
+}
+.chatbot-close-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+.chatbot-close-btn:hover {
+  opacity: 1;
+}
+.chatbot-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(247, 247, 250, 0.5);
+}
+.chat-message {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+.chat-message.bot {
+  background: #ffffff;
+  color: var(--text);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+.chat-message.user {
+  background: var(--acc);
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 12px rgba(232, 82, 26, 0.15);
+}
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  align-self: flex-start;
+}
+.quick-reply-btn {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+.quick-reply-btn:hover {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(232, 82, 26, 0.15);
+  transform: translateY(-1px);
+}
+.chatbot-input-container {
+  padding: 12px 16px;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#chatbot-input {
+  flex: 1;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#chatbot-input:focus {
+  border-color: var(--acc);
+}
+#chatbot-send-btn {
+  background: var(--acc);
+  color: #ffffff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 3px 8px rgba(232, 82, 26, 0.2);
+}
+#chatbot-send-btn:hover {
+  background: #ff6830;
+  transform: scale(1.05);
+}
+@media(max-width:480px) {
+  #chatbot-window {
+    right: 12px;
+    bottom: 84px;
+    width: calc(100% - 24px);
+    height: 400px;
+  }
+  #chatbot-button {
+    right: 16px;
+    bottom: 16px;
+    width: 54px;
+    height: 54px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="globe-tooltip"></div>
+
+<div id="globe-container">
+  <div id="globe-wrapper">
+    <div id="globe-bg-shadow"></div>
+    <canvas id="global-globe" width="560" height="560"></canvas>
+  </div>
+  <!-- Floating Control Toolbar -->
+  <div id="globe-controls">
+    <button id="btn-rotate" title="დატრიალება">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+      დატრიალება
+    </button>
+    <button id="btn-translate" class="active" title="გადაადგილება">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>
+      გადაადგილება
+    </button>
+    <button id="btn-reset" title="ცენტრში დაბრუნება" style="padding: 8px 12px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+    </button>
+  </div>
+</div>
+
+<nav id="navbar">
+  <div class="nav-logo" style="display: flex; align-items: center; gap: 8px; font-weight: normal; font-size: inherit; letter-spacing: normal;">
+    <span style="color: var(--acc); font-size: 16px; line-height: 1;">●</span>
+    <div style="display: flex; flex-direction: column; line-height: 1.05;">
+      <span style="font-size: 16px; font-weight: 900; letter-spacing: -0.02em; color: var(--text); text-transform: none;">Metaფორა</span>
+      <span style="font-size: 9px; font-weight: 500; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase;">Agency</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#hero">მთავარი</a>
+    <div class="nav-dropdown">
+      <a href="#services-scroll" class="dropdown-trigger">სერვისები ▾</a>
+      <div class="dropdown-content">
+        <a href="#" data-step="0">პრინტი და ბრენდინგი</a>
+        <a href="#" data-step="1">გარე რეკლამა (OOH)</a>
+        <a href="#" data-step="2">ვიდეო პროდუქცია</a>
+        <a href="#" data-step="3">ვებ-გვერდების დეველოპმენტი</a>
+        <a href="#" data-step="4">სოციალური მედია</a>
+      </div>
+    </div>
+    <a href="#portfolio">პორტფოლიო</a>
+    <a href="#about">ჩვენს შესახებ</a>
+    <a href="#blog">ბლოგი</a>
+    <a href="#contact">კონტაქტი</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">კონსულტაცია</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">კრეატიული სააგენტო</div>
+    <h1>ქაღალდის თვითმფრინავი, <br><span class="acc">ჩვენ გავხდეთ ჯეტი</span></h1>
+    <p class="hero-sub">პრინტიდან სოციალური მედიამდე — ყველაფერი ერთ სააგენტოში. ქაღალდის თვითმფრინავი? ჩვენთან გახდება ჯეტი.</p>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">კონსულტაცია მოიწვიე</button>
+      <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">პორტფოლიო →</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="num">120+</div><div class="lbl">პროექტი</div></div>
+      <div class="stat-item"><div class="num">8+</div><div class="lbl">წელი</div></div>
+      <div class="stat-item"><div class="num">98%</div><div class="lbl">კმაყოფილება</div></div>
+      <div class="stat-item"><div class="num">40+</div><div class="lbl">კლიენტი</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SCROLL -->
+<div id="services-scroll">
+  <div id="services-sticky">
+    <div class="svc-label" id="svc-label">
+      <div class="svc-num" id="svc-num">01 / 05</div>
+      <div class="svc-title" id="svc-title">პრინტი და ბრენდინგი</div>
+      <div class="svc-desc" id="svc-desc">ლოგო, ბრენდბუქი, სავიზიტო ბარათები, ბეჭდვითი მასალები — ყველაფერი, რაც ბრენდს ამოცნობადს ხდის.</div>
+      <div class="svc-chips" id="svc-chips">
+        <span class="svc-chip">ლოგო</span><span class="svc-chip">ბრენდბუქი</span><span class="svc-chip">ბეჭდვა</span>
+      </div>
+    </div>
+    <!-- Side-by-Side Large Video Window (Taking up ~50% screen size) -->
+    <div id="svc-video-window" style="right: 6%; left: auto;">
+      <img id="svc-image" src="01.png" style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s ease;" alt="Service Showcase">
+      <video id="svc-video" src="01_v4.mp4" autoplay muted playsinline style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 20px;"></video>
+      <div id="video-overlay-text">გაიგე მეტი</div>
+    </div>
+    <div class="dot-nav" id="dot-nav">
+      <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <div style="position:absolute;top:32px;left:48px;font-size:11px;letter-spacing:.15em;color:rgba(0,0,0,0.25);font-weight:600;">სერვისები</div>
+  </div>
+  <div class="services-scroll-driver" id="svc-driver"></div>
+</div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header">
+    <div class="eyebrow">OUR WORK</div>
+    <h2>ჩვენი <span>ნამუშევრები</span></h2>
+    <p>პრობლემა → გადაწყვეტა → შედეგი</p>
+  </div>
+  <div class="portfolio-filters">
+    <button class="filter-btn active">ყველა</button>
+    <button class="filter-btn">ბრენდინგი</button>
+    <button class="filter-btn">ვებ</button>
+    <button class="filter-btn">OOH</button>
+    <button class="filter-btn">ვიდეო</button>
+  </div>
+  <div class="portfolio-grid">
+    <div class="case-card">
+      <div class="case-thumb"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg></div>
+      <div class="case-body"><div class="case-tag">ბრენდინგი · ვებ</div><div class="case-title">TechStart Georgia</div><div class="case-result">ლოგო → ბრენდბუქი → საიტი → +320% ტრაფიკი</div></div>
+    </div>
+    <div class="case-card">
+      <div class="case-thumb"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+      <div class="case-body"><div class="case-tag">OOH · სოც. მედია</div><div class="case-title">Tbilisi Mall კამპანია</div><div class="case-result">40 ბილბორდი + 2M reach სოციალურ მედიაში</div></div>
+    </div>
+    <div class="case-card">
+      <div class="case-thumb"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      <div class="case-body"><div class="case-tag">ვიდეო · სოც. მედია</div><div class="case-title">Adjara Group Reels</div><div class="case-result">12 ვიდეო → 4.5M view → +18% გაყიდვები</div></div>
+    </div>
+  </div>
+</section>
+
+  <!-- PRODUCT EXAMPLES -->
+  <section id="product-examples" style="padding:100px 48px;background:var(--dark2);">
+    <div class="section-header">
+      <div class="eyebrow">პროდუქტის მაგალითები</div>
+      <h2>ჩვენი <span>პროდუქტები</span></h2>
+      <p>ქვითარი, ბეჭდვები, ვიდეოები – ჩვენ დაგროვებთ ყველა სახის პროდუქციის სახით.</p>
+    </div>
+    <div class="portfolio-grid" style="grid-template-columns:repeat(3,1fr);gap:30px;">
+      <div class="case-card">
+        <div class="case-thumb"><img src="01.png" alt="Product 1" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="case-body">
+          <div class="case-tag">პროდუქტი 1</div>
+          <div class="case-title">ლოგო ბრენდირება</div>
+          <div class="case-result">მშვენიერი ლოგოს შექმნა, რომელიც ასახავს თქვენი ბრენდის ცოცხლობას.</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-thumb"><img src="02.png" alt="Product 2" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="case-body">
+          <div class="case-tag">პროდუქტი 2</div>
+          <div class="case-title">სოციალური მედია შთამბეჭდავი</div>
+          <div class="case-result">სიმდიდრე, სტილიზებული ვიდეოები, რომლებშიც თქვენი აუდიტორია დაინტერესება.</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-thumb"><img src="03.png" alt="Product 3" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="case-body">
+          <div class="case-tag">პროდუქტი 3</div>
+          <div class="case-title">ინტერიერული ბილდინგები</div>
+          <div class="case-result">ინტერიერი, 3D ვიზუალური ბილდინგები, რომელიც აძლიერებს სივრცის შთამომავლობას.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METAPHORS -->
+<section style="padding:60px 48px;background:transparent;">
+  <div class="section-header">
+    <div class="eyebrow">ᲠᲐᲢᲝᲛ ჩვენ</div>
+    <h2>მეტად <span>წარმოგაჩენთ!</span></h2>
+  </div>
+  <div class="metaphor-grid">
+    <div class="meta-card">
+      <div class="meta-icon">📄</div>
+      <div style="font-size:13px;color:var(--text3);margin-bottom:4px;">ბრენდინგი</div>
+      <div class="meta-arrow">↓</div>
+      <div class="meta-before">უცნობი ბრენდი</div>
+      <div class="meta-after">ინდუსტრიის ლიდერი ✦</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-icon">✈️</div>
+      <div style="font-size:13px;color:var(--text3);margin-bottom:4px;">ვებ-განვითარება</div>
+      <div class="meta-arrow">↓</div>
+      <div class="meta-before">ძველი საიტი</div>
+      <div class="meta-after">გაყიდვების მანქინა ✦</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-icon">📢</div>
+      <div style="font-size:13px;color:var(--text3);margin-bottom:4px;">სოციალური მედია</div>
+      <div class="meta-arrow">↓</div>
+      <div class="meta-before">ჩუმი ბრენდი</div>
+      <div class="meta-after">ვირალური კონტენტი ✦</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="eyebrow" style="font-size:11px;letter-spacing:.15em;color:var(--acc);font-weight:600;margin-bottom:16px;">2016 წლიდან</div>
+      <h2 style="font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:16px;">გახდი<br><span style="color:var(--acc)">მეტად ცნობადი</span></h2>
+      <p style="font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:8px;">სხვები გჰყავს გამოგონილი — ჩვენ შედეგებზე ვმუშაობთ. ყოველი პროექტი იწყება სტრატეგიით და მთავრდება ზომვადი ზრდით.</p>
+      <div class="check-list">
+        <div class="check-item">სრული სერვისი ერთ სახურავქვეშ</div>
+        <div class="check-item">ქართული ბაზრის ღრმა ცოდნა</div>
+        <div class="check-item">შედეგი, არა მხოლოდ კრეატივი</div>
+        <div class="check-item">გამჭვირვალე ანგარიშგება</div>
+      </div>
+    </div>
+    <div class="about-nums">
+      <div class="about-num-card"><div class="big">120+</div><div class="sm">პროექტი</div></div>
+      <div class="about-num-card"><div class="big">40+</div><div class="sm">კლიენტი</div></div>
+      <div class="about-num-card"><div class="big">8</div><div class="sm">სპეციალისტი</div></div>
+      <div class="about-num-card"><div class="big">3</div><div class="sm">ჯილდო</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" style="background:transparent;">
+  <div class="section-header">
+    <div class="eyebrow">BLOG</div>
+    <h2>სასარგებლო <span>სტატიები</span></h2>
+    <p>SEO კონტენტი, რომელიც ორგანულ ტრაფიკს მოიყვანს</p>
+  </div>
+  <div class="blog-list">
+    <div class="blog-card"><div class="blog-img">📍</div><div><div class="blog-tag">OOH · ბილბორდი</div><div class="blog-title">როგორ ავიღოთ ბილბორდი თბილისში — ფასი, ადგილები, ეფექტურობა</div><div class="blog-meta">5 წთ · 1,240 მკითხველი</div></div></div>
+    <div class="blog-card"><div class="blog-img">📱</div><div><div class="blog-tag">სოც. მედია · კონტენტი</div><div class="blog-title">Instagram Reels vs TikTok — რომელი სჯობს ქართული ბიზნესისთვის</div><div class="blog-meta">7 წთ · 890 მკითხველი</div></div></div>
+    <div class="blog-card"><div class="blog-img">🌐</div><div><div class="blog-tag">ვებ · SEO</div><div class="blog-title">ქართული საიტის SEO — 2026 წლის სრული გზამკვლევი</div><div class="blog-meta">12 წთ · 2,100 მკითხველი</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <div class="eyebrow">კონტაქტი</div>
+    <h2>მზად ხარ <span>მსოფლიომ გაგიცნოს?</span></h2>
+    <p>შეავსეთ ფორმა ან დაჯავშნეთ Calendly-ით. პასუხი 24 საათში.</p>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info">
+        <div class="contact-row"><div class="contact-icon">✉️</div>info@metafora.ge</div>
+        <div class="contact-row"><div class="contact-icon">📞</div>+995 555 00 00 00</div>
+        <div class="contact-row"><div class="contact-icon">📍</div>თბილისი, ვაკე</div>
+      </div>
+      <button class="btn-primary" style="margin-top:28px;padding:14px 28px;font-size:15px;width:100%;">📅 Calendly-ით დაჯავშნა</button>
+    </div>
+    <div class="form">
+      <div class="form-row">
+        <input placeholder="სახელი"/>
+        <input placeholder="კომპანია"/>
+      </div>
+      <div class="form-row">
+        <input placeholder="ელ-ფოსტა" type="email"/>
+        <input placeholder="ბიუჯეტი"/>
+      </div>
+      <select style="margin-bottom:12px;width:100%;">
+        <option value="">სერვისი — აირჩიეთ</option>
+        <option>პრინტი და ბრენდინგი</option>
+        <option>გარე რეკლამა (OOH)</option>
+        <option>ვიდეო პროდუქცია</option>
+        <option>ვებ-გვერდები</option>
+        <option>სოციალური მედია</option>
+      </select>
+      <textarea rows="4" placeholder="პროექტის შესახებ..." style="margin-bottom:12px;width:100%;"></textarea>
+      <button class="btn-primary form-submit">გაგზავნა →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-col">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+        <span style="color: var(--acc); font-size: 18px; line-height: 1;">●</span>
+        <div style="display: flex; flex-direction: column; line-height: 1.05;">
+          <span style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em; color: var(--text);">Metaფორა</span>
+          <span style="font-size: 10px; font-weight: 500; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase;">Agency</span>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--text3);max-width:200px;line-height:1.6;">კრეატიული სააგენტო — ბრენდინგიდან ციფრულამდე.</p>
+    </div>
+    <div class="footer-col">
+      <h4>სერვისები</h4>
+      <a href="#services">პრინტი და ბრენდინგი</a>
+      <a href="#services">გარე რეკლამა</a>
+      <a href="#services">ვიდეო პროდუქცია</a>
+      <a href="#services">ვებ-გვერდები</a>
+      <a href="#services">სოციალური მედია</a>
+    </div>
+    <div class="footer-col">
+      <h4>კომპანია</h4>
+      <a href="#about">ჩვენს შესახებ</a>
+      <a href="#portfolio">პორტფოლიო</a>
+      <a href="#blog">ბლოგი</a>
+      <a href="#contact">კონტაქტი</a>
+    </div>
+    <div class="footer-col">
+      <h4>სოციალური</h4>
+      <div class="socials">
+        <a class="social-btn" href="#">In</a>
+        <a class="social-btn" href="#">Fb</a>
+        <a class="social-btn" href="#">Ig</a>
+        <a class="social-btn" href="#">Tk</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Metaფორა Agency. ყველა უფლება დაცულია.</p>
+    <p>Made with ♥ in Tbilisi</p>
+  </div>
+</footer>
+
+<script>
+function initGlobes() {
+const GEO_LNG = 44.8271, GEO_LAT = 41.7151;
+function lngToPhi(l){return l*Math.PI/180;}
+function latToTheta(l){return -l*Math.PI/180;}
+function lerp(a,b,t){return a+(b-a)*t;}
+
+function U([lat, lng]) {
+  const r = lat * Math.PI / 180;
+  const a = lng * Math.PI / 180 - Math.PI;
+  const o = Math.cos(r);
+  return [-o * Math.cos(a), Math.sin(r), o * Math.sin(a)];
+}
+
+function O(t2, f, l) {
+  const r2 = Math.cos(l);
+  const a2 = Math.cos(f);
+  const o2 = Math.sin(l);
+  const i2 = Math.sin(f);
+  const c2 = a2 * t2[0] + i2 * t2[2];
+  const s2 = i2 * o2 * t2[0] + r2 * t2[1] - a2 * o2 * t2[2];
+  const z2 = -i2 * r2 * t2[0] + o2 * t2[1] + a2 * r2 * t2[2];
+  return {
+    x: (c2 + 1) / 2,
+    y: (-s2 + 1) / 2,
+    visible: z2 >= 0 || (c2 * c2 + s2 * s2 >= 0.64)
+  };
+}
+
+// NAV scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// STEPS mapping for global globe scroll trajectory (matching video frames exactly)
+const STEPS = [
+  { rotY: 0.0, rotX: 0.0,  scale: 1.25, tx: 32,  ty: 0   }, // 0%   — Right (Hero)
+  { rotY: 1.2, rotX: -0.1, scale: 1.35, tx: -35, ty: 0   }, // 25%  — Left (Step 1)
+  { rotY: 4.2, rotX: 0.1,  scale: 1.35, tx: 35,  ty: 0   }, // 50%  — Right
+  { rotY: 4.8, rotX: -0.2, scale: 1.20, tx: -30, ty: -24 }, // 75%  — Top-Left
+  { rotY: 5.6, rotX: 0.0,  scale: 1.20, tx: 0,   ty: 0   }  // 100% — Center
+];
+
+const canvas = document.getElementById('global-globe');
+let phi = lngToPhi(GEO_LNG), theta = latToTheta(GEO_LAT);
+let isDrag = false, lx = 0, ly = 0, dPhi = phi, dTheta = theta;
+let phiOffset = 0; // Cumulative offset from drag
+let autoPhi = 0;   // Auto-rotation angle
+let dragMode = 'translate'; // 'rotate' or 'translate'
+let controlMode = 'translate'; // 'rotate' or 'translate'
+let txOffset = 0, tyOffset = 0;
+let dTx = 0, dTy = 0;
+
+// Prevent context menu on right click to allow panning
+canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+// Setup controls listeners
+const btnRotate = document.getElementById('btn-rotate');
+const btnTranslate = document.getElementById('btn-translate');
+const btnReset = document.getElementById('btn-reset');
+
+btnRotate.addEventListener('click', () => {
+  controlMode = 'rotate';
+  btnRotate.classList.add('active');
+  btnTranslate.classList.remove('active');
+  canvas.style.cursor = 'grab';
+});
+
+btnTranslate.addEventListener('click', () => {
+  controlMode = 'translate';
+  btnTranslate.classList.add('active');
+  btnRotate.classList.remove('active');
+  canvas.style.cursor = 'all-scroll';
+});
+
+btnReset.addEventListener('click', () => {
+  txOffset = 0;
+  tyOffset = 0;
+});
+
+canvas.addEventListener('mousedown', e => {
+  isDrag = true;
+  lx = e.clientX;
+  ly = e.clientY;
+  
+  // Right click (2), middle click (1), or Shift + Left click triggers translation even if rotate is active
+  if (controlMode === 'translate' || e.button === 2 || e.button === 1 || (e.button === 0 && e.shiftKey)) {
+    dragMode = 'translate';
+    dTx = txOffset;
+    dTy = tyOffset;
+    canvas.style.cursor = 'all-scroll';
+  } else {
+    dragMode = 'rotate';
+    dPhi = phi;
+    dTheta = theta;
+    canvas.style.cursor = 'grabbing';
+  }
+});
+window.addEventListener('mouseup', () => {
+  isDrag = false;
+  canvas.style.cursor = controlMode === 'translate' ? 'all-scroll' : 'grab';
+});
+window.addEventListener('mousemove', e => {
+  if (!isDrag) return;
+  if (dragMode === 'rotate') {
+    phi = dPhi - (e.clientX - lx) / 200;
+    theta = Math.max(-1.2, Math.min(1.2, dTheta + (e.clientY - ly) / 200));
+  } else {
+    // 5px of drag corresponds to 1% of translation
+    txOffset = dTx + (e.clientX - lx) / 5;
+    tyOffset = dTy + (e.clientY - ly) / 5;
+  }
+});
+
+// Dynamic values
+let tPhi = phi, tTheta = theta, tScale = 0.77, tTx = 12, tTy = 0;
+let scVal = 0.77, txVal = 12, tyVal = 0;
+
+// Orbiting Satellites Setup
+const satellites = [
+  { inclination: 0.5, speed: 0.007, phase: 0.0, size: 0.012, color: [0.8, 0.85, 0.9], name: 'პრინტი და ბრენდინგი' },
+  { inclination: -0.6, speed: 0.005, phase: 1.2, size: 0.014, color: [0.75, 0.8, 0.85], name: 'გარე რეკლამა (OOH)' },
+  { inclination: 1.0, speed: 0.006, phase: 2.4, size: 0.011, color: [0.8, 0.8, 0.85], name: 'ვიდეო პროდუქცია' },
+  { inclination: -0.3, speed: 0.008, phase: 3.6, size: 0.013, color: [0.85, 0.8, 0.9], name: 'ვებ-გვერდების დეველოპმენტი' },
+  { inclination: 0.8, speed: 0.004, phase: 4.8, size: 0.012, color: [0.8, 0.9, 0.85], name: 'სოციალური მედია' }
+];
+let satTime = 0;
+let tooltipX = 0, tooltipY = 0;
+let activeHovered = null;
+
+// SATELLITE SVG Design with Solar Panels and Satellite Dish Antenna
+const SATELLITE_SVG = `
+<svg viewBox="0 0 64 64" width="100%" height="100%" style="filter: drop-shadow(0 0 6px rgba(13,71,161,0.4));">
+  <!-- Solar panels (wings) -->
+  <!-- Left Wing -->
+  <rect x="2" y="24" width="18" height="16" rx="2" fill="#0D47A1" stroke="#FFB300" stroke-width="1.5" />
+  <line x1="2" y1="32" x2="20" y2="32" stroke="#90CAF9" stroke-width="1" />
+  <line x1="8" y1="24" x2="8" y2="40" stroke="#90CAF9" stroke-width="1" />
+  <line x1="14" y1="24" x2="14" y2="40" stroke="#90CAF9" stroke-width="1" />
+
+  <!-- Right Wing -->
+  <rect x="44" y="24" width="18" height="16" rx="2" fill="#0D47A1" stroke="#FFB300" stroke-width="1.5" />
+  <line x1="44" y1="32" x2="62" y2="32" stroke="#90CAF9" stroke-width="1" />
+  <line x1="50" y1="24" x2="50" y2="40" stroke="#90CAF9" stroke-width="1" />
+  <line x1="56" y1="24" x2="56" y2="40" stroke="#90CAF9" stroke-width="1" />
+
+  <!-- Connector rods -->
+  <line x1="20" y1="32" x2="44" y2="32" stroke="#ECEFF1" stroke-width="2.5" />
+  <line x1="20" y1="32" x2="44" y2="32" stroke="#FFB300" stroke-width="1" />
+
+  <!-- Central body -->
+  <rect x="25" y="22" width="14" height="20" rx="1.5" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1.5" />
+  <!-- Details on body -->
+  <rect x="28" y="25" width="8" height="4" fill="#FFB300" />
+  <circle cx="32" cy="35" r="2.5" fill="#0D47A1" />
+
+  <!-- Satellite dish -->
+  <path d="M 23 46 C 26 51, 38 51, 41 46" fill="none" stroke="#ECEFF1" stroke-width="2" stroke-linecap="round" />
+  <line x1="32" y1="42" x2="32" y2="48" stroke="#B0BEC5" stroke-width="1.5" />
+  <circle cx="32" cy="51" r="2" fill="#FFB300" />
+</svg>
+`;
+
+// Create overlay HTML elements dynamically inside #globe-wrapper
+const globeWrapper = document.getElementById('globe-wrapper');
+satellites.forEach((sat, idx) => {
+  const satDiv = document.createElement('div');
+  satDiv.className = 'sat-overlay';
+  satDiv.id = `sat-${idx}`;
+  satDiv.innerHTML = SATELLITE_SVG;
+  globeWrapper.appendChild(satDiv);
+
+  // Forward click/drag events to canvas
+  satDiv.addEventListener('mousedown', (e) => {
+    const simEvent = new MouseEvent('mousedown', {
+      clientX: e.clientX,
+      clientY: e.clientY,
+      bubbles: true
+    });
+    canvas.dispatchEvent(simEvent);
+  });
+
+  // Hover events to show custom tooltip
+  satDiv.addEventListener('mouseenter', (e) => {
+    activeHovered = sat.name;
+    tooltipX = e.clientX;
+    tooltipY = e.clientY;
+  });
+  satDiv.addEventListener('mousemove', (e) => {
+    tooltipX = e.clientX;
+    tooltipY = e.clientY;
+  });
+  satDiv.addEventListener('mouseleave', () => {
+    activeHovered = null;
+  });
+});
+
+// MINIMALIST WAVY SIGNAL RIPPLES SVG Design (lined & wavy)
+const WAVE_SVG = `
+<svg viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Inner pulsing glow -->
+  <circle cx="50" cy="50" r="8" fill="rgba(232,82,26,0.25)">
+    <animate attributeName="r" values="6;12;6" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" />
+  </circle>
+  
+  <!-- Lined Wavy ripple 1 -->
+  <circle cx="50" cy="50" r="20" fill="none" stroke="var(--acc)" stroke-width="1" stroke-dasharray="3,3">
+    <animate attributeName="r" values="8;45" dur="2.5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.8;0" dur="2.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Lined Wavy ripple 2 -->
+  <circle cx="50" cy="50" r="20" fill="none" stroke="var(--acc)" stroke-width="0.8" stroke-dasharray="5,4">
+    <animate attributeName="r" values="8;45" dur="2.5s" begin="1.25s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.6;0" dur="2.5s" begin="1.25s" repeatCount="indefinite" />
+  </circle>
+</svg>
+`;
+
+// Create wave overlay element
+const waveDiv = document.createElement('div');
+waveDiv.id = 'tbilisi-wave';
+waveDiv.style.position = 'absolute';
+waveDiv.style.width = '70px';
+waveDiv.style.height = '70px';
+waveDiv.style.pointerEvents = 'none';
+waveDiv.style.zIndex = '4';
+waveDiv.style.transform = 'translate(-50%, -50%)';
+waveDiv.innerHTML = WAVE_SVG;
+globeWrapper.appendChild(waveDiv);
+
+function getMarkersAndArcs() {
+  satTime += 1;
+  const currentMarkers = [];
+  const currentArcs = [];
+
+  // Georgia core base dot on the globe
+  currentMarkers.push({
+    location: [GEO_LAT, GEO_LNG],
+    size: 0.015,
+    color: [1, 0.35, 0.1]
+  });
+
+  return { markers: currentMarkers, arcs: currentArcs };
+}
+
+function getInterpolatedState(percent) {
+  percent = Math.max(0, Math.min(1, percent));
+  const count = STEPS.length - 1;
+  const rawIdx = percent * count;
+  const idx = Math.min(count - 1, Math.floor(rawIdx));
+  const frac = rawIdx - idx;
+
+  const s1 = STEPS[idx];
+  const s2 = STEPS[idx + 1];
+
+  return {
+    rotY: s1.rotY + (s2.rotY - s1.rotY) * frac,
+    rotX: s1.rotX + (s2.rotX - s1.rotX) * frac,
+    scale: s1.scale + (s2.scale - s1.scale) * frac,
+    tx: s1.tx + (s2.tx - s1.tx) * frac,
+    ty: s1.ty + (s2.ty - s1.ty) * frac
+  };
+}
+
+// Initialize Globe
+const initialData = getMarkersAndArcs();
+const globe = createGlobe(canvas, {
+  devicePixelRatio: 2,
+  width: 1120,
+  height: 1120,
+  phi,
+  theta,
+  dark: 0,
+  diffuse: 1.2,
+  mapSamples: 18000,
+  mapBrightness: 6,
+  baseColor: [1, 1, 1],
+  markerColor: [1, 0.32, 0.1],
+  glowColor: [1, 1, 1],
+  markers: initialData.markers,
+  arcs: initialData.arcs
+});
+
+// Custom Animation Loop because local cobe-bundle.js doesn't contain an internal loop
+function animate() {
+  if (!isDrag) {
+    autoPhi += 0.002; // Slow continuous spin when not dragging
+  }
+  const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+  
+  const svcDriver = document.getElementById('svc-driver');
+  const svcRect = svcDriver.getBoundingClientRect();
+  const svcHeight = svcDriver.offsetHeight;
+  
+  let targetState;
+  
+  // Calculate if the services section is active in the viewport
+  if (svcRect.top < 0 && svcRect.bottom > window.innerHeight) {
+    const progress = Math.max(0, Math.min(1, -svcRect.top / (svcHeight - window.innerHeight)));
+    
+    // 5 sub-steps in services
+    const SVC_STEPS = [
+      { rotY: 1.2, rotX: -0.1, scale: 1.35, tx: -35, ty: 0 },   // 01/05 (Video Right, Globe Left)
+      { rotY: 1.8, rotX: 0.0,  scale: 1.35, tx: 35,  ty: 0 },   // 02/05 (Video Left, Globe Right)
+      { rotY: 2.4, rotX: 0.1,  scale: 1.35, tx: -35, ty: 0 },   // 03/05 (Video Right, Globe Left)
+      { rotY: 3.0, rotX: 0.0,  scale: 1.35, tx: 35,  ty: 0 },   // 04/05 (Video Left, Globe Right)
+      { rotY: 3.6, rotX: -0.1, scale: 1.89, tx: -35, ty: 0 }    // 05/05 (Video Right, Globe Left, Zoomed)
+    ];
+    
+    const count = SVC_STEPS.length - 1;
+    const rawIdx = progress * count;
+    const idx = Math.min(count - 1, Math.floor(rawIdx));
+    const frac = rawIdx - idx;
+    
+    const s1 = SVC_STEPS[idx];
+    const s2 = SVC_STEPS[idx + 1];
+    
+    targetState = {
+      rotY: s1.rotY + (s2.rotY - s1.rotY) * frac,
+      rotX: s1.rotX + (s2.rotX - s1.rotX) * frac,
+      scale: s1.scale + (s2.scale - s1.scale) * frac,
+      tx: s1.tx + (s2.tx - s1.tx) * frac,
+      ty: s1.ty + (s2.ty - s1.ty) * frac
+    };
+  } else {
+    targetState = getInterpolatedState(scrollPercent);
+  }
+  
+  if (!isDrag || dragMode === 'translate') {
+    // Target phi is Georgia facing (lngToPhi) + target Y-rot + auto-rotation + drag offset
+    tPhi = lngToPhi(GEO_LNG) + targetState.rotY + autoPhi + phiOffset;
+    tTheta = targetState.rotX;
+
+    phi = lerp(phi, tPhi, 0.055);
+    theta = lerp(theta, tTheta, 0.055);
+  } else {
+    // Keep track of drag offset relative to the scroll + auto-rotation
+    phiOffset = phi - (lngToPhi(GEO_LNG) + targetState.rotY + autoPhi);
+  }
+
+  tScale = targetState.scale;
+  tTx = targetState.tx + txOffset;
+  tTy = targetState.ty + tyOffset;
+
+  scVal = lerp(scVal, tScale, 0.07);
+  txVal = lerp(txVal, tTx, 0.07);
+  tyVal = lerp(tyVal, tTy, 0.07);
+
+  // Apply scaling and translation to the wrapper instead of the canvas directly
+  const wrapper = document.getElementById('globe-wrapper');
+  wrapper.style.transform = `translate(-50%, -50%) translate(${txVal.toFixed(1)}%, ${tyVal.toFixed(1)}%) scale(${scVal.toFixed(3)})`;
+
+  // Project satellites and update HTML overlays
+  satellites.forEach((sat, idx) => {
+    const angle = satTime * sat.speed + sat.phase;
+    const lat = Math.sin(angle) * (sat.inclination * 45);
+    const lng = (angle * 180 / Math.PI) % 360;
+
+    const t2 = U([lat, lng]);
+    const r2 = 0.85; // 0.8 + 0.05 (markerElevation)
+    const pos = [t2[0] * r2, t2[1] * r2, t2[2] * r2];
+    const proj = O(pos, phi, theta);
+
+    const satEl = document.getElementById(`sat-${idx}`);
+    if (satEl) {
+      if (proj.visible) {
+        satEl.style.left = proj.x * 560 + 'px';
+        satEl.style.top = proj.y * 560 + 'px';
+        satEl.style.opacity = '1';
+        satEl.style.display = 'block';
+        // Rotate the satellite div as it orbits
+        satEl.style.transform = `translate(-50%, -50%) rotate(${angle * 180 / Math.PI}deg)`;
+      } else {
+        satEl.style.opacity = '0';
+        satEl.style.display = 'none';
+      }
+    }
+  });
+
+  // Project and position Wavy Waves above Georgia
+  const t2_wave = U([GEO_LAT, GEO_LNG]);
+  const r2_wave = 0.8; // surface
+  const pos_wave = [t2_wave[0] * r2_wave, t2_wave[1] * r2_wave, t2_wave[2] * r2_wave];
+  const proj_wave = O(pos_wave, phi, theta);
+
+  const waveEl = document.getElementById('tbilisi-wave');
+
+  if (proj_wave.visible) {
+    const tx = proj_wave.x * 560;
+    const ty = proj_wave.y * 560;
+    
+    if (waveEl) {
+      waveEl.style.left = tx + 'px';
+      waveEl.style.top = ty + 'px';
+      waveEl.style.display = 'block';
+    }
+  } else {
+    if (waveEl) waveEl.style.display = 'none';
+  }
+
+  const tooltip = document.getElementById('globe-tooltip');
+  if (activeHovered) {
+    tooltip.textContent = activeHovered;
+    tooltip.style.left = tooltipX + 12 + 'px';
+    tooltip.style.top = tooltipY + 12 + 'px';
+    tooltip.style.opacity = '1';
+  } else {
+    tooltip.style.opacity = '0';
+  }
+
+  // Update satellites orbit on each render frame
+  const dynamicData = getMarkersAndArcs();
+  
+  globe.update({
+    phi: phi,
+    theta: theta,
+    markers: dynamicData.markers,
+    arcs: dynamicData.arcs
+  });
+
+  requestAnimationFrame(animate);
+}
+
+// Start rendering
+animate();
+
+// SERVICES SECTION SCROLL TEXT TRANSITION LOGIC
+(function(){
+  const SVCS=[
+    {num:'01 / 05',title:'პრინტი და ბრენდინგი',desc:'ლოგო, ბრენდბუქი, სავიზიტო ბარათები, ბეჭდვითი მასალები — ყველაფერი, რაც ბრენდს ამოცნობადს ხდის.',chips:['ლოგო','ბრენდბუქი','ბეჭდვა']},
+    {num:'02 / 05',title:'გარე რეკლამა (OOH)',desc:'ბილბორდები, City Light, ტრანსპორტი — სტრატეგიულ ადგილებში, სწორ დროს, სწორი აუდიტორიისთვის.',chips:['ბილბორდი','City Light','ტრანსპ.']},
+    {num:'03 / 05',title:'ვიდეო პროდუქცია',desc:'სარეკლამო რგოლები, Motion Graphics, Reels, კორპორატიული ვიდეოები — კონტენტი, რომელიც ყიდის.',chips:['Reels','Motion','სარეკლამო']},
+    {num:'04 / 05',title:'ვებ-გვერდების დეველოპმენტი',desc:'Landing Page, E-Commerce, კორპ. საიტი — სწრაფი, SEO-ოპტიმიზებული, გაყიდვებზე ორიენტირებული.',chips:['Landing','E-com','SEO']},
+    {num:'05 / 05',title:'სოციალური მედია',desc:'კონტენტ-გეგმა, Reels, Chatbot, ავტომატიზაცია — სოციალური მედია, რომელიც მუშაობს 24/7.',chips:['Instagram','Facebook','Chatbot']},
+  ];
+
+  let curStep=-1;
+
+  function setStep(idx){
+    if(idx===curStep)return;
+    curStep=idx;
+    const s=SVCS[idx];
+    const lbl=document.getElementById('svc-label');
+    const vidWin=document.getElementById('svc-video-window');
+    const isRight = (idx % 2 === 1);
+    
+    lbl.style.opacity='0';
+    lbl.style.transform=`translateY(-50%) translateX(${isRight ? '16px' : '-16px'})`;
+    if (vidWin) {
+      vidWin.style.opacity = '0';
+      vidWin.style.transform = `translateY(-50%) scale(0.96)`;
+    }
+    
+    setTimeout(()=>{
+      document.getElementById('svc-num').textContent=s.num;
+      document.getElementById('svc-title').textContent=s.title;
+      document.getElementById('svc-desc').textContent=s.desc;
+      document.getElementById('svc-chips').innerHTML=s.chips.map(c=>`<span class="svc-chip">${c}</span>`).join('');
+      
+      const img = document.getElementById('svc-image');
+      const vid = document.getElementById('svc-video');
+      const overlay = document.getElementById('video-overlay-text');
+      if (img) img.style.display = 'none';
+      if (vid) {
+        let targetSrc = '';
+        if (idx === 0) targetSrc = '01_v4.mp4';
+        else if (idx === 1) targetSrc = '02_v4.mp4';
+        else if (idx === 2) targetSrc = '03_v4.mp4';
+        else if (idx === 3) targetSrc = '04_v4.mp4';
+        else if (idx === 4) targetSrc = '05_v4.mp4';
+        
+        if (vid.getAttribute('src') !== targetSrc) {
+          vid.src = targetSrc;
+        }
+        vid.currentTime = 0;
+        vid.style.display = 'block';
+        vid.play().catch(e => {});
+      }
+      if (overlay) {
+        overlay.textContent = 'გაიგე მეტი';
+        overlay.classList.remove('ended-orange');
+      }
+      
+      if (isRight) {
+        lbl.style.left = 'auto';
+        lbl.style.right = '6%';
+        if (vidWin) {
+          vidWin.style.left = '6%';
+          vidWin.style.right = 'auto';
+        }
+      } else {
+        lbl.style.left = '6%';
+        lbl.style.right = 'auto';
+        if (vidWin) {
+          vidWin.style.left = 'auto';
+          vidWin.style.right = '6%';
+        }
+      }
+      
+      lbl.style.opacity='1';
+      lbl.style.transform='translateY(-50%) translateX(0)';
+      if (vidWin) {
+        vidWin.style.opacity = '1';
+        vidWin.style.transform = `translateY(-50%) scale(1)`;
+      }
+    },200);
+    document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  }
+
+  window.addEventListener('scroll',()=>{
+    const driver=document.getElementById('svc-driver');
+    const rect=driver.getBoundingClientRect();
+    const scrollable = driver.offsetHeight - window.innerHeight;
+    if (scrollable <= 0) return;
+    const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+    const idx = Math.min(SVCS.length-1, Math.floor(progress*SVCS.length));
+    setStep(idx);
+  },{passive:true});
+
+  document.querySelectorAll('.dot').forEach((d,i)=>d.addEventListener('click',()=>{
+    const driver=document.getElementById('svc-driver');
+    const rect=driver.getBoundingClientRect();
+    const docScrollTop = window.scrollY || document.documentElement.scrollTop;
+    const driverTop = rect.top + docScrollTop;
+    const scrollable = driver.offsetHeight - window.innerHeight;
+    const targetScroll = driverTop + (i / (SVCS.length - 1)) * scrollable + 5; // small offset to trigger index boundary
+    window.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
+  }));
+  const vidEl = document.getElementById('svc-video');
+  const overlayEl = document.getElementById('video-overlay-text');
+  if (vidEl && overlayEl) {
+    vidEl.addEventListener('ended', () => {
+      overlayEl.classList.add('ended-orange');
+    });
+    overlayEl.addEventListener('click', () => {
+      let serviceKey = 'branding';
+      if (curStep === 1) serviceKey = 'ooh';
+      else if (curStep === 2) serviceKey = 'video';
+      else if (curStep === 3) serviceKey = 'web';
+      else if (curStep === 4) serviceKey = 'smm';
+      
+      window.location.href = `service.html?service=${serviceKey}`;
+    });
+  }
+  // Dropdown link scrolling
+  document.querySelectorAll('.dropdown-content a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const stepIdx = parseInt(link.getAttribute('data-step'));
+      const driver = document.getElementById('svc-driver');
+      const rect = driver.getBoundingClientRect();
+      const docScrollTop = window.scrollY || document.documentElement.scrollTop;
+      const driverTop = rect.top + docScrollTop;
+      const scrollable = driver.offsetHeight - window.innerHeight;
+      const targetScroll = driverTop + (stepIdx / 4) * scrollable + 5;
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  setStep(0);
+})();
+
+// portfolio filters
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+} // end initGlobes
+</script>
+<!-- Chatbot HTML -->
+<div id="chatbot-button" onclick="toggleChat()">
+  <span class="chatbot-badge">1</span>
+</div>
+
+<div id="chatbot-window">
+  <div class="chatbot-header">
+    <div class="chatbot-header-info">
+      <img src='chatbot_transparent.png' alt='Bot Avatar' class='chatbot-header-avatar'>
+      <div>
+        <div class="chatbot-header-name">Metaფორა ასისტენტი</div>
+        <div class="chatbot-header-status"><span class="status-dot"></span>აქტიურია</div>
+      </div>
+    </div>
+    <button class="chatbot-close-btn" onclick="toggleChat()">&times;</button>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages">
+    <div class="chat-message bot">
+      <div class="message-content">გამარჯობა! 👋 მე ვარ Metaფორას ასისტენტი. როგორ შემიძლია დაგეხმაროთ?</div>
+    </div>
+    <div class="quick-replies">
+      <button class="quick-reply-btn" onclick="sendQuickReply('რა სერვისებს გვთავაზობთ?')">სერვისები 🛠️</button>
+      <button class="quick-reply-btn" onclick="sendQuickReply('როგორ დაგიკავშირდეთ?')">კონტაქტი 📞</button>
+      <button class="quick-reply-btn" onclick="sendQuickReply('სად მდებარეობს თქვენი ოფისი?')">ოფისი 📍</button>
+    </div>
+  </div>
+  <div class="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="ჩაწერეთ შეტყობინება..." onkeypress="handleChatKeyPress(event)">
+    <button id="chatbot-send-btn" onclick="sendChatMessage()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+function toggleChat() {
+  const win = document.getElementById('chatbot-window');
+  const badge = document.querySelector('.chatbot-badge');
+  win.classList.toggle('open');
+  if (win.classList.contains('open') && badge) {
+    badge.style.display = 'none';
+  }
+}
+
+function handleChatKeyPress(e) {
+  if (e.key === 'Enter') {
+    sendChatMessage();
+  }
+}
+
+function sendChatMessage() {
+  const input = document.getElementById('chatbot-input');
+  const text = input.value.trim();
+  if (!text) return;
+  
+  appendMessage(text, 'user');
+  input.value = '';
+  
+  setTimeout(() => {
+    const reply = getBotReply(text);
+    appendMessage(reply, 'bot');
+  }, 600);
+}
+
+function sendQuickReply(text) {
+  appendMessage(text, 'user');
+  const qr = document.querySelector('.quick-replies');
+  if (qr) qr.style.display = 'none';
+  
+  setTimeout(() => {
+    const reply = getBotReply(text);
+    appendMessage(reply, 'bot');
+  }, 600);
+}
+
+function appendMessage(text, sender) {
+  const container = document.getElementById('chatbot-messages');
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `chat-message ${sender}`;
+  
+  const formattedText = text.replace(/\n/g, '<br>');
+  msgDiv.innerHTML = `<div class="message-content">${formattedText}</div>`;
+  
+  container.appendChild(msgDiv);
+  container.scrollTop = container.scrollHeight;
+}
+
+function getBotReply(userText) {
+  const cleanText = userText.toLowerCase();
+  
+  if (cleanText.includes('სერვის') || cleanText.includes('რას აკეთებთ') || cleanText.includes('service')) {
+    return `ჩვენ გთავაზობთ ციფრული მარკეტინგის სრულ სერვისებს:\n\n` +
+           `1. 🏷️ ბრენდინგი & დიზაინი (ლოგო, ბრენდბუქი, ბეჭდვა)\n` +
+           `2. 💻 ვებ დეველოპმენტი (საიტების დამზადება, UX/UI, SEO)\n` +
+           `3. 📈 OOH & გარე რეკლამა (ბილბორდები, გამოფენები)\n` +
+           `4. 🎥 ვიდეო წარმოება (Reels, TikTok, პრომო ვიდეოები)\n` +
+           `5. 📱 სოციალური მედია (SMM, კონტენტი, ავტომატიზაცია)`;
+  }
+  
+  if (cleanText.includes('კონტაქტ') || cleanText.includes('ტელეფონ') || cleanText.includes('დაგიკავშირდეთ') || cleanText.includes('contact') || cleanText.includes('ნომერი')) {
+    return `ჩვენთან დაკავშირება შეგიძლიათ:\n\n` +
+           `📞 ტელეფონი: +995 599 00 00 00\n` +
+           `📧 ელ.ფოსტა: info@metafora.ge\n\n` +
+           `ან შეავსეთ გვერდის ბოლოში მოცემული საკონტაქტო ფორმა და ჩვენი გუნდი თავად დაგიკავშირდებათ!`;
+  }
+  
+  if (cleanText.includes('ოფისი') || cleanText.includes('მისამართი') || cleanText.includes('სად ხართ') || cleanText.includes('office') || cleanText.includes('მდებარეობს')) {
+    return `📍 ჩვენი ოფისი მდებარეობს თბილისში, ილია ჭავჭავაძის გამზირზე.\n\nშეგიძლიათ მობრძანდეთ ყავაზე და ერთად განვიხილოთ თქვენი პროექტი! ☕`;
+  }
+  
+  if (cleanText.includes('ფასი') || cleanText.includes('ღირს') || cleanText.includes('price')) {
+    return `პროექტის ღირებულება ინდივიდუალურია და დამოკიდებულია თქვენს მოთხოვნებზე. დაგვიკავშირდით ნომერზე ან შეავსეთ საკონტაქტო ფორმა გვერდის ბოლოში, რათა მიიღოთ უფასო კონსულტაცია და დეტალური ხარჯთაღრიცხვა.`;
+  }
+  
+  if (cleanText.includes('გამარჯობა') || cleanText.includes('სალამი') || cleanText.includes('hello') || cleanText.includes('hi') || cleanText.includes('სალამ')) {
+    return `გამარჯობა! 😊 რით შემიძლია დაგეხმაროთ დღეს? გსურთ გაეცნოთ ჩვენს სერვისებს თუ დაგვიკავშირდეთ?`;
+  }
+  
+  return `მადლობა შეტყობინებისთვის! 🙌\n\nმე ჯერ კიდევ ვსწავლობ, მაგრამ შეგიძლიათ დაგვიკავშირდეთ ნომერზე ან მოგვწეროთ ელ-ფოსტაზე: info@metafora.ge. ჩვენი გუნდი უმოკლეს დროში გიპასუხებთ!`;
+}
+</script>
+
+<script src="cobe-bundle.js" onload="initGlobes()"></script>
+</body>
+</html>
