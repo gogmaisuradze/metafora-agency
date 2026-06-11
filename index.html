@@ -548,7 +548,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   #globe-wrapper {
     width: 320px !important;
     height: 320px !important;
-    top: 35% !important; /* Move higher up as requested */
+    top: 70% !important; /* Bottom third of the screen */
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     pointer-events: none !important; /* Click-through so mobile scroll is smooth */
@@ -2125,9 +2125,9 @@ function animate() {
     tTx = autoX;
     
     if (svcRect.top < 0 && svcRect.bottom > window.innerHeight) {
-      tTy = -15 + autoY; // higher up in services, floating in slanted 8
+      tTy = 10 + autoY; // bottom third in services, floating in slanted 8
     } else {
-      tTy = 10 + autoY;  // higher up in hero, floating in slanted 8
+      tTy = 0 + autoY;  // bottom third in hero, floating in slanted 8
     }
   } else {
     tScale = targetState.scale;
