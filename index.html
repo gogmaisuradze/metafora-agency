@@ -595,7 +595,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   position: fixed;
   bottom: 24px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 10px);
   display: flex;
   gap: 6px;
   background: rgba(255, 255, 255, 0.85);
@@ -605,8 +605,15 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   border-radius: 30px;
   padding: 5px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  pointer-events: auto;
+  pointer-events: none;
+  opacity: 0;
   z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+#globe-controls.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
 }
 #globe-controls button {
   display: flex;
@@ -1305,6 +1312,11 @@ btnReset.addEventListener('click', () => {
   txOffset = 0;
   tyOffset = 0;
   phiOffset = 0;
+});
+
+canvas.addEventListener('dblclick', () => {
+  const controls = document.getElementById('globe-controls');
+  controls.classList.toggle('show');
 });
 
 canvas.addEventListener('mousedown', e => {
