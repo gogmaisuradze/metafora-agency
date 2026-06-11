@@ -1363,21 +1363,27 @@ function getMarkersAndArcs() {
 
 function getInterpolatedState(percent) {
   percent = Math.max(0, Math.min(1, percent));
-  const count = STEPS.length - 1;
-  const rawIdx = percent * count;
-  const idx = Math.min(count - 1, Math.floor(rawIdx));
-  const frac = rawIdx - idx;
-
-  const s1 = STEPS[idx];
-  const s2 = STEPS[idx + 1];
-
-  return {
-    rotY: s1.rotY + (s2.rotY - s1.rotY) * frac,
-    rotX: s1.rotX + (s2.rotX - s1.rotX) * frac,
-    scale: s1.scale + (s2.scale - s1.scale) * frac,
-    tx: s1.tx + (s2.tx - s1.tx) * frac,
-    ty: s1.ty + (s2.ty - s1.ty) * frac
-  };
+  
+  // Angle for the figure-8 trajectory with a phase shift of PI/2 to start on the right side
+  const theta = percent * 3.2 * Math.PI + (Math.PI / 2);
+  
+  // Raw figure-8 coordinates (lying down / horizontal)
+  const txRaw = Math.sin(theta) * 46;
+  const tyRaw = Math.sin(2 * theta) * 16;
+  
+  // Tilt/lean the figure-8 trajectory by -12 degrees (rotated horizontal infinity sign)
+  const alpha = -12 * Math.PI / 180;
+  const tx = txRaw * Math.cos(alpha) - tyRaw * Math.sin(alpha);
+  const ty = txRaw * Math.sin(alpha) + tyRaw * Math.cos(alpha);
+  
+  // Scale (depth zoom): starts zoomed in (closer) in the hero section,
+  // then oscillates to create a 3D back-and-forth depth effect.
+  const scale = 1.25 + Math.sin(theta) * 0.25;
+  
+  const rotY = percent * 6.2;
+  const rotX = Math.sin(theta) * 0.12;
+  
+  return { rotY, rotX, scale, tx, ty };
 }
 
 // Initialize Globe
@@ -1410,39 +1416,8 @@ function animate() {
   const svcRect = svcDriver.getBoundingClientRect();
   const svcHeight = svcDriver.offsetHeight;
   
-  let targetState;
-  
-  // Calculate if the services section is active in the viewport
-  if (svcRect.top < 0 && svcRect.bottom > window.innerHeight) {
-    const progress = Math.max(0, Math.min(1, -svcRect.top / (svcHeight - window.innerHeight)));
-    
-    // 5 sub-steps in services
-    const SVC_STEPS = [
-      { rotY: 1.2, rotX: -0.1, scale: 1.10, tx: -48, ty: 5 },   // 01/05 (Left, Further Away)
-      { rotY: 1.8, rotX: 0.0,  scale: 1.65, tx: 48,  ty: -5 },  // 02/05 (Right, Closer)
-      { rotY: 2.4, rotX: 0.1,  scale: 1.10, tx: -48, ty: 8 },   // 03/05 (Left, Further Away)
-      { rotY: 3.0, rotX: 0.0,  scale: 1.65, tx: 48,  ty: -8 },  // 04/05 (Right, Closer)
-      { rotY: 3.6, rotX: -0.1, scale: 2.25, tx: -42, ty: 0 }    // 05/05 (Left, Zoomed Close)
-    ];
-    
-    const count = SVC_STEPS.length - 1;
-    const rawIdx = progress * count;
-    const idx = Math.min(count - 1, Math.floor(rawIdx));
-    const frac = rawIdx - idx;
-    
-    const s1 = SVC_STEPS[idx];
-    const s2 = SVC_STEPS[idx + 1];
-    
-    targetState = {
-      rotY: s1.rotY + (s2.rotY - s1.rotY) * frac,
-      rotX: s1.rotX + (s2.rotX - s1.rotX) * frac,
-      scale: s1.scale + (s2.scale - s1.scale) * frac,
-      tx: s1.tx + (s2.tx - s1.tx) * frac,
-      ty: s1.ty + (s2.ty - s1.ty) * frac
-    };
-  } else {
-    targetState = getInterpolatedState(scrollPercent);
-  }
+  // Mathematical figure-8 lissajous curve is used across the entire page for smooth continuous motion
+  const targetState = getInterpolatedState(scrollPercent);
   
   if (!isDrag || dragMode === 'translate') {
     // Target phi is Georgia facing (lngToPhi) + target Y-rot + auto-rotation + drag offset
