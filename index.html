@@ -1438,13 +1438,14 @@ function animate() {
 
   const isMobile = window.innerWidth <= 768;
   if (isMobile) {
-    tScale = targetState.scale * 0.55;
-    tTx = targetState.tx * 0.35; // slide left/right on mobile (scaled down to fit)
-    // Position the globe at the bottom of the active section on mobile
+    tScale = targetState.scale * 0.52; // slightly smaller mini-scale
+    tTx = targetState.tx * 0.22;       // mini-slide sideways
+    // Vertical mini-slide: oscillates slightly to trace a mini 8-loop
+    const verticalOsc = targetState.ty * 0.20; 
     if (svcRect.top < 0 && svcRect.bottom > window.innerHeight) {
-      tTy = 110; // lower down in services
+      tTy = 110 + verticalOsc; // lower down in services with oscillation
     } else {
-      tTy = 85;  // lower down in hero
+      tTy = 85 + verticalOsc;  // lower down in hero with oscillation
     }
   } else {
     tScale = targetState.scale;
@@ -1467,7 +1468,7 @@ function animate() {
     const lng = (angle * 180 / Math.PI) % 360;
 
     const t2 = U([lat, lng]);
-    const r2 = 0.85; // 0.8 + 0.05 (markerElevation)
+    const r2 = isMobile ? 0.815 : 0.85; // orbit closer on mobile
     const pos = [t2[0] * r2, t2[1] * r2, t2[2] * r2];
     const proj = O(pos, phi, theta);
 
