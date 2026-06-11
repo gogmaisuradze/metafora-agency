@@ -533,7 +533,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   
   /* Mobile Services Styles */
   #services-sticky {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: flex-start;
     padding-top: 70px;
     align-items: center;
@@ -567,12 +567,12 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   }
   #svc-video-window {
     position: relative;
-    top: 15px;
+    top: 0;
     transform: none !important;
     width: 85vw;
     aspect-ratio: 16 / 9;
     height: auto;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     left: auto !important;
     right: auto !important;
     border-radius: 12px;
@@ -1804,6 +1804,12 @@ animate();
   if (vidEl && overlayEl) {
     vidEl.addEventListener('ended', () => {
       overlayEl.classList.add('ended-orange');
+    });
+    vidEl.addEventListener('timeupdate', () => {
+      if (curStep === 2 && vidEl.duration && !vidEl.paused && vidEl.currentTime >= vidEl.duration - 1.05) {
+        vidEl.pause();
+        overlayEl.classList.add('ended-orange');
+      }
     });
     overlayEl.addEventListener('click', () => {
       let serviceKey = 'branding';
