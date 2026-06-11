@@ -29,8 +29,14 @@ body{background:var(--dark);color:var(--text);font-family:'Inter',sans-serif;ove
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 3;
+  z-index: 1;
   overflow: hidden;
+}
+section, #services-scroll, #services-sticky, footer {
+  pointer-events: none;
+}
+section > *, #services-sticky > *, footer > * {
+  pointer-events: auto;
 }
 #globe-wrapper {
   position: absolute;
@@ -586,7 +592,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
 }
 
 #globe-controls {
-  position: absolute;
+  position: fixed;
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
@@ -902,20 +908,20 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
     <div id="globe-bg-shadow"></div>
     <canvas id="global-globe" width="560" height="560"></canvas>
   </div>
-  <!-- Floating Control Toolbar -->
-  <div id="globe-controls">
-    <button id="btn-rotate" title="დატრიალება">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-      დატრიალება
-    </button>
-    <button id="btn-translate" class="active" title="გადაადგილება">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>
-      გადაადგილება
-    </button>
-    <button id="btn-reset" title="ცენტრში დაბრუნება" style="padding: 8px 12px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-    </button>
-  </div>
+</div>
+<!-- Floating Control Toolbar -->
+<div id="globe-controls">
+  <button id="btn-rotate" title="დატრიალება">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+    დატრიალება
+  </button>
+  <button id="btn-translate" class="active" title="გადაადგილება">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>
+    გადაადგილება
+  </button>
+  <button id="btn-reset" title="ცენტრში დაბრუნება" style="padding: 8px 12px;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+  </button>
 </div>
 
 <nav id="navbar">
@@ -1340,7 +1346,7 @@ const isInitMobile = window.innerWidth <= 768;
 let tPhi = phi, tTheta = theta;
 let tScale = isInitMobile ? 0.78 : 1.5;
 let tTx = isInitMobile ? 14.6 : 66;
-let tTy = isInitMobile ? 89.2 : 21;
+let tTy = isInitMobile ? 88.0 : 15;
 let scVal = tScale, txVal = tTx, tyVal = tTy;
 
 // Orbiting Satellites Setup
@@ -1493,7 +1499,7 @@ function getInterpolatedState(percent) {
   
   // Rotated Y coordinate plus a dynamic offset that pushes the globe down at the start
   // to prevent it from overlapping the navigation header.
-  const baseTy = 35 * (1 - percent);
+  const baseTy = 29 * (1 - percent);
   const ty = (txRaw * Math.sin(alpha) + tyRaw * Math.cos(alpha)) + baseTy;
   
   // Scale (depth zoom): starts zoomed in (closer) in the hero section,
