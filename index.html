@@ -29,7 +29,7 @@ body{background:var(--dark);color:var(--text);font-family:'Inter',sans-serif;ove
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 0;
+  z-index: 3;
   overflow: hidden;
 }
 #globe-wrapper {
@@ -1298,6 +1298,7 @@ btnTranslate.addEventListener('click', () => {
 btnReset.addEventListener('click', () => {
   txOffset = 0;
   tyOffset = 0;
+  phiOffset = 0;
 });
 
 canvas.addEventListener('mousedown', e => {
