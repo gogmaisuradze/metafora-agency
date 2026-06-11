@@ -941,6 +941,172 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
     height: 54px;
   }
 }
+
+/* BOOKING MODAL STYLES */
+.booking-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+}
+.booking-modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.booking-modal-content {
+  background: var(--dark);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 640px;
+  padding: 40px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+}
+.booking-modal-overlay.open .booking-modal-content {
+  transform: translateY(0);
+}
+.booking-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: var(--text3);
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.booking-modal-close:hover {
+  color: var(--text);
+}
+.booking-modal-content h3 {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.booking-modal-content h3 span {
+  color: var(--acc);
+}
+.booking-modal-sub {
+  font-size: 14px;
+  color: var(--text2);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.booking-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media(max-width: 576px) {
+  .booking-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+.booking-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.booking-form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.booking-form-group input[type="text"],
+.booking-form-group input[type="datetime-local"],
+.booking-form-group textarea {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--text);
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+.booking-form-group input:focus,
+.booking-form-group textarea:focus {
+  border-color: var(--acc);
+  box-shadow: 0 0 0 3px rgba(232, 82, 26, 0.1);
+  background: var(--dark);
+}
+.booking-format-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.format-option {
+  position: relative;
+  cursor: pointer;
+}
+.format-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.format-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--dark2);
+  transition: all 0.2s;
+  user-select: none;
+  color: var(--text2);
+}
+.format-option input:checked + .format-card {
+  border-color: var(--acc);
+  background: rgba(232, 82, 26, 0.06);
+  color: var(--acc);
+  font-weight: 600;
+}
+.booking-submit-btn {
+  width: 100%;
+  background: var(--acc);
+  color: #FFFFFF;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(232, 82, 26, 0.2);
+  margin-top: 8px;
+}
+.booking-submit-btn:hover {
+  background: var(--acc2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(232, 82, 26, 0.3);
+}
 </style>
 </head>
 <body>
@@ -993,7 +1159,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
     <a href="#blog">ბლოგი</a>
     <a href="#contact">კონტაქტი</a>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">კონსულტაცია</button>
+  <button class="nav-cta" onclick="openBookingModal()">დაჯავშნე კონსულტაცია</button>
   <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
@@ -1009,7 +1175,62 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
     <a href="#about" onclick="toggleMobileMenu()">ჩვენს შესახებ</a>
     <a href="#blog" onclick="toggleMobileMenu()">ბლოგი</a>
     <a href="#contact" onclick="toggleMobileMenu()">კონტაქტი</a>
-    <a href="#contact" class="mobile-menu-cta" onclick="toggleMobileMenu(); document.getElementById('contact').scrollIntoView({behavior:'smooth'});">უფასო კონსულტაცია</a>
+    <a href="javascript:void(0)" class="mobile-menu-cta" onclick="toggleMobileMenu(); openBookingModal();">დაჯავშნე კონსულტაცია</a>
+  </div>
+</div>
+
+<!-- Booking Modal -->
+<div id="booking-modal" class="booking-modal-overlay">
+  <div class="booking-modal-content">
+    <button class="booking-modal-close" onclick="closeBookingModal()">&times;</button>
+    <h3>კონსულტაციის <span>დაჯავშნა</span></h3>
+    <p class="booking-modal-sub">აირჩიეთ შეხვედრის თარიღი, ფორმატი და მოგვიყევით თქვენი პროექტის შესახებ.</p>
+    
+    <form id="booking-form" onsubmit="handleBookingSubmit(event)">
+      <div class="booking-form-row">
+        <div class="booking-form-group">
+          <label for="booking-name">სახელი და გვარი</label>
+          <input type="text" id="booking-name" required placeholder="მაგ. გიორგი კალანდაძე">
+        </div>
+        <div class="booking-form-group">
+          <label for="booking-contact">ტელეფონი / ელ-ფოსტა</label>
+          <input type="text" id="booking-contact" required placeholder="მაგ. +995 599 12 34 56">
+        </div>
+      </div>
+      
+      <div class="booking-form-row">
+        <div class="booking-form-group">
+          <label for="booking-date">თარიღი და დრო</label>
+          <input type="datetime-local" id="booking-date" required>
+        </div>
+        <div class="booking-form-group">
+          <label>შეხვედრის ფორმატი</label>
+          <div class="booking-format-options">
+            <label class="format-option">
+              <input type="radio" name="booking-format" value="online" checked>
+              <span class="format-card">
+                <span class="icon">💻</span>
+                <span class="label-text">ონლაინ</span>
+              </span>
+            </label>
+            <label class="format-option">
+              <input type="radio" name="booking-format" value="inperson">
+              <span class="format-card">
+                <span class="icon">🤝</span>
+                <span class="label-text">პირადად</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="booking-form-group">
+        <label for="booking-desc">პროექტის აღწერა / მოთხოვნები</label>
+        <textarea id="booking-desc" rows="4" required placeholder="მოგვიყევით მოკლედ თქვენი პროექტის და მიზნების შესახებ..."></textarea>
+      </div>
+      
+      <button type="submit" class="booking-submit-btn">ჯავშნის გაგზავნა →</button>
+    </form>
   </div>
 </div>
 
@@ -1020,7 +1241,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
     <h1>გახადე შენი ბრენდი <br><span class="acc">ცნობადი</span></h1>
     <p class="hero-sub">პრინტიდან სოციალური მედიამდე — ყველაფერი ერთ სააგენტოში. ჩვენ გეხმარებით ბრენდის განვითარებასა და ცნობადობის გაზრდაში.</p>
     <div class="btn-group">
-      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">კონსულტაცია მოიწვიე</button>
+      <button class="btn-primary" onclick="openBookingModal()">დაჯავშნე კონსულტაცია</button>
       <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">პორტფოლიო →</button>
     </div>
     <div class="hero-stats">
@@ -2042,6 +2263,42 @@ function getBotReply(userText) {
   }
   
   return `მადლობა შეტყობინებისთვის! 🙌\n\nმე ჯერ კიდევ ვსწავლობ, მაგრამ შეგიძლიათ დაგვიკავშირდეთ ნომერზე ან მოგვწეროთ ელ-ფოსტაზე: info@metafora.ge. ჩვენი გუნდი უმოკლეს დროში გიპასუხებთ!`;
+}
+
+// Booking Modal functions
+function openBookingModal() {
+  const modal = document.getElementById('booking-modal');
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeBookingModal() {
+  const modal = document.getElementById('booking-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+window.addEventListener('click', (e) => {
+  const modal = document.getElementById('booking-modal');
+  if (e.target === modal) {
+    closeBookingModal();
+  }
+});
+function handleBookingSubmit(event) {
+  event.preventDefault();
+  const name = document.getElementById('booking-name').value;
+  const contact = document.getElementById('booking-contact').value;
+  const date = document.getElementById('booking-date').value;
+  const format = document.querySelector('input[name="booking-format"]:checked').value;
+  const desc = document.getElementById('booking-desc').value;
+  const formatGeo = format === 'online' ? 'ონლაინ' : 'პირადად';
+  
+  alert(`კონსულტაცია წარმატებით დაიჯავშნა!\n\nსახელი: ${name}\nკონტაქტი: ${contact}\nთარიღი: ${date}\nფორმატი: ${formatGeo}\nაღწერა: ${desc}`);
+  
+  document.getElementById('booking-form').reset();
+  closeBookingModal();
 }
 </script>
 
