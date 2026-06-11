@@ -1368,8 +1368,8 @@ function getInterpolatedState(percent) {
   const theta = percent * 3.2 * Math.PI + (Math.PI / 2);
   
   // Raw figure-8 coordinates (lying down / horizontal)
-  const txRaw = Math.sin(theta) * 46;
-  const tyRaw = Math.sin(2 * theta) * 16;
+  const txRaw = Math.sin(theta) * 80;
+  const tyRaw = Math.sin(2 * theta) * 22;
   
   // Tilt/lean the figure-8 trajectory by -12 degrees (rotated horizontal infinity sign)
   const alpha = -12 * Math.PI / 180;
