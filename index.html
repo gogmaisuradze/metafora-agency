@@ -2110,17 +2110,24 @@ function animate() {
   if (isMobile) {
     tScale = targetState.scale * 0.52; // slightly smaller mini-scale
     
-    // Auto standing 8 path loop on mobile
-    autoT += 0.012; // slow smooth movement speed
-    const autoX = 35 * Math.sin(2 * autoT);
-    const autoY = 45 * Math.sin(autoT);
+    // Auto slanted 8 path loop on mobile
+    autoT += 0.010; // slow smooth movement speed
+    const ampX = 55;
+    const ampY = 35;
+    const alpha = -30 * Math.PI / 180; // 30 degree slant angle
+    
+    const xRaw = Math.sin(autoT) * ampX;
+    const yRaw = Math.sin(2 * autoT) * ampY;
+    
+    const autoX = xRaw * Math.cos(alpha) - yRaw * Math.sin(alpha);
+    const autoY = xRaw * Math.sin(alpha) + yRaw * Math.cos(alpha);
     
     tTx = autoX;
     
     if (svcRect.top < 0 && svcRect.bottom > window.innerHeight) {
-      tTy = -15 + autoY; // higher up in services, floating in standing 8
+      tTy = -15 + autoY; // higher up in services, floating in slanted 8
     } else {
-      tTy = 10 + autoY;  // higher up in hero, floating in standing 8
+      tTy = 10 + autoY;  // higher up in hero, floating in slanted 8
     }
   } else {
     tScale = targetState.scale;
