@@ -1770,6 +1770,7 @@ let dragMode = 'translate'; // 'rotate' or 'translate'
 let controlMode = 'translate'; // 'rotate' or 'translate'
 let txOffset = 0, tyOffset = 0;
 let dTx = 0, dTy = 0;
+let infinityT = 0, dInfinityT = 0;
 
 // Prevent context menu on right click to allow panning
 canvas.addEventListener('contextmenu', e => e.preventDefault());
@@ -1855,16 +1856,9 @@ canvas.addEventListener('touchstart', e => {
     const touch = e.touches[0];
     lx = touch.clientX;
     ly = touch.clientY;
-    
-    if (controlMode === 'translate') {
-      dragMode = 'translate';
-      dTx = txOffset;
-      dTy = tyOffset;
-    } else {
-      dragMode = 'rotate';
-      dPhi = phi;
-      dTheta = theta;
-    }
+    dPhi = phi;
+    dTheta = theta;
+    dInfinityT = infinityT;
   }
 }, { passive: false });
 
@@ -1877,13 +1871,21 @@ window.addEventListener('touchmove', e => {
   if (e.touches.length === 1) {
     if (e.cancelable) e.preventDefault();
     const touch = e.touches[0];
-    if (dragMode === 'rotate') {
-      phi = dPhi - (touch.clientX - lx) / 200;
-      theta = Math.max(-1.2, Math.min(1.2, dTheta + (touch.clientY - ly) / 200));
-    } else {
-      txOffset = dTx + (touch.clientX - lx) / 5;
-      tyOffset = dTy + (touch.clientY - ly) / 5;
-    }
+    
+    const dx = touch.clientX - lx;
+    const dy = touch.clientY - ly;
+    
+    // Combined vertical and horizontal movement to advance/reverse infinityT
+    const delta = (dy - dx) * 0.01;
+    infinityT = dInfinityT + delta;
+    
+    // Standing 8 path calculation (Lissajous figure with 2:1 ratio, x = A * sin(2t), y = B * sin(t))
+    txOffset = 80 * Math.sin(2 * infinityT);
+    tyOffset = 120 * Math.sin(infinityT);
+    
+    // Rotate as well
+    phi = dPhi - dx / 200;
+    theta = Math.max(-1.2, Math.min(1.2, dTheta + dy / 200));
   }
 }, { passive: false });
 
