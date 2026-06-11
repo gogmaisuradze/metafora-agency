@@ -57,6 +57,7 @@ section > *, #services-sticky > *, footer > * {
   height: 560px;
   cursor: all-scroll;
   pointer-events: auto;
+  touch-action: none;
 }
 .sat-overlay {
   position: absolute;
@@ -1378,6 +1379,54 @@ window.addEventListener('mousemove', e => {
     tyOffset = dTy + (e.clientY - ly) / 5;
   }
 });
+
+// Touch support for mobile devices
+let lastTap = 0;
+canvas.addEventListener('touchstart', e => {
+  const currentTime = new Date().getTime();
+  const tapLength = currentTime - lastTap;
+  if (tapLength < 300 && tapLength > 0) {
+    // Double tap detected!
+    const controls = document.getElementById('globe-controls');
+    controls.classList.toggle('show');
+  }
+  lastTap = currentTime;
+
+  if (e.touches.length === 1) {
+    isDrag = true;
+    const touch = e.touches[0];
+    lx = touch.clientX;
+    ly = touch.clientY;
+    
+    if (controlMode === 'translate') {
+      dragMode = 'translate';
+      dTx = txOffset;
+      dTy = tyOffset;
+    } else {
+      dragMode = 'rotate';
+      dPhi = phi;
+      dTheta = theta;
+    }
+  }
+}, { passive: true });
+
+window.addEventListener('touchend', () => {
+  isDrag = false;
+});
+
+window.addEventListener('touchmove', e => {
+  if (!isDrag) return;
+  if (e.touches.length === 1) {
+    const touch = e.touches[0];
+    if (dragMode === 'rotate') {
+      phi = dPhi - (touch.clientX - lx) / 200;
+      theta = Math.max(-1.2, Math.min(1.2, dTheta + (touch.clientY - ly) / 200));
+    } else {
+      txOffset = dTx + (touch.clientX - lx) / 5;
+      tyOffset = dTy + (touch.clientY - ly) / 5;
+    }
+  }
+}, { passive: true });
 
 // Dynamic values
 const isInitMobile = window.innerWidth <= 768;
