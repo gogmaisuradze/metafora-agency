@@ -1345,8 +1345,8 @@ window.addEventListener('mousemove', e => {
 const isInitMobile = window.innerWidth <= 768;
 let tPhi = phi, tTheta = theta;
 let tScale = isInitMobile ? 0.78 : 1.5;
-let tTx = isInitMobile ? 14.6 : 66;
-let tTy = isInitMobile ? 88.0 : 15;
+let tTx = isInitMobile ? 12.1 : 55.0;
+let tTy = isInitMobile ? 85.1 : 0.5;
 let scVal = tScale, txVal = tTx, tyVal = tTy;
 
 // Orbiting Satellites Setup
@@ -1486,7 +1486,7 @@ function getInterpolatedState(percent) {
   
   // Dynamically scale amplitudes: starts further to the right at percent=0,
   // and expands to full width/height as the user scrolls down.
-  const ampX = 68 + percent * (80 - 68);
+  const ampX = 56 + percent * (80 - 56);
   const ampY = 12 + percent * (22 - 12);
   
   // Raw figure-8 coordinates (lying down / horizontal)
@@ -1499,7 +1499,7 @@ function getInterpolatedState(percent) {
   
   // Rotated Y coordinate plus a dynamic offset that pushes the globe down at the start
   // to prevent it from overlapping the navigation header.
-  const baseTy = 29 * (1 - percent);
+  const baseTy = 12 * (1 - percent);
   const ty = (txRaw * Math.sin(alpha) + tyRaw * Math.cos(alpha)) + baseTy;
   
   // Scale (depth zoom): starts zoomed in (closer) in the hero section,
@@ -1649,34 +1649,6 @@ function animate() {
     markers: dynamicData.markers,
     arcs: dynamicData.arcs
   });
-
-  // Temporary debug coordinates badge
-  let debugBadge = document.getElementById('debug-coords');
-  if (!debugBadge) {
-    debugBadge = document.createElement('div');
-    debugBadge.id = 'debug-coords';
-    debugBadge.style.position = 'fixed';
-    debugBadge.style.top = '100px';
-    debugBadge.style.right = '20px';
-    debugBadge.style.background = 'rgba(0,0,0,0.85)';
-    debugBadge.style.color = '#fff';
-    debugBadge.style.padding = '10px 14px';
-    debugBadge.style.borderRadius = '8px';
-    debugBadge.style.fontFamily = 'monospace';
-    debugBadge.style.fontSize = '12px';
-    debugBadge.style.zIndex = '99999';
-    debugBadge.style.border = '1px solid var(--acc)';
-    debugBadge.style.pointerEvents = 'auto';
-    debugBadge.style.cursor = 'pointer';
-    debugBadge.title = 'დააწკაპუნეთ კოორდინატების დასაკოპირებლად';
-    debugBadge.addEventListener('click', () => {
-      const text = `txOffset: ${txOffset.toFixed(1)}, tyOffset: ${tyOffset.toFixed(1)}, phiOffset: ${phiOffset.toFixed(3)}`;
-      navigator.clipboard.writeText(text);
-      alert('კოორდინატები კოპირებულია: ' + text);
-    });
-    document.body.appendChild(debugBadge);
-  }
-  debugBadge.textContent = `tx: ${txOffset.toFixed(1)} | ty: ${tyOffset.toFixed(1)} | phi: ${phiOffset.toFixed(3)}`;
 
   requestAnimationFrame(animate);
 }
