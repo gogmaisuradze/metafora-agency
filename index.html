@@ -1367,9 +1367,14 @@ function getInterpolatedState(percent) {
   // Angle for the figure-8 trajectory with a phase shift of PI/2 to start on the right side
   const theta = percent * 3.2 * Math.PI + (Math.PI / 2);
   
+  // Dynamically scale amplitudes: starts closer to the center at percent=0,
+  // and expands to full width/height as the user scrolls down.
+  const ampX = 36 + percent * (80 - 36);
+  const ampY = 12 + percent * (22 - 12);
+  
   // Raw figure-8 coordinates (lying down / horizontal)
-  const txRaw = Math.sin(theta) * 80;
-  const tyRaw = Math.sin(2 * theta) * 22;
+  const txRaw = Math.sin(theta) * ampX;
+  const tyRaw = Math.sin(2 * theta) * ampY;
   
   // Tilt/lean the figure-8 trajectory by -12 degrees (rotated horizontal infinity sign)
   const alpha = -12 * Math.PI / 180;
