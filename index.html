@@ -2300,6 +2300,35 @@ animate();
     document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   }
 
+  let isTransitioning = false;
+  let transitionTimeout = null;
+
+  function scrollToStep(stepIndex) {
+    if (stepIndex < 0 || stepIndex >= SVCS.length) return;
+    isTransitioning = true;
+    
+    const driver = document.getElementById('svc-driver');
+    if (!driver) return;
+    const rect = driver.getBoundingClientRect();
+    const docScrollTop = window.scrollY || document.documentElement.scrollTop;
+    const driverTop = rect.top + docScrollTop;
+    const scrollable = driver.offsetHeight - window.innerHeight;
+    
+    const targetScroll = driverTop + (stepIndex / (SVCS.length - 1)) * scrollable + 5;
+    
+    setStep(stepIndex);
+    
+    window.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
+    
+    if (transitionTimeout) clearTimeout(transitionTimeout);
+    transitionTimeout = setTimeout(() => {
+      isTransitioning = false;
+    }, 700);
+  }
+
   window.addEventListener('scroll',()=>{
     const driver=document.getElementById('svc-driver');
     const rect=driver.getBoundingClientRect();
@@ -2311,17 +2340,92 @@ animate();
   },{passive:true});
 
   document.querySelectorAll('.dot').forEach((d,i)=>d.addEventListener('click',()=>{
-    const driver=document.getElementById('svc-driver');
-    const rect=driver.getBoundingClientRect();
+    scrollToStep(i);
+  }));
+
+  window.addEventListener('wheel', (e) => {
+    const driver = document.getElementById('svc-driver');
+    if (!driver) return;
+    
+    const rect = driver.getBoundingClientRect();
     const docScrollTop = window.scrollY || document.documentElement.scrollTop;
     const driverTop = rect.top + docScrollTop;
     const scrollable = driver.offsetHeight - window.innerHeight;
-    const targetScroll = driverTop + (i / (SVCS.length - 1)) * scrollable + 5; // small offset to trigger index boundary
-    window.scrollTo({
-      top: targetScroll,
-      behavior: 'smooth'
-    });
-  }));
+    const currentScroll = window.scrollY;
+    
+    if (currentScroll >= driverTop - 10 && currentScroll <= driverTop + scrollable + 10) {
+      const isScrollingDown = e.deltaY > 0;
+      const progress = Math.max(0, Math.min(1, (currentScroll - driverTop) / scrollable));
+      const approxStep = Math.round(progress * (SVCS.length - 1));
+      
+      if (isScrollingDown) {
+        if (approxStep < SVCS.length - 1) {
+          e.preventDefault();
+          if (!isTransitioning) {
+            scrollToStep(approxStep + 1);
+          }
+        }
+      } else {
+        if (approxStep > 0) {
+          e.preventDefault();
+          if (!isTransitioning) {
+            scrollToStep(approxStep - 1);
+          }
+        }
+      }
+    }
+  }, { passive: false });
+
+  let touchStartY = 0;
+  let touchActive = true;
+  window.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+    touchActive = true;
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    touchActive = false;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    const driver = document.getElementById('svc-driver');
+    if (!driver) return;
+    
+    const rect = driver.getBoundingClientRect();
+    const docScrollTop = window.scrollY || document.documentElement.scrollTop;
+    const driverTop = rect.top + docScrollTop;
+    const scrollable = driver.offsetHeight - window.innerHeight;
+    const currentScroll = window.scrollY;
+    
+    if (currentScroll >= driverTop - 10 && currentScroll <= driverTop + scrollable + 10) {
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+      
+      if (touchActive && Math.abs(deltaY) > 15) {
+        const isScrollingDown = deltaY > 0;
+        const progress = Math.max(0, Math.min(1, (currentScroll - driverTop) / scrollable));
+        const approxStep = Math.round(progress * (SVCS.length - 1));
+        
+        if (isScrollingDown) {
+          if (approxStep < SVCS.length - 1) {
+            e.preventDefault();
+            if (!isTransitioning) {
+              touchActive = false;
+              scrollToStep(approxStep + 1);
+            }
+          }
+        } else {
+          if (approxStep > 0) {
+            e.preventDefault();
+            if (!isTransitioning) {
+              touchActive = false;
+              scrollToStep(approxStep - 1);
+            }
+          }
+        }
+      }
+    }
+  }, { passive: false });
   const vidEl = document.getElementById('svc-video');
   const overlayEl = document.getElementById('video-overlay-text');
   if (vidEl && overlayEl) {
