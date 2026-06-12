@@ -1096,7 +1096,7 @@ footer {
     <div class="eyebrow">დაუკავშირდით ჩვენს გუნდს</div>
     <h2>ინდივიდუალური <span>შეთავაზება</span></h2>
     <p style="margin-top:12px; color:var(--text2);">მოგვწერეთ თქვენი პროექტის შესახებ და მიიღეთ დეტალური ხარჯთაღრიცხვა 24 საათში.</p>
-    <form class="contact-form" onsubmit="event.preventDefault(); alert('მადლობა! შეტყობინება წარმატებით გაიგზავნა. ჩვენი გუნდი მალე დაგიკავშირდებათ.'); this.reset();">
+    <form class="contact-form" id="contact-form" onsubmit="handleContactSubmit(event)">
       <div class="form-group">
         <label for="contact-name">სახელი, გვარი</label>
         <input type="text" id="contact-name" class="form-control" required placeholder="მაგ. გიორგი ბერიძე">
@@ -1565,7 +1565,57 @@ window.addEventListener('click', (e) => {
     closeBookingModal();
   }
 });
-function handleBookingSubmit(event) {
+// Telegram Bot Configuration
+const TELEGRAM_BOT_TOKEN = '8606073233:AAGvL2wjOkTpa-2n8NcJxRQBFKt6OFD4GWE';
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('chat_id')) {
+  localStorage.setItem('telegram_chat_id', urlParams.get('chat_id'));
+}
+let TELEGRAM_CHAT_ID = localStorage.getItem('telegram_chat_id') || '597080838';
+
+async function sendTelegramNotification(text) {
+  try {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text,
+        parse_mode: 'HTML'
+      })
+    });
+    const result = await response.json();
+    return result.ok;
+  } catch (error) {
+    console.error('Error sending Telegram notification:', error);
+    return false;
+  }
+}
+
+async function handleContactSubmit(event) {
+  event.preventDefault();
+  
+  const name = document.getElementById('contact-name').value;
+  const email = document.getElementById('contact-email').value;
+  const service = document.getElementById('contact-service').value || 'არ არის მითითებული';
+  const message = document.getElementById('contact-msg').value || 'არ არის მითითებული';
+  
+  const telegramMessage = `✉️ <b>ახალი შეთავაზების მოთხოვნა (სერვისის გვერდიდან)</b>\n\n` +
+                          `👤 <b>სახელი:</b> ${name}\n` +
+                          `📧 <b>ელ-ფოსტა:</b> ${email}\n` +
+                          `🛠️ <b>არჩეული სერვისი:</b> ${service}\n` +
+                          `📝 <b>პროექტის აღწერა:</b> ${message}`;
+  
+  sendTelegramNotification(telegramMessage);
+
+  alert('მადლობა! შეტყობინება წარმატებით გაიგზავნა. ჩვენი გუნდი მალე დაგიკავშირდებათ.');
+  document.getElementById('contact-form').reset();
+}
+
+async function handleBookingSubmit(event) {
   event.preventDefault();
   
   if (!selectedDate) {
@@ -1585,6 +1635,16 @@ function handleBookingSubmit(event) {
   const formatGeo = format === 'online' ? 'ონლაინ' : 'პირადად';
   const formattedDate = `${selectedDate.getDate()} ${MONTH_NAMES_GE[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`;
   
+  const telegramMessage = `🔔 <b>ახალი ჯავშანი საიტიდან (კალენდარი)</b>\n\n` +
+                          `👤 <b>სახელი:</b> ${name}\n` +
+                          `📞 <b>კონტაქტი:</b> ${contact}\n` +
+                          `📅 <b>თარიღი:</b> ${formattedDate}\n` +
+                          `🕒 <b>საათი:</b> ${selectedTime}\n` +
+                          `💻 <b>ფორმატი:</b> ${formatGeo}\n` +
+                          `📝 <b>აღწერა:</b> ${desc}`;
+  
+  sendTelegramNotification(telegramMessage);
+
   alert(`კონსულტაცია წარმატებით დაიჯავშნა!\n\nსახელი: ${name}\nკონტაქტი: ${contact}\nთარიღი: ${formattedDate}\nსაათი: ${selectedTime}\nფორმატი: ${formatGeo}\nაღწერა: ${desc}`);
   
   document.getElementById('booking-form').reset();
