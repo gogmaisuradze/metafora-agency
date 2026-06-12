@@ -2654,29 +2654,32 @@ window.addEventListener('click', (e) => {
 const TELEGRAM_BOT_TOKEN = '8606073233:AAGvL2wjOkTpa-2n8NcJxRQBFKt6OFD4GWE';
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('chat_id')) {
-  localStorage.setItem('telegram_chat_id', urlParams.get('chat_id'));
+  localStorage.setItem('telegram_chat_ids', urlParams.get('chat_id'));
 }
-let TELEGRAM_CHAT_ID = localStorage.getItem('telegram_chat_id') || '597080838';
+const DEFAULT_CHAT_IDS = ['8674081072', '443575738'];
+let storedIds = localStorage.getItem('telegram_chat_ids');
+let TELEGRAM_CHAT_IDS = storedIds ? storedIds.split(',') : DEFAULT_CHAT_IDS;
 
 async function sendTelegramNotification(text) {
-  try {
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: text,
-        parse_mode: 'HTML'
-      })
-    });
-    const result = await response.json();
-    return result.ok;
-  } catch (error) {
-    console.error('Error sending Telegram notification:', error);
-    return false;
+  for (const chatId of TELEGRAM_CHAT_IDS) {
+    const trimmedId = chatId.trim();
+    if (!trimmedId) continue;
+    try {
+      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: trimmedId,
+          text: text,
+          parse_mode: 'HTML'
+        })
+      });
+    } catch (error) {
+      console.error(`Error sending Telegram notification to ${trimmedId}:`, error);
+    }
   }
 }
 
