@@ -2493,6 +2493,8 @@ animate();
     scrollToStep(i);
   }));
 
+  let lastWheelTime = 0;
+
   window.addEventListener('wheel', (e) => {
     const driver = document.getElementById('svc-driver');
     if (!driver) return;
@@ -2508,17 +2510,21 @@ animate();
       const progress = Math.max(0, Math.min(1, (currentScroll - driverTop) / scrollable));
       const approxStep = Math.round(progress * (SVCS.length - 1));
       
+      const now = Date.now();
+      const isNewGesture = (now - lastWheelTime > 150);
+      lastWheelTime = now;
+      
       if (isScrollingDown) {
         if (approxStep < SVCS.length - 1) {
           e.preventDefault();
-          if (!isTransitioning) {
+          if (isNewGesture && !isTransitioning) {
             scrollToStep(approxStep + 1);
           }
         }
       } else {
         if (approxStep > 0) {
           e.preventDefault();
-          if (!isTransitioning) {
+          if (isNewGesture && !isTransitioning) {
             scrollToStep(approxStep - 1);
           }
         }
