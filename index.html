@@ -2113,6 +2113,30 @@ satellites.forEach((sat, idx) => {
     canvas.dispatchEvent(simEvent);
   });
 
+  // Double-click to navigate to corresponding page
+  satDiv.addEventListener('dblclick', () => {
+    const serviceKeys = ['branding', 'ooh', 'video', 'web', 'smm'];
+    const serviceKey = serviceKeys[idx];
+    if (serviceKey) {
+      window.location.href = `service.html?service=${serviceKey}`;
+    }
+  });
+
+  // Double-tap support for mobile devices
+  let lastTap = 0;
+  satDiv.addEventListener('touchend', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    if (tapLength < 300 && tapLength > 0) {
+      const serviceKeys = ['branding', 'ooh', 'video', 'web', 'smm'];
+      const serviceKey = serviceKeys[idx];
+      if (serviceKey) {
+        window.location.href = `service.html?service=${serviceKey}`;
+      }
+    }
+    lastTap = currentTime;
+  });
+
   // Hover events to show custom tooltip
   satDiv.addEventListener('mouseenter', (e) => {
     activeHovered = sat.name;
