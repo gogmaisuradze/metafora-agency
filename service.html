@@ -4,6 +4,11 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>სერვისის დეტალები - Metaფორა Agency</title>
+<meta name="description" id="meta-description" content="Metaფორა Agency-ს სერვისები.">
+<meta property="og:title" id="og-title" content="სერვისები - Metaფორა">
+<meta property="og:description" id="og-description" content="Metaფორა Agency-ს სერვისები.">
+<meta property="og:image" id="og-image" content="metafora-photos/01-print-branding/hero.png">
+<meta property="og:url" id="og-url" content="">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -948,6 +953,684 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:64px 4
   from { opacity: 0; transform: translateY(5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* --- NEW DETAILED STRUCTURE STYLES --- */
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13.5px;
+  color: var(--text3);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.breadcrumb a {
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumb a:hover {
+  color: var(--acc);
+}
+.breadcrumb .sep {
+  color: var(--border);
+}
+.breadcrumb .active {
+  color: var(--text3);
+  font-weight: 500;
+}
+
+/* Restyled Hero Layout */
+.service-hero {
+  padding: 140px 48px 80px 48px;
+  background: var(--dark);
+}
+.hero-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.btn-primary {
+  background: var(--acc);
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(232, 82, 26, 0.2);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(232, 82, 26, 0.35);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover {
+  background: var(--dark2);
+  border-color: var(--text);
+}
+.hero-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-light);
+  background: var(--dark2);
+}
+.hero-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Section spacing & headers */
+.service-section {
+  padding: 100px 48px;
+  border-top: 1px solid var(--border);
+}
+.bg-light {
+  background: var(--dark2);
+}
+.bg-dark {
+  background: var(--dark);
+}
+.section-intro-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.small-title {
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: var(--acc);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.h2-title {
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  margin-bottom: 24px;
+}
+.h2-title span {
+  color: var(--acc);
+}
+.intro-text {
+  font-size: 16px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Stats Bar */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stat-num {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  color: var(--acc);
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 13px;
+  color: var(--text3);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* Products Pricing Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.product-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-light-hover);
+  border-color: rgba(232, 82, 26, 0.25);
+}
+.product-card.popular {
+  border-color: var(--acc);
+  box-shadow: 0 16px 40px rgba(232, 82, 26, 0.08);
+}
+.product-card.popular::before {
+  content: 'პოპულარული';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--acc);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+.product-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--dark2);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.product-card:hover .product-img img {
+  transform: scale(1.05);
+}
+.product-body {
+  padding: 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.product-body h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.product-subtitle {
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.product-bullets {
+  list-style: none;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.product-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--text2);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.product-bullets li svg {
+  flex-shrink: 0;
+  color: #4CAF50;
+  margin-top: 2px;
+}
+.product-meta {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-top: auto;
+}
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.meta-term {
+  color: var(--text3);
+}
+.meta-price {
+  color: var(--text);
+}
+.btn-price-ask {
+  width: 100%;
+  background: rgba(232, 82, 26, 0.06);
+  color: var(--acc);
+  border: 1px dashed rgba(232, 82, 26, 0.3);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.btn-price-ask:hover {
+  background: var(--acc);
+  color: #ffffff;
+  border-color: var(--acc);
+}
+
+/* Fallback image style */
+.fallback-img-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Process Steps Timeline */
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 48px auto 0 auto;
+  position: relative;
+}
+.process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.step-number-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.step-num {
+  font-size: 32px;
+  font-weight: 900;
+  color: rgba(232, 82, 26, 0.15);
+  line-height: 1;
+}
+.step-icon-box {
+  width: 48px;
+  height: 48px;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.process-step h4 {
+  font-size: 16.5px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.process-step p {
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+/* Portfolio Mini */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.portfolio-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-light-hover);
+}
+.portfolio-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--dark2);
+  border-bottom: 1px solid var(--border);
+}
+.portfolio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.portfolio-card:hover .portfolio-thumb img {
+  transform: scale(1.05);
+}
+.portfolio-card-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.client-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+.portfolio-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.challenge-text {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex: 1;
+}
+.result-box {
+  background: rgba(232, 82, 26, 0.04);
+  border: 1px solid rgba(232, 82, 26, 0.1);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--acc);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-portfolio-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  transition: color 0.2s;
+}
+.btn-portfolio-link:hover {
+  color: var(--acc);
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.feature-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow-light);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.feature-icon-box {
+  width: 44px;
+  height: 44px;
+  background: rgba(232, 82, 26, 0.06);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.feature-card-content h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.feature-card-content p {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+/* FAQ Accordion */
+.faq-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: #ffffff;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item:hover {
+  border-color: rgba(232, 82, 26, 0.2);
+}
+.faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-icon {
+  font-size: 14px;
+  color: var(--text3);
+  transition: transform 0.2s;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+  padding: 0 24px;
+}
+.faq-answer p {
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.6;
+  padding-bottom: 20px;
+}
+.faq-item.active {
+  border-color: var(--acc);
+}
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+.faq-item.active .faq-answer {
+  max-height: 200px; /* arbitrary height to slide down */
+  transition: max-height 0.35s cubic-bezier(1, 0, 1, 0), padding 0.35s ease;
+}
+
+/* FAQ dynamic content transition fix */
+.faq-item.active .faq-answer {
+  max-height: 500px;
+}
+
+/* FAQ Answer inner space */
+.faq-answer-inner {
+  padding-bottom: 20px;
+}
+
+/* CTA Banner Section */
+.cta-banner-section {
+  padding: 80px 48px;
+}
+.cta-banner {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--acc2) 0%, var(--acc) 100%);
+  border-radius: 32px;
+  padding: 56px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 20px 48px rgba(232, 82, 26, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  margin-bottom: 12px;
+  letter-spacing: -.02em;
+}
+.cta-banner p {
+  font-size: clamp(15px, 2vw, 17px);
+  opacity: 0.95;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+.cta-banner-ctas {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-cta-banner-primary {
+  background: #ffffff;
+  color: var(--acc);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.btn-cta-banner-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+.btn-cta-banner-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.btn-cta-banner-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive adjustments */
+@media(max-width:1024px) {
+  .hero-wrapper {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .hero-image-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .process-timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(max-width:768px) {
+  .service-hero {
+    padding: 100px 24px 60px 24px;
+  }
+  .service-section {
+    padding: 60px 24px;
+  }
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  .process-timeline {
+    grid-template-columns: 1fr;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-banner {
+    padding: 36px 24px;
+  }
+}
 </style>
 </head>
 <body>
@@ -1069,34 +1752,129 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:64px 4
 
 <!-- HERO -->
 <section class="service-hero">
-  <div class="hero-container">
-    <a href="index.html#services-scroll" class="back-btn">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      უკან დაბრუნება
-    </a>
-    <div class="eyebrow" id="service-eyebrow">სერვისები</div>
-    <h1 class="service-title" id="service-title">დაიტვირთება...</h1>
-    <p class="service-desc" id="service-desc">დეტალური აღწერა დაიტვირთება უახლოეს წამებში.</p>
-    <div class="chips-container" id="service-chips"></div>
+  <div class="hero-wrapper">
+    <div class="hero-content">
+      <nav class="breadcrumb">
+        <a href="index.html">მთავარი</a> <span class="sep">→</span> <a href="index.html#services-scroll">სერვისები</a> <span class="sep">→</span> <span class="active" id="breadcrumb-service">...</span>
+      </nav>
+      <div class="eyebrow" id="service-eyebrow">სერვისები</div>
+      <h1 class="service-title" id="service-title">დაიტვირთება...</h1>
+      <p class="service-desc" id="service-desc">დეტალური აღწერა დაიტვირთება უახლოეს წამებში.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="openBookingModal()">დაჯავშნე კონსულტაცია</button>
+        <button class="btn-secondary" onclick="document.getElementById('products-section').scrollIntoView({behavior:'smooth'})">ნახე შეთავაზებები ↓</button>
+      </div>
+      <div class="chips-container" id="service-chips" style="margin-top: 24px;"></div>
+    </div>
+    <div class="hero-image-wrapper">
+      <img id="service-hero-img" src="" alt="Hero Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="fallback-img-fallback" style="display: none; background: linear-gradient(135deg, var(--acc2) 0%, var(--acc) 100%);">
+        <span>✨</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- SUB-SERVICES -->
-<section class="details-section">
+<!-- SECTION 2: INTRO -->
+<section class="service-section bg-light" id="intro-section">
+  <div class="section-intro-container">
+    <div class="small-title">რას ვაკეთებთ</div>
+    <h2 class="h2-title" id="intro-h2">რატომ არის ეს სერვისი მნიშვნელოვანი?</h2>
+    <p class="intro-text" id="intro-p1">...</p>
+    <p class="intro-text" id="intro-p2">...</p>
+    
+    <div class="stats-bar" id="intro-stats-bar">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PRODUCTS (PRICING GRID) -->
+<section class="service-section bg-dark" id="products-section">
   <div class="section-container">
     <div class="section-header">
-      <h2>რას <span>გთავაზობთ?</span></h2>
+      <div class="small-title">ჩვენი პაკეტები</div>
+      <h2 class="h2-title">აირჩიე შენთვის <span>შესაბამისი</span></h2>
     </div>
-    <div class="grid-container" id="sub-services-grid"></div>
+    <div class="products-grid" id="products-grid">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: PROCESS -->
+<section class="service-section bg-light" id="process-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="small-title">როგორ ვმუშაობთ</div>
+      <h2 class="h2-title">თანამშრომლობის <span>პროცესი</span></h2>
+    </div>
+    <div class="process-timeline" id="process-timeline">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: PORTFOLIO -->
+<section class="service-section bg-dark" id="portfolio-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="small-title">პორტფოლიო</div>
+      <h2 class="h2-title">ნამუშევრების <span>მაგალითები</span></h2>
+    </div>
+    <div class="portfolio-grid" id="portfolio-grid">
+      <!-- Dynamically populated -->
+    </div>
+    <div style="text-align: center; margin-top: 48px;">
+      <a href="index.html#portfolio" class="btn-primary" style="display: inline-block; text-decoration: none;">ნახე ყველა ნამუშევარი →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: FEATURES -->
+<section class="service-section bg-light" id="features-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="small-title">რატომ ჩვენ</div>
+      <h2 class="h2-title">რატომ უნდა გვენდოთ <span>ჩვენ?</span></h2>
+    </div>
+    <div class="features-grid" id="features-grid">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: FAQ -->
+<section class="service-section bg-dark" id="faq-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="small-title">კითხვა-პასუხი</div>
+      <h2 class="h2-title">ხშირად დასმული <span>კითხვები</span></h2>
+    </div>
+    <div class="faq-accordion" id="faq-accordion">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: CTA BANNER -->
+<section class="cta-banner-section bg-light">
+  <div class="cta-banner">
+    <h2>მზად ხარ შენი ბრენდი გამოაჩინო?</h2>
+    <p>უფასო კონსულტაცია — 30 წუთი, შედეგი მთელი წლისთვის</p>
+    <div class="cta-banner-ctas">
+      <button class="btn-cta-banner-primary" onclick="openBookingModal()">დაჯავშნე კონსულტაცია</button>
+      <a href="tel:+995597080838" class="btn-cta-banner-secondary">📞 +995 597 08 08 38</a>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT FORM -->
-<section class="contact-section" id="contact">
+<section class="contact-section" id="contact" style="border-top: 1px solid var(--border);">
   <div class="contact-container">
-    <div class="eyebrow">დაუკავშირდით ჩვენს გუნდს</div>
-    <h2>ინდივიდუალური <span>შეთავაზება</span></h2>
-    <p style="margin-top:12px; color:var(--text2);">მოგვწერეთ თქვენი პროექტის შესახებ და მიიღეთ დეტალური ხარჯთაღრიცხვა 24 საათში.</p>
+    <div class="eyebrow">მოგვწერეთ დეტალები</div>
+    <h2>ინდივიდუალური <span>შეკვეთა</span></h2>
+    <p style="margin-top:12px; color:var(--text2);">შეავსეთ ფორმა და ჩვენი გუნდი 24 საათში დაგიკავშირდებათ.</p>
     <form class="contact-form" id="contact-form" onsubmit="handleContactSubmit(event)">
       <div class="form-group">
         <label for="contact-name">სახელი, გვარი</label>
@@ -1209,120 +1987,381 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:64px 4
 </div>
 
 <script>
+const PRICING_DB = {
+  branding: {
+    "ლოგო + ბრენდბუქი": { price: "1,800 ₾ - 3,500 ₾", term: "10-14 სამუშაო დღე" },
+    "სავიზიტო ბარათები + ფირნიშები": { price: "250 ₾ - 450 ₾", term: "5-7 დღე" },
+    "ბროშურა / კატალოგი / ფლაერი": { price: "600 ₾ - 1,500 ₾", term: "7-10 დღე" }
+  },
+  ooh: {
+    "ბილბორდი (3×6 / 4×12 მ.)": { price: "1,500 ₾ - 4,000 ₾ / თვე (ლოკაციის მიხედვით)", term: "7-10 დღე" },
+    "LED ეკრანი / ციფრული გარე რეკლამა": { price: "2,500 ₾ - 6,000 ₾ / თვე", term: "5-7 დღე" },
+    "ფასადი / აბრა / ვიტრინა": { price: "2,000 ₾ - 8,000 ₾", term: "14-21 დღე" }
+  },
+  video: {
+    "TV / Web სარეკლამო რგოლი (15-30 წმ.)": { price: "4,500 ₾ - 15,000 ₾", term: "14-21 დღე" },
+    "Reels / TikTok პაკეტი (10 ვიდეო)": { price: "1,800 ₾ - 4,500 ₾", term: "7-10 დღე" },
+    "კორპორატიული ფილმი (2-3 წთ.)": { price: "5,500 ₾ - 18,000 ₾", term: "21-30 დღე" }
+  },
+  web: {
+    "Landing Page (ერთგვერდიანი საიტი)": { price: "1,800 ₾ - 3,800 ₾", term: "10-14 დღე" },
+    "კორპორატიული საიტი (5-10 გვერდი)": { price: "4,500 ₾ - 12,000 ₾", term: "21-35 დღე" },
+    "ონლაინ მაღაზია (E-commerce)": { price: "8,000 ₾ - 25,000 ₾", term: "35-60 დღე" }
+  },
+  smm: {
+    "SMM ყოველთვიური მართვა": { price: "1,500 ₾ - 3,800 ₾ / თვე", term: "ყოველთვიური" },
+    "Meta / TikTok Ads მართვა": { price: "1,500 ₾ - 4,000 ₾ / თვე (+ სარეკლამო ბიუჯეტი)", term: "ყოველთვიური" },
+    "კონტენტ პროდუქცია (Photo/Video Session)": { price: "1,200 ₾ - 3,500 ₾", term: "7-10 დღე" }
+  }
+};
+
 const SERVICES_DATA = {
   branding: {
-    eyebrow: "ბრენდინგი & დიზაინი",
-    title: "პრინტი და <span>ბრენდინგი</span>",
-    desc: "ჩვენ ვქმნით ვიზუალურ იდენტობებს, რომლებიც ზუსტად გადმოსცემენ თქვენი კომპანიის ხასიათსა და ღირებულებებს. ლოგოდან დაწყებული სრულ ბრენდბუქამდე, ჩვენ ვზრუნავთ, რომ თქვენი ბრენდი გამორჩეული და დასამახსოვრებელი იყოს.",
-    chips: ["ლოგო", "ბრენდბუქი", "ბეჭდვა", "შეფუთვა", "სამერჩი"],
-    subServices: [
+    metaTitle: "პრინტი და ბრენდინგი თბილისში — ლოგო, ბრენდბუქი, ბეჭდვა | Metaფორა",
+    metaDesc: "ლოგო, ბრენდბუქი, სავიზიტო, ბროშურა — სრული ბრენდინგი 250₾-დან. 8 წლის გამოცდილება, 120+ პროექტი. უფასო კონსულტაცია.",
+    eyebrow: "პრინტი და ბრენდინგი",
+    title: "ბრენდი, რომელიც <span>გამოირჩევა</span>",
+    desc: "ლოგო, ბრენდბუქი, ბეჭდვითი მასალები — ერთ სახურავქვეშ. ვაშენებთ ვიზუალურ იდენტობას, რომელიც კლიენტს ამახსოვრებს.",
+    chips: ["ლოგო", "ბრენდბუქი", "სავიზიტო", "ბროშურა", "ბეჭდვა"],
+    heroImage: "metafora-photos/01-print-branding/hero.png",
+    introH2: "ვიზუალური იდენტობა, რომელიც <span>მუშაობს</span>",
+    introP1: "ლოგო არ არის უბრალოდ სიმბოლო — ეს არის თქვენი ბრენდის პირველი დიალოგი მომხმარებელთან. ჩვენ ვქმნით ვიზუალურ სისტემებს, რომლებიც გადააქცევენ ცნობადობას ნდობად, ნდობას — გაყიდვაში. არ ვაკეთებთ \"ლამაზ ლოგოს\" — ვაკეთებთ ლოგოს, რომელიც მუშაობს.",
+    introP2: "8 წლის გამოცდილებით ვმუშაობდით ტექნოლოგიური სტარტაპებიდან რესტორნებამდე, ფინტექიდან რეტეილამდე. ყოველი პროექტი იწყება სტრატეგიული კვლევით — რა გჭირდებათ თქვენ, რა მუშაობს თქვენი ბაზრისთვის, რა გამოარჩევთ კონკურენტებისგან. შემდეგ — დიზაინი.",
+    stats: [
+      { num: "120+", lbl: "პროექტი" },
+      { num: "40+", lbl: "კლიენტი" },
+      { num: "8", lbl: "წელი" },
+      { num: "98%", lbl: "კმაყოფილება" }
+    ],
+    products: [
       {
-        title: "ლოგო და ვიზუალური იდენტობა",
-        desc: "ლოგოს დიზაინი, ფერების პალიტრა და ტიპოგრაფია, რომელიც თქვენს ბრენდს კონკურენტებისგან გამოარჩევს და მყარ პირველ შთაბეჭდილებას დატოვებს.",
-        features: ["ლოგოს ვარიაციები", "ფერების კოდები", "ბრენდირებული ფონტები", "გამოყენების წესები"]
+        title: "ლოგო + ბრენდბუქი",
+        desc: "კომპლექსური ვიზუალური იდენტობა, რომელიც კომპანიას ცნობადსა და განსხვავებულს ხდის ბაზარზე.",
+        features: ["3 ლოგო კონცეფცია არჩევანისთვის", "საბოლოო ლოგო ყველა ფორმატში (vector, raster, monochrome)", "ფერთა პალიტრა + ტიპოგრაფიული სისტემა", "Brand Guidelines (20-30 გვერდი)", "Mockup ნიმუშები (სავიზიტო, ფირნიში)"],
+        term: "10-14 სამუშაო დღე",
+        image: "metafora-photos/01-print-branding/product-1-logo.png",
+        popular: false
       },
       {
-        title: "სრული ბრენდბუქი (Brandbook)",
-        desc: "კორპორატიული წესების კრებული, რომელიც განსაზღვრავს ბრენდის ყველა დიზაინ-ელემენტის სწორად გამოყენებას ნებისმიერ პლატფორმაზე.",
-        features: ["ბრენდის ფილოსოფია", "ვიზუალური გიდლაინები", "სოც. მედიის შაბლონები", "Mockup-ების პრეზენტაცია"]
+        title: "სავიზიტო ბარათები + ფირნიშები",
+        desc: "პრემიუმ ხარისხის ბეჭდვითი მასალები ბრენდის ვიზუალური სტანდარტით — პირველი შთაბეჭდილება გჭირდებათ ფიზიკურადაც.",
+        features: ["2 დიზაინის ვერსია არჩევანისთვის", "1,000 ცალი ბეჭდვა — 350 გრ. მუყაო", "მქრქალი / მბრწყინავი / ლამინირებული ფინიში", "Gold/Silver foil (დამატებითი)", "ფირნიში / ბეჯი (50 ცალამდე) — დამატებითი"],
+        term: "5-7 დღე",
+        image: "metafora-photos/01-print-branding/product-2-cards.png",
+        popular: true
       },
       {
-        title: "პრინტი და სარეკლამო მასალები",
-        desc: "სავიზიტო ბარათები, ბროშურები, კატალოგები, ფლაერები და შეფუთვის დიზაინი, რომელიც მზად არის უმაღლესი ხარისხით დასაბეჭდად.",
-        features: ["პოლიგრაფიული მომზადება", "სავიზიტო ბარათები", "კორპორატიული ფოლდერები", "შეფუთვის ილუსტრაციები"]
+        title: "ბროშურა / კატალოგი / ფლაერი",
+        desc: "პროდუქტისა და მომსახურების შესახებ პრემიუმ ბეჭდვითი მასალა, რომელიც კლიენტს ხელში დარჩება.",
+        features: ["8-16 გვერდიანი დიზაინი (A5 ან A4)", "ფოტოს რეტუში + გრაფიკული ელემენტები", "500-1,000 ცალი ბეჭდვა (150 გრ. ცარცი / მქრქალი)", "Tri-fold / Bi-fold / Saddle-stitched", "კოპირაითინგი (დამატებითი)"],
+        term: "7-10 დღე",
+        image: "metafora-photos/01-print-branding/product-3-brochure.png",
+        popular: false
       }
+    ],
+    process: [
+      { num: "01", icon: "📋", title: "ბრიფინგი", desc: "ვისმენთ თქვენს მიზნებსა და ბრენდის ხედვას (30-60 წთ. ზარი). ვცდილობთ გავიგოთ — რა გჭირდებათ რეალურად." },
+      { num: "02", icon: "🎯", title: "სტრატეგია + სმეტა", desc: "ვამზადებთ კონცეფციას, ვადებსა და დეტალურ ფასს. ხელშეკრულება + ავანსი → ვიწყებთ მუშაობას." },
+      { num: "03", icon: "🎨", title: "დიზაინი + წარმოება", desc: "3 კონცეფცია არჩევანისთვის → დახვეწა → საბოლოო ფაილები → ბეჭდვის წარმოება." },
+      { num: "04", icon: "✅", title: "მიწოდება + მხარდაჭერა", desc: "საბოლოო ფაილების მიწოდება ყველა ფორმატში + 30 დღიანი მხარდაჭერა მცირე შესწორებებზე." }
+    ],
+    portfolio: [
+      { client: "კლიენტი: TechStart Georgia", title: "სრული რებრენდინგი ტექ სტარტაპისთვის", desc: "<b>გამოწვევა:</b> გაუგებარი ვიზუალური იდენტობა, რომელიც კონკურენტებში იკარგებოდა<br><b>ჩვენი გადაწყვეტა:</b> ახალი ლოგო + 30-გვერდიანი ბრენდბუქი + ბეჭდვითი მასალები", result: "🚀 +320% ტრაფიკი საიტზე რებრენდინგიდან 6 თვის შემდეგ", image: "metafora-photos/01-print-branding/portfolio-1-techstart.png" },
+      { client: "კლიენტი: EcoPack", title: "მენიუს და სტუმართმოყვარეობის ვიზუალური სტანდარტი", desc: "<b>გამოწვევა:</b> ცარიელი ბრენდის გრძნობა — სტუმარი ვერ ხედავდა, რა გამოარჩევდა მათ<br><b>ჩვენი გადაწყვეტა:</b> ბრენდბუქი + მენიუ + უნიფორმა + სოც. ვიზუალები", result: "📈 +45% Instagram engagement + ბრენდის ერთიანი გრძნობა", image: "metafora-photos/01-print-branding/portfolio-2-restaurant.png" },
+      { client: "კლიენტი: B2B ფინტექი", title: "B2B ფინტექის ნდობის გრძნობის გამძაფრება", desc: "<b>გამოწვევა:</b> ცივი, ბანკისპირული ვიზუალი — სტარტაპებთან არ მუშაობდა<br><b>ჩვენი გადაწყვეტა:</b> ახალი ბრენდბუქი + წარდგენების შაბლონები + ანგარიშები", result: "🏆 2x კონვერსია პრეზენტაციებიდან კონტრაქტებამდე", image: "metafora-photos/01-print-branding/portfolio-3-corporate.png" }
+    ],
+    features: [
+      { icon: "🏆", title: "8+ წლიანი გამოცდილება", desc: "ათობით წარმატებული ბრენდი ქართულ ბაზარზე." },
+      { icon: "🇬🇪", title: "ქართული ბაზრის ცოდნა", desc: "კარგად ვიცნობთ ადგილობრივ მომხმარებელს." },
+      { icon: "🎨", title: "უნიკალური დიზაინი", desc: "ჩვენ არ ვიყენებთ შაბლონებს, ყველაფერი იხატება ნულიდან." },
+      { icon: "📐", title: "სრული ბრენდბუქი", desc: "გიდლაინები, რომლებიც მუშაობენ ნებისმიერ პლატფორმაზე." },
+      { icon: "🖨", title: "პრემიუმ პარტნიორები", desc: "თანამშრომლობა საუკეთესო ადგილობრივ სტამბებთან." },
+      { icon: "🔄", title: "ცვლილების რაუნდი", desc: "1 უფასო სრული ცვლილებების რაუნდი თითოეულ ეტაპზე." }
+    ],
+    faq: [
+      { q: "რამდენი ხანი სჭირდება ლოგოს დამზადებას?", a: "ლოგოს დიზაინს ჩვეულებრივ 5-დან 7 სამუშაო დღემდე სჭირდება, რაც მოიცავს ბრიფინგს, 3 განსხვავებული კონცეფციის შექმნასა და შერჩეულის დამუშავებას." },
+      { q: "რა ფორმატებში გადმომეცემა საბოლოო ფაილები?", a: "ფაილებს მიიღებთ ყველა საჭირო ვექტორულ (.AI, .EPS, .PDF) და ვებ-ფორმატში (.PNG, .JPG, .SVG), რაც გამოსადეგია როგორც ბეჭდვისთვის, ასევე ციფრული გამოყენებისთვის." },
+      { q: "როგორ შემიძლია გავიგო კონკრეტული სერვისის ფასი?", a: "დააწკაპუნეთ ღილაკზე 'გაიგე ფასი ასისტენტთან' და ჩემი ჩატბოტი მყისიერად მოგაწვდით ინფორმაციას საფასურის შესახებ, რის შემდეგაც შეგვიძლია დეტალები დავაზუსტოთ." },
+      { q: "შესაძლებელია თუ არა მხოლოდ ბეჭდვის შეკვეთა?", a: "დიახ, ჩვენ გთავაზობთ როგორც დიზაინის მომზადებას, ასევე ბეჭდვის სრულ ციკლს ჩვენს პარტნიორ სტამბებთან ერთად." },
+      { q: "როგორია გადახდის პირობები?", a: "სტანდარტულად ვმუშაობთ ორეტაპიანი გადახდით: 50% პროექტის დაწყებამდე (ავანსი) და 50% სამუშაოს დასრულების და ფაილების ჩაბარების შემდეგ." }
     ]
   },
   ooh: {
+    metaTitle: "გარე რეკლამა თბილისში — ბილბორდი, LED ეკრანი, ფასადი | Metaფორა",
+    metaDesc: "ბილბორდი, LED ეკრანი, ფასადი — გარე რეკლამა თბილისში 1,500₾-დან. სტრატეგიული ლოკაციები, ნახვების სტატისტიკა, შედეგი.",
     eyebrow: "გარე რეკლამა",
-    title: "გარე რეკლამა <span>(OOH)</span>",
-    desc: "სტრატეგიულად შერჩეული გარე სარეკლამო გადაწყვეტილებები, რომლებიც უზრუნველყოფენ მაქსიმალურ წვდომას და ხილვადობას ფართო აუდიტორიისთვის. ქალაქის ცენტრალური ქუჩებიდან რეგიონულ მაგისტრალებამდე.",
-    chips: ["ბილბორდი", "City Light", "ტრანსპორტი", "LED ეკრანი", "3D ანამორფული"],
-    subServices: [
+    title: "გაამავე ბრენდი <span>ქალაქს</span>",
+    desc: "ბილბორდი, LED ეკრანი, ფასადი — სტრატეგიული გარე რეკლამა თბილისში. ვაკეთებთ ხილვადს იქ, სადაც აუდიტორია არსებობს.",
+    chips: ["ბილბორდი", "LED ეკრანი", "ფასადი", "აბრა", "ვიტრინა"],
+    heroImage: "metafora-photos/02-ooh/hero.png",
+    introH2: "გარე რეკლამა, რომელიც ხილვადობაში გადადის <span>გაყიდვაში</span>",
+    introP1: "თბილისის ცენტრალურ ქუჩაზე გავლა — ეს დღეში 200,000+ ადამიანის თვალის წინ გავლაა. შესაბამისად, ბილბორდი არ არის \"უბრალოდ ბანერი\" — ეს არის თქვენი ბრენდის ფიზიკური მანიფესტი ქალაქის სივრცეში. ჩვენ ვუმუშავებთ თქვენთან: სად, რა, რა მესიჯით.",
+    introP2: "8 წლის გამოცდილებამ გვასწავლა, რომ კარგი OOH კამპანია 3 ფაქტორზე დგას — სწორი ლოკაცია, მკაფიო კრეატივი, გაზომვადი შედეგი. ჩვენ ვმუშაობთ თბილისის ყველა მთავარ ლოკაციასთან და გვაქვს დაგროვილი მონაცემები ნახვადობასა და კონვერსიაზე.",
+    stats: [
+      { num: "120+", lbl: "პროექტი" },
+      { num: "40+", lbl: "კლიენტი" },
+      { num: "8", lbl: "წელი" },
+      { num: "98%", lbl: "კმაყოფილება" }
+    ],
+    products: [
       {
-        title: "ქალაქის ბილბორდები & მაგისტრალები",
-        desc: "დიდი ზომის სარეკლამო ფარები ყველაზე აქტიურ საგზაო მონაკვეთებსა და ცენტრალურ ქუჩებზე, რაც ბრენდის ცნობადობას მყისიერად ზრდის.",
-        features: ["ცენტრალური ლოკაციები", "მაღალი ხილვადობა 24/7", "განათების მონტაჟი", "სპეციალური კონსტრუქციები"]
+        title: "ბილბორდი (3×6 / 4×12 მ.)",
+        desc: "კლასიკური გარე რეკლამა მაღალი ხილვადობით თბილისის სტრატეგიულ წერტილებში.",
+        features: ["კრეატიული კონცეფცია + დიზაინი", "მაღალი ხარისხის ბანერის ბეჭდვა (Frontlit / Backlit)", "ლოკაციის შერჩევა + გაქირავება (30 დღე)", "მონტაჟი + დემონტაჟი", "ნახვადობის სტატისტიკა"],
+        term: "7-10 დღე (გაცემამდე)",
+        image: "metafora-photos/02-ooh/product-1-billboard.png",
+        popular: false
       },
       {
-        title: "City Light & ავტობუსის გაჩერებები",
-        desc: "ფეხით მოსიარულეებზე გათვლილი ეფექტური სარეკლამო ყუთები, რომლებიც განთავსებულია საზოგადოებრივი ტრანსპორტის გაჩერებებთან და მოედნებზე.",
-        features: ["შიდა განათება", "ფეხით მოსიარულეთა დაფარვა", "ლოკალური მარკეტინგი", "მაღალი რეზოლუციის ბეჭდვა"]
+        title: "LED ეკრანი / ციფრული გარე რეკლამა",
+        desc: "დინამიური სარეკლამო კონტენტი თბილისის ცენტრალურ ციფრულ ეკრანებზე — ბრენდი მოძრაობს.",
+        features: ["10-15 წამიანი ვიდეო / მოტიონ რგოლი", "30 დღიანი ციფრული როტაცია (24/7)", "მრავალი ლოკაცია (Vake, Saburtalo, Aragveli, ცენტრი)", "ნახვების სტატისტიკა + ანგარიში", "კონტენტის ცვლილება — შეუზღუდავი"],
+        term: "5-7 დღე",
+        image: "metafora-photos/02-ooh/product-2-led.png",
+        popular: true
       },
       {
-        title: "ტრანსპორტის ბრენდირება",
-        desc: "მოძრავი რეკლამა მთელი ქალაქის მასშტაბით – ავტობუსების, მიკროავტობუსებისა და კორპორატიული მანქანების სრული ან ნაწილობრივი შეფუთვა.",
-        features: ["სარეკლამო ფირები", "ქალაქის მასშტაბით დაფარვა", "გრძელვადიანი გარანტია", "გამორჩეული დიზაინი"]
+        title: "ფასადი / აბრა / ვიტრინა",
+        desc: "მაღაზიის ან ოფისის სავიზო რეკლამა — გრძელვადიანი ბრენდის გამოვლენა ფიზიკურ სივრცეში.",
+        features: ["3D დიზაინი + ვიზუალიზაცია", "მასალის შერჩევა (LED, აკრილი, კომპოზიტი, ნეონი)", "წარმოება + მონტაჟი", "2 წლიანი გარანტია", "ნებართვების მოპოვება (საქალაქო ინსპექცია)"],
+        term: "14-21 დღე",
+        image: "metafora-photos/02-ooh/product-3-facade.png",
+        popular: false
       }
+    ],
+    process: [
+      { num: "01", icon: "📋", title: "ბრიფინგი", desc: "აუდიტორიის, ბიუჯეტისა და მიზნების ანალიზი. ვადგენთ — სად ვისს ველაპარაკებით." },
+      { num: "02", icon: "🗺", title: "ლოკაცია + სტრატეგია", desc: "ვირჩევთ ოპტიმალურ ლოკაციებს ნახვადობის სტატისტიკის მიხედვით. სმეტა + კონტრაქტი." },
+      { num: "03", icon: "🎨", title: "კრეატივი + წარმოება", desc: "ბანერი / ვიდეო რგოლი ან ფასადის წარმოება. ბრენდბუქის შესაბამისად." },
+      { num: "04", icon: "📊", title: "მონტაჟი + მონიტორინგი", desc: "მონტაჟი 24-48 სთ-ში. კამპანიის მსვლელობისას ანგარიში ნახვადობაზე." }
+    ],
+    portfolio: [
+      { client: "კლიენტი: Tbilisi Mall კამპანია", title: "ქალაქმასშტაბიანი სეზონური კამპანია", desc: "<b>გამოწვევა:</b> ერთჯერადი მოვლენის ცნობადობის გაზრდა მოკლე ვადაში<br><b>ჩვენი გადაწყვეტა:</b> 40 ბილბორდი ქალაქის ცენტრალურ ლოკაციებზე + სოც. მედია ინტეგრაცია", result: "🚀 2M+ reach + 23% კონვერსია სოც. მედიის ტრაფიკიდან", image: "metafora-photos/02-ooh/portfolio-1-tbilisimall.png" },
+      { client: "კლიენტი: პრემიუმ რეტეილ ბრენდი", title: "ფასადი + ბილბორდი + ბუს-სტოპის სერია", desc: "<b>გამოწვევა:</b> ახალი მაღაზიის გახსნა, ცნობადობის ნოლიდან აშენება<br><b>ჩვენი გადაწყვეტა:</b> ფასადი + 8 ბილბორდი + 30 ბუს-სტოპის რეკლამა — 60 დღე", result: "📈 გახსნის თვეში 4x მოლოდინის ფეხით ვიზიტი", image: "metafora-photos/02-ooh/portfolio-2-busstop.png" },
+      { client: "კლიენტი: სამთო კურორტი", title: "ფასადის ვრაპი + LED + ბილბორდი", desc: "<b>გამოწვევა:</b> ზამთრის სეზონის გახსნა — სასწრაფო ცნობადობა 2 კვირაში<br><b>ჩვენი გადაწყვეტა:</b> დიდი ფასადის ვრაპი + 3 LED ეკრანი + 12 ბილბორდი", result: "🏆 +180% ჯავშნები კამპანიის თვეში", image: "metafora-photos/02-ooh/portfolio-3-building.png" }
+    ],
+    features: [
+      { icon: "🏆", title: "სტრატეგიული ლოკაციები", desc: "მხოლოდ ყველაზე აქტიური და ეფექტური წერტილები." },
+      { icon: "🇬🇪", title: "სრული დაფარვა", desc: "რეკლამა როგორც თბილისში, ისე რეგიონებში." },
+      { icon: "🎨", title: "გარანტირებული მონტაჟი", desc: "უსაფრთხოების ნორმების სრული დაცვით." },
+      { icon: "📐", title: "მაღალი რეზოლუცია", desc: "ბეჭდვის საუკეთესო ხარისხი დეტალიზაციისთვის." },
+      { icon: "🖨", title: "განათების კონტროლი", desc: "LED განათება საუკეთესო ღამის ხილვადობისთვის." },
+      { icon: "🔄", title: "ყოველკვირეული მონიტორინგი", desc: "რეკლამის მდგომარეობის მუდმივი შემოწმება." }
+    ],
+    faq: [
+      { q: "რა არის გარე რეკლამის მინიმალური საიჯარო ვადა?", a: "სტანდარტულად ბილბორდებისა და LED ეკრანების იჯარის მინიმალური ვადა 1 თვეს შეადგენს." },
+      { q: "შედის თუ არა იჯარის ფასში ბეჭდვა და მონტაჟი?", a: "ფასის სტრუქტურა ინდივიდუალურია. ძირითადად, იჯარა და ბეჭდვა-მონტაჟი ცალკე იანგარიშება, თუმცა გვაქვს კომპლექსური პაკეტებიც." },
+      { q: "როგორ შემიძლია გავიგო თავისუფალი ლოკაციები?", a: "მოგვწერეთ ჩატში ან შეავსეთ ფორმა და ჩვენი მენეჯერი გამოგიგზავნით თავისუფალი ადგილების აქტუალურ ფოტო-კატალოგს (პრეზენტაციას)." },
+      { q: "რა ხდება ბანერის დაზიანების შემთხვევაში?", a: "ჩვენი გუნდი ახდენს მონიტორინგს და ფორსმაჟორული დაზიანების შემთხვევაში უფასოდ აღადგენს ან შეცვლის სარეკლამო ტილოს." },
+      { q: "რამდენად ეფექტურია ტრანსპორტის ბრენდირება?", a: "მობილური რეკლამა 2.5-ჯერ მეტ ყურადღებას იპყრობს, ვიდრე სტატიკური ბანერი, რადგან ის მუდმივად მოძრაობს სხვადასხვა უბანში." }
     ]
   },
   video: {
+    metaTitle: "ვიდეო პროდუქცია — Reels, TikTok, სარეკლამო რგოლები | Metaფორა",
+    metaDesc: "მაღალი დონის სარეკლამო ვიდეო რგოლები, Motion Graphics და სოც. მედიის ვერტიკალური ვიდეოების წარმოება.",
     eyebrow: "ვიდეო წარმოება",
     title: "ვიდეო <span>პროდუქცია</span>",
     desc: "ჩვენ ვახდენთ იდეების ვიზუალიზაციას მაღალი დონის სარეკლამო რგოლებით, ანიმაციებითა და სოციალური მედიის დინამიური კონტენტით. ვიდეო წარმოება სცენარიდან საბოლოო მონტაჟამდე.",
     chips: ["Reels", "Motion Graphics", "პრომო ვიდეო", "სცენარი", "Color Grading"],
-    subServices: [
+    heroImage: "metafora-photos/03-video/hero.png",
+    introH2: "მოუყევი შენი ბრენდის <span>ისტორია</span> ვიდეოთი",
+    introP1: "ვიდეო კონტენტი არის მომხმარებლის ჩართულობის ყველაზე სწრაფი და ეფექტური გზა. ჩვენი ვიდეო პროდუქცია მოიცავს სრულ ციკლს: კრეატიული იდეის და სცენარის შემუშავება, გადაღების დაგეგმვა (კასტინგი, ლოკაცია), პროფესიონალური გადაღება და მაღალი დონის მონტაჟი (ხმის ეფექტები, ფერების კორექცია).",
+    introP2: "კარგი ვიდეო რგოლი 95%-ით უკეთ ამახსოვრებს მომხმარებელს ბრენდს, ვიდრე ტექსტური რეკლამა. ჩვენ ვმუშაობთ როგორც სატელევიზიო სარეკლამო რგოლებზე, ასევე მოკლე დინამიურ ფორმატებზე (Reels/TikTok), რომლებიც თქვენს სოციალურ ქსელებს გააცოცხლებს.",
+    stats: [
+      { num: "150+", lbl: "გადაღებული ვიდეო" },
+      { num: "10M+", lbl: "ჯამური ნახვები" },
+      { num: "4K", lbl: "ულტრა HD ხარისხი" }
+    ],
+    products: [
       {
         title: "სარეკლამო ვიდეო რგოლები (TV & Digital)",
-        desc: "კინემატოგრაფიული ხარისხის ვიდეოები, სრული გადამღები ჯგუფი, პროფესიონალური კამერები, განათება და ხმის რეჟისურა თქვენი ბრენდის წარმატებისთვის.",
-        features: ["კასტინგი და ლოკაციები", "სცენარის დაწერა", "Post-production / მონტაჟი", "Color Correction"]
+        desc: "კინემატოგრაფიული ხარისხის ვიდეოები პროფესიონალური გადამღები ჯგუფით.",
+        features: ["იდეის კონცეფცია & სცენარი", "ლოკაციების & მსახიობების შერჩევა", "სრული კინო-აპარატურა და განათება", "პროფესიონალური ხმის ჩაწერა", "Color Correction & Sound Design"],
+        term: "10-20 სამუშაო დღე",
+        image: "metafora-photos/03-video/product-1-tv.png",
+        popular: true
       },
       {
         title: "Motion Graphics & 2D/3D ანიმაცია",
-        desc: "ანიმაციური ვიდეოები, რომლებიც ვიზუალური ეფექტებისა და დინამიური გრაფიკის მეშვეობით მარტივად ხსნიან რთულ პროდუქტებსა თუ სერვისებს.",
-        features: ["ინფოგრაფიკის ანიმაცია", "ლოგოს ანიმაცია", "3D პროდუქტის რენდერი", "Sound Design / ხმოვანი ეფექტები"]
+        desc: "ანიმაციური ვიდეოები, რომლებიც მარტივად ხსნიან რთულ პროდუქტებსა თუ სერვისებს.",
+        features: ["სცენარის და ილუსტრაციების შექმნა", "2D ან 3D ანიმაციის აწყობა", "ლოგოს დინამიური ანიმაცია", "ლიცენზირებული მუსიკა და გახმოვანება", "სოც. მედიის ფორმატებზე ადაპტაცია"],
+        term: "7-14 სამუშაო დღე",
+        image: "metafora-photos/03-video/product-2-interview.png",
+        popular: false
       },
       {
         title: "Reels / TikTok & მოკლე ვიდეოები",
-        desc: "დინამიური, ტრენდული და სწრაფი ვერტიკალური ვიდეოები, რომლებიც სპეციალურად შექმნილია სოციალური ქსელების ალგორითმებისთვის.",
-        features: ["სატრენდო იდეები", "სწრაფი მონტაჟი", "სუბტიტრების დადება", "აუდიტორიის ჩართულობა"]
+        desc: "დინამიური, ტრენდული და სწრაფი ვერტიკალური ვიდეოები სოციალური ქსელებისთვის.",
+        features: ["ყოველთვიური 10-15 ვიდეოს გეგმა", "სატრენდო იდეების მოძიება", "მობილური ან კამერით გადაღება", "სწრაფი ედითინგი & სუბტიტრები", "აუდიტორიის ჩართულობის ოპტიმიზაცია"],
+        term: "ყოველთვიური",
+        image: "metafora-photos/03-video/product-3-reels.png",
+        popular: false
       }
+    ],
+    process: [
+      { num: "01", icon: "📋", title: "Pre-production", desc: "სცენარის წერა, Storyboard-ის მომზადება, მსახიობების და ლოკაციების შერჩევა." },
+      { num: "02", icon: "🎯", title: "Production", desc: "გადაღების პროცესი უახლესი ტექნიკითა და განათების სრული კომპლექტით." },
+      { num: "03", icon: "🎨", title: "Post-production", desc: "ვიდეო მონტაჟი, ეფექტები, ფერების გასწორება და ხმის რეჟისურა." },
+      { num: "04", icon: "✅", title: "ჩაბარება", desc: "ვიდეოს მზა ფაილის გადაცემა ყველა საჭირო რეზოლუციასა და ზომაში." }
+    ],
+    portfolio: [
+      { client: "კლიენტი: Adjara Group", title: "Adjara Group Reels", desc: "კინემატოგრაფიული პრომო ვიდეო ახალი პრემიუმ სერვისის პრეზენტაციისთვის.", result: "📈 500K+ ორგანული ნახვა", image: "metafora-photos/03-video/portfolio-1-adjara.png" },
+      { client: "კლიენტი: Wolt Georgia", title: "Animated Explainer", desc: "2D ანიმაციური ვიდეო, რომელიც ხსნის აპლიკაციის ახალ ფუნქციას მარტივად.", result: "🚀 აპლიკაციის ჩამოტვირთვის 35% ზრდა", image: "metafora-photos/03-video/portfolio-2-commercial.png" },
+      { client: "კლიენტი: Zoommer", title: "Social Media Reels Package", desc: "ყოველთვიური ვერტიკალური ვიდეოების სერია იუმორითა და პროდუქტის რივიუებით.", result: "🏆 10M+ ვირუსული ნახვა", image: "metafora-photos/03-video/portfolio-3-brandfilm.png" }
+    ],
+    features: [
+      { icon: "🏆", title: "პროფესიონალური ტექნიკა", desc: "Red, Blackmagic, Sony კამერები და სინათლის აპარატურა." },
+      { icon: "🇬🇪", title: "უნიკალური სცენარები", desc: "კრეატიული გუნდი საინტერესო ისტორიების შესაქმნელად." },
+      { icon: "🎨", title: "ლიცენზირებული აუდიო", desc: "მხოლოდ ხარისხიანი და საავტორო უფლებებით დაცული ხმები." },
+      { icon: "📐", title: "Color Grading", desc: "კინემატოგრაფიული ფერები თქვენი ვიზუალური იდენტობისთვის." },
+      { icon: "🖨", title: "სწრაფი ვადები", desc: "პროექტის დროული ჩაბარება ხარისხის დაკარგვის გარეშე." },
+      { icon: "🔄", title: "ადაპტაცია", desc: "ვიდეო მზადდება როგორც TV-სთვის, ისე სოც.ქსელებისთვის." }
+    ],
+    faq: [
+      { q: "რა ღირს ვიდეოს გადაღება?", a: "ვიდეოს ფასი ძალიან ინდივიდუალურია. დააწკაპუნეთ ღილაკზე 'გაიგე ფასი ასისტენტთან' და მე გეტყვით საორიენტაციო ფასებს სხვადასხვა ტიპის ვიდეოსთვის." },
+      { q: "თქვენ წერთ სცენარს თუ ჩვენ უნდა მოგაწოდოთ?", a: "ჩვენი კრეატიული გუნდი სრულად იღებს სცენარის წერასა და იდეების მოფიქრებას თავის თავზე, თუმცა თქვენი იდეებით მუშაობაც შეგვიძლია." },
+      { q: "სად ხდება გადაღებები?", a: "გადაღებები ხდება როგორც პროფესიონალურ პავილიონებში, ასევე სპეციალურად შერჩეულ ლოკაციებზე (ბუნება, ოფისი, ქუჩა) პროექტის საჭიროებიდან გამომდინარე." },
+      { q: "რა არის Reels-ის ყოველთვიური პაკეტი?", a: "ეს არის პაკეტი, სადაც ჩვენ ყოველთვიურად ვგეგმავთ, ვიღებთ და ვამონტაჟებთ 10-15 მოკლე ვერტიკალურ ვიდეოს თქვენი ბრენდის Instagram/TikTok-ისთვის." },
+      { q: "შესაძლებელია თუ არა დასრულებული ვიდეოს დაკორექტირება?", a: "დიახ, მონტაჟის ეტაპზე გათვალისწინებულია 2 უფასო შესწორებების რაუნდი მომხმარებლის სურვილისამებრ." }
     ]
   },
   web: {
-    eyebrow: "ვებ დეველოპმენტი",
-    title: "ვებ-გვერდების <span>დეველოპმენტი</span>",
-    desc: "ჩვენ ვქმნით თანამედროვე, სრულად ადაპტირებად და გაყიდვებზე ორიენტირებულ ვებ-გვერდებს, რომლებიც უზრუნველყოფენ საუკეთესო მომხმარებლის გამოცდილებას (UX/UI) ნებისმიერ მოწყობილობაზე.",
-    chips: ["Landing Page", "E-Commerce", "UI/UX დიზაინი", "SEO", "Responsive"],
-    subServices: [
+    metaTitle: "ვებ-გვერდის შექმნა თბილისში — Landing Page, კორპორატიული საიტი | Metaფორა",
+    metaDesc: "Landing Page, კორპორატიული საიტი, ონლაინ მაღაზია — ვებ-დეველოპმენტი 1,800₾-დან. SEO, რესპონსიული, სწრაფი. +320% ტრაფიკის გამოცდილება.",
+    eyebrow: "ვებ-გვერდები",
+    title: "საიტი, რომელიც აქცევს <span>ვიზიტორს კლიენტად</span>",
+    desc: "Landing Page-დან E-commerce-მდე — დიზაინი + დეველოპმენტი + SEO. ვაშენებთ საიტებს, რომლებიც გაყიდიან.",
+    chips: ["Landing Page", "კორპორატიული საიტი", "ონლაინ მაღაზია", "UI/UX დიზაინი", "SEO"],
+    heroImage: "metafora-photos/04-web/hero.png",
+    introH2: "ვებ-გვერდი არ არის ვიზიტბარათი — ეს არის <span>გაყიდვების მანქანა</span>",
+    introP1: "ბევრი ბრენდი საიტს ეპყრობა როგორც ციფრულ ვიზიტბარათს — \"გვინდა იქ ვიყოთ\". ჩვენი მიდგომა სხვაა: საიტი არის თქვენი #1 გაყიდვების მენეჯერი, რომელიც მუშაობს 24/7. შესაბამისად, თითო პიქსელი — სტრატეგიული გადაწყვეტილებაა.",
+    introP2: "ჩვენი საიტები იქმნება 3 პრინციპით: <b>სიჩქარე</b> (3 წამის ფარგლებში ჩაიტვირთება), <b>კონვერსია</b> (მკაფიო CTA-ები ყოველ scroll-ზე), <b>SEO</b> (Google-ისთვის გასაგები სტრუქტურა). TechStart Georgia-ს საიტმა — <b>+320% ტრაფიკი</b> მოგვცა 6 თვეში.",
+    stats: [
+      { num: "120+", lbl: "პროექტი" },
+      { num: "40+", lbl: "კლიენტი" },
+      { num: "8", lbl: "წელი" },
+      { num: "98%", lbl: "კმაყოფილება" }
+    ],
+    products: [
       {
-        title: "Landing Page & სავიზიტო საიტები",
-        desc: "ერთგვერდიანი, კონვერტაციაზე ორიენტირებული ვებ-გვერდები, რომლებიც იდეალურია კონკრეტული სერვისის თუ აქციის წარსადგენად.",
-        features: ["უნიკალური UI/UX", "სწრაფი ჩატვირთვა", "ფორმების ინტეგრაცია", "სრული მობილური ადაპტაცია"]
+        title: "Landing Page (ერთგვერდიანი საიტი)",
+        desc: "კონვერსიაზე ორიენტირებული ერთგვერდიანი საიტი ერთი პროდუქტის ან სერვისისთვის.",
+        features: ["UI/UX დიზაინი (Figma)", "რესპონსიული დეველოპმენტი (Desktop + Mobile)", "ფორმები + CTA ღილაკები", "Google Analytics + Meta Pixel", "SEO საფუძვლები + სიჩქარის ოპტიმიზაცია", "ჰოსტინგი + დომენი (1 წელი) — დამატებითი"],
+        term: "10-14 დღე",
+        image: "metafora-photos/04-web/product-1-landing.png",
+        popular: false
       },
       {
-        title: "E-Commerce / ონლაინ მაღაზიები",
-        desc: "მძლავრი ელ-კომერციის საიტები, სადაც მომხმარებლებს შეუძლიათ მარტივად აირჩიონ პროდუქტი, გადაიხადონ ბარათით და მიიღონ მომსახურება.",
-        features: ["გადახდების ინტეგრაცია (ბანკები)", "პროდუქციის კატალოგი", "ადმინ პანელი მართვისთვის", "შეკვეთების თრექინგი"]
+        title: "კორპორატიული საიტი (5-10 გვერდი)",
+        desc: "სრულფასოვანი კორპორატიული საიტი ბრენდის წარმოსაჩენად.",
+        features: ["დიზაინი (Figma) + 5-10 უნიკალური გვერდი", "CMS (WordPress / Custom) — საკუთრივ რედაქტირება", "ბლოგის მოდული", "მრავალენოვანი (KA / EN / RU)", "SEO + სიჩქარის ოპტიმიზაცია", "ფორმები + CRM ინტეგრაცია"],
+        term: "21-35 დღე",
+        image: "metafora-photos/04-web/product-2-corporate.png",
+        popular: true
       },
       {
-        title: "SEO ოპტიმიზაცია & მხარდაჭერა",
-        desc: "თქვენი საიტის საძიებო სისტემებში (Google) წინა პოზიციებზე გამოყვანა, რათა მიიღოთ მეტი ორგანული მომხმარებელი უფასოდ.",
-        features: ["Technical SEO", "Keywords ანალიზი", "Google Analytics დაყენება", "ყოველთვიური რეპორტინგი"]
+        title: "ონლაინ მაღაზია (E-commerce)",
+        desc: "სრულფასოვანი ონლაინ მაღაზია გადახდის სისტემებითა და ლოგისტიკით.",
+        features: ["პროდუქტ კატალოგი (კატეგორიები + ფილტრები)", "კალათა + Checkout flow", "გადახდის ინტეგრაცია (TBC Pay, BoG, Stripe)", "ადმინ პანელი (შეკვეთები, კლიენტები, სტატისტიკა)", "ლოგისტიკის ინტეგრაცია (კურიერი)", "ფასდაკლების / პრომო კოდების სისტემა"],
+        term: "35-60 დღე",
+        image: "metafora-photos/04-web/product-3-ecommerce.png",
+        popular: false
       }
+    ],
+    process: [
+      { num: "01", icon: "📋", title: "აღმოჩენა + სტრატეგია", desc: "აუდიტორიის, კონკურენტებისა და მიზნების ანალიზი. სტრუქტურა + sitemap." },
+      { num: "02", icon: "🎨", title: "UI/UX დიზაინი", desc: "Figma-ში დიზაინი → თქვენი დასტური → დახვეწა → საბოლოო Mockup." },
+      { num: "03", icon: "💻", title: "დეველოპმენტი", desc: "კოდი (React/Next.js ან WordPress). CMS, SEO სტრუქტურა, ფორმები." },
+      { num: "04", icon: "🚀", title: "ტესტირება + გაშვება", desc: "მრავალბრაუზერული ტესტი, mobile, სიჩქარე, SEO. გაშვება + 30 დღიანი მხარდაჭერა." }
+    ],
+    portfolio: [
+      { client: "კლიენტი: TechStart Georgia", title: "კორპორატიული საიტი ტექ სტარტაპისთვის", desc: "<b>გამოწვევა:</b> ძველი საიტი, რომელიც არ კონვერტირდებოდა — bounce rate 75%<br><b>ჩვენი გადაწყვეტა:</b> ახალი დიზაინი + Next.js დეველოპმენტი + SEO ოპტიმიზაცია", result: "🚀 +320% ორგანული ტრაფიკი + bounce rate 75% → 38%", image: "metafora-photos/04-web/portfolio-1-techstart.png" },
+      { client: "კლიენტი: პრემიუმ ფეშენ ბრენდი", title: "სრულფასოვანი ონლაინ მაღაზია", desc: "<b>გამოწვევა:</b> ფიზიკურიდან ციფრულზე გადასვლა — ნოლიდან აშენება<br><b>ჩვენი გადაწყვეტა:</b> Shopify + custom theme + TBC Pay ინტეგრაცია + SMM კავშირი", result: "📈 3 თვეში 25,000 ₾ თვიური ბრუნვა ონლაინ არხიდან", image: "metafora-photos/04-web/portfolio-2-ecommerce.png" },
+      { client: "კლიენტი: ფინტექ SaaS", title: "B2B SaaS პროდუქტის ლენდინგი", desc: "<b>გამოწვევა:</b> კონვერსიის გაუმჯობესება — vizitorebi ხდებოდნენ, მაგრამ არ რეგისტრირდებოდნენ<br><b>ჩვენი გადაწყვეტა:</b> ახალი UX + clear value proposition + დემო ფორმა + სოც. პრუფი", result: "🏆 Lead conversion 0.8% → 4.2% (5x ზრდა)", image: "metafora-photos/04-web/portfolio-3-dashboard.png" }
+    ],
+    features: [
+      { icon: "🏆", title: "სუფთა და სწრაფი კოდი", desc: "საიტები იტვირთება წამიერად, რაც უზრუნველყოფს კმაყოფილ მომხმარებელს." },
+      { icon: "🇬🇪", title: "მობილური ადაპტაცია", desc: "საიტი იდეალურად გამოიყურება ტელეფონსა და პლანშეტზე." },
+      { icon: "🎨", title: "მარტივი მართვის პანელი", desc: "თქვენ თავად შეძლებთ ტექსტების და ფოტოების მარტივად შეცვლას." },
+      { icon: "📐", title: "SEO მზაობა", desc: "საიტი ოპტიმიზებულია Google-ში მარტივად მოსაძებნად." },
+      { icon: "🖨", title: "უსაფრთხოების გარანტია", desc: "დაცვა კიბერ-შეტევებისა და მონაცემების დაკარგვისგან." },
+      { icon: "🔄", title: "უფასო მხარდაჭერა", desc: "1 თვიანი სრული ტექნიკური გარანტია საიტის ჩაბარებიდან." }
+    ],
+    faq: [
+      { q: "რა დრო სჭირდება საიტის დამზადებას?", a: "Landing Page-ის დამზადებას 7-12 დღე სჭირდება, ხოლო რთული ონლაინ მაღაზიის შექმნა 15-30 სამუშაო დღეს მოითხოვს." },
+      { q: "შესაძლებელია თუ არა საიტის განვადებით შეძენა?", a: "დიახ, ჩვენ გვაქვს მოქნილი ეტაპობრივი გადახდის სისტემა, სადაც თანხა იყოფა პროექტის ეტაპების მიხედვით." },
+      { q: "როგორ შემიძლია გავიგო საიტის დამზადების ფასი?", a: "დააწკაპუნეთ ღილაკზე 'გაიგე ფასი ასისტენტთან' და ჩემი ჩატბოტი მყისიერად მოგაწვდით ინფორმაციას საფასურის შესახებ." },
+      { q: "მე თვითონ შევძლებ თუ არა პროდუქტების დამატებას?", a: "დიახ, ჩვენ გადმოგცემთ მარტივ ადმინ პანელს და გასწავლით, როგორ დაამატოთ ახალი პროდუქცია ან შეცვალოთ ფასები დამოუკიდებლად." },
+      { q: "რა დამატებითი ხარჯები მექნება საიტის გაშვებისას?", a: "ყოველწლიურად გადასახდელია დომენისა (მაგ. .GE) და ჰოსტინგის საფასური, რაც ჯამში დაახლოებით 100-250 ლარს შეადგენს." }
     ]
   },
   smm: {
+    metaTitle: "სოციალური მედია მარკეტინგი (SMM) — გვერდების მართვა | Metaფორა",
+    metaDesc: "ბრენდის სოციალური მედიის ყოველდღიური მართვა, მიზნობრივი რეკლამა და ჩატბოტების ავტომატიზაცია.",
     eyebrow: "სოციალური მედია",
     title: "სოციალური <span>მედია</span>",
     desc: "ბრენდის სოციალური მედიის ყოველდღიური მართვა: სტრატეგიის შემუშავებიდან, კრეატიული პოსტების შექმნამდე და რეკლამის მიზნობრივ ოპტიმიზაციამდე, რათა მიიღოთ რეალური გაყიდვები.",
     chips: ["Instagram", "Facebook", "TikTok", "Targeting", "Chatbot Auto"],
-    subServices: [
+    heroImage: "metafora-photos/05-social-media/hero.png",
+    introH2: "აქციე სოციალური ქსელები <span>გაყიდვების</span> წყაროდ",
+    introP1: "სოციალური მედია მარკეტინგი (SMM) დღეს ბიზნესის ზრდის ყველაზე ძლიერი საშუალებაა. ჩვენი სერვისი მოიცავს სრულ ყოველთვიურ მართვას: უნიკალური ვიზუალური სტილის შექმნა, კონტენტ-გეგმის შედგენა, პოსტების დიზაინი და ქოფირაითინგი, მომხმარებლებთან აქტიური კომუნიკაცია და სარეკლამო ბიუჯეტების მიზნობრივი ოპტიმიზაცია (Targeted Ads).",
+    introP2: "ჩვენი მართული გვერდები საშუალოდ 2.5-ჯერ ზრდიან მომხმარებლის ჩართულობას და გაყიდვებს. ჩვენ ასევე გთავაზობთ ManyChat ჩატბოტების ავტომატიზაციას, რომელიც პასუხობს კომენტარებსა და შეტყობინებებს 24/7-ზე, აგზავნის ფასებს და აგროგებს კონტაქტებს ავტომატურ რეჟიმში.",
+    stats: [
+      { num: "30+", lbl: "აქტიური ბრენდი" },
+      { num: "5M+", lbl: "თვიური წვდომა (Reach)" },
+      { num: "3.2x", lbl: "საშუალო ROI რეკლამაზე" }
+    ],
+    products: [
       {
         title: "სრული SMM მართვა & კონტენტი",
-        desc: "ყოველთვიური კონტენტ-გეგმის შედგენა, პოსტების გრაფიკული დიზაინი, ქოფირაითინგი, მომხმარებელთან კომუნიკაცია და რეპორტინგი.",
-        features: ["უნიკალური ვიზუალური სტილი", "ინტერაქციული სთორები", "კომენტარების მოდერაცია", "სტატისტიკის ანალიზი"]
+        desc: "ყოველთვიური კონტენტ-გეგმის შედგენა, პოსტების დიზაინი და გვერდის ადმინისტრირება.",
+        features: ["თვიური 12-16 კრეატიული პოსტი", "ყოველდღიური ინტერაქტიული Stories", "უნიკალური ვიზუალური ბადე (Grid)", "ქოფირაითინგი (ტექსტების წერა)", "ყოველთვიური ანალიტიკური რეპორტი"],
+        term: "ყოველთვიური მართვა",
+        image: "metafora-photos/05-social-media/product-1-management.png",
+        popular: true
       },
       {
         title: "მიზნობრივი რეკლამა (Meta / TikTok Ads)",
-        desc: "სარეკლამო კამპანიების დაგეგმვა, სწორი სამიზნე აუდიტორიის შერჩევა, ბიუჯეტის განაწილება და გაყიდვების ოპტიმიზაცია.",
-        features: ["A/B ტესტირება", "პიქსელის დაყენება", "კამპანიის რეპორტები", "Lead Generation"]
+        desc: "სარეკლამო კამპანიების დაგეგმვა, აუდიტორიის შეგროვება და ბიუჯეტის მართვა.",
+        features: ["სამიზნე აუდიტორიის (Targeting) ანალიზი", "A/B ტესტირება საუკეთესო შედეგისთვის", "Meta Pixel-ისა და API კონფიგურაცია", "Lead Generation კამპანიები", "ბიუჯეტის ყოველდღიური მონიტორინგი"],
+        term: "ყოველთვიური მართვა",
+        image: "metafora-photos/05-social-media/product-2-studio.png",
+        popular: false
       },
       {
         title: "ჩატბოტების ავტომატიზაცია (ManyChat)",
-        desc: "ჭკვიანი ჩატბოტების აწყობა Messenger-სა და Instagram Direct-ში, რომლებიც მომხმარებლის კითხვებს პასუხობენ 24/7 და ზრდიან კონვერტაციას.",
-        features: ["ავტომატური პასუხები", "შეკვეთების მიღება ბოტში", "მომხმარებელთა სეგმენტაცია", "სარეკლამო ფაბრიკა"]
+        desc: "ჭკვიანი ჩატბოტების აწყობა Messenger-სა და Instagram Direct-ში.",
+        features: ["24/7 ავტომატური პასუხები შეკითხვებზე", "კომენტარებზე ავტომატური რეაგირება", "მომხმარებელთა მონაცემების შეგროვება", "ფასების ავტომატური გაგზავნა PM-ში", "ManyChat-ის ოფიციალური პარტნიორი"],
+        term: "5-10 სამუშაო დღე",
+        image: "metafora-photos/05-social-media/product-3-ads.png",
+        popular: false
       }
+    ],
+    process: [
+      { num: "01", icon: "📋", title: "აუდიტი", desc: "ვაანალიზებთ თქვენს არსებულ გვერდებს, კონკურენტებს და ვადგენთ სტრატეგიას." },
+      { num: "02", icon: "🎯", title: "დიზაინის სტილი", desc: "ვამზადებთ ვიზუალურ მოდელს და ვათანხმებთ გვერდის ერთიან ბადეს." },
+      { num: "03", icon: "🎨", title: "კონტენტის შექმნა", desc: "ვწერთ ტექსტებს, ვამზადებთ გრაფიკას და ვამონტაჟებთ Reels ვიდეოებს." },
+      { num: "04", icon: "✅", title: "რეკლამა & რეპორტი", desc: "ვუშვებთ მიზნობრივ რეკლამებს და თვის ბოლოს გაწვდით დეტალურ სტატისტიკას." }
+    ],
+    portfolio: [
+      { client: "კლიენტი: AutoImport Georgia", title: "Viral SMM Campaign", desc: "მიზნობრივი სარეკლამო კამპანია ახალი ავტომობილების შეკვეთების მოსაზიდად.", result: "📈 1,500+ ლიდი 1 თვეში", image: "metafora-photos/05-social-media/portfolio-1-viral.png" },
+      { client: "კლიენტი: Cafe Central", title: "Instagram Grid Makeover", desc: "რესტორნის გვერდის სრული ვიზუალური ტრანსფორმაცია, Stories თამაშები და ვიდეო კონტენტი.", result: "🚀 გამომწერების 180% ზრდა", image: "metafora-photos/05-social-media/portfolio-2-restaurant.png" },
+      { client: "კლიენტი: Beauty Lab", title: "ManyChat Automation Flow", desc: "ჩატბოტის ინტეგრაცია ინსტაგრამზე, რომელიც ავტომატურად პასუხობდა ფასებზე და წერდა კლიენტებს ვიზიტზე.", result: "🏆 გაყიდვების 65%-იანი ავტომატიზაცია", image: "metafora-photos/05-social-media/portfolio-3-roas.png" }
+    ],
+    features: [
+      { icon: "🏆", title: "კონტენტის უნიკალურობა", desc: "მხოლოდ თქვენს ბრენდზე მორგებული პოსტები და დიზაინი." },
+      { icon: "🇬🇪", title: "აქტიური კომუნიკაცია", desc: "მომხმარებლების შეტყობინებებზე სწრაფი რეაგირება." },
+      { icon: "🎨", title: "სწორი ტარგეტირება", desc: "რეკლამა მხოლოდ იმ ადამიანებს, ვისაც პროდუქტი რეალურად აინტერესებს." },
+      { icon: "📐", title: "ManyChat პარტნიორობა", desc: "ოფიციალურად სერტიფიცირებული ბოტების დეველოპმენტი." },
+      { icon: "🖨", title: "დეტალური რეპორტები", desc: "ყოველთვიური სტატისტიკა გაყიდვებისა და წვდომების შესახებ." },
+      { icon: "🔄", title: "კრეატიული Reels/Stories", desc: "ტრენდული კონტენტი, რომელიც ალგორითმებს უყვართ." }
+    ],
+    faq: [
+      { q: "რა შედის SMM მართვის ყოველთვიურ საფასურში?", a: "პაკეტში შედის სტრატეგია, კონტენტ-გეგმა, პოსტების დიზაინი, ქოფირაითინგი, Stories მართვა, რეკლამის ტარგეტირება და რეპორტინგი." },
+      { q: "სარეკლამო ბიუჯეტი შედის თუ არა მომსახურების საფასურში?", a: "არა, სარეკლამო ბიუჯეტი (რომელიც უშუალოდ Facebook-ს ან TikTok-ს ერიცხება) განისაზღვრება თქვენი სურვილისავებრ და იხდება ცალკე." },
+      { q: "როგორ შემიძლია გავიგო SMM პაკეტების ფასები?", a: "დააწკაპუნეთ ღილაკზე 'გაიგე ფასი ასისტენტთან' და ჩემი ჩატბოტი მყისიერად მოგაწვდით ინფორმაციას საფასურის შესახებ." },
+      { q: "რა არის ჩატბოტის ავტომატიზაცია?", a: "ეს არის ManyChat სისტემა, რომელიც ავტომატურად პასუხობს მომხმარებლის მიერ დატოვებულ კომენტარებს (მაგ. 'რა ღირს?') და მყისიერად უგზავნის ფასს პირად შეტყობინებაში." },
+      { q: "რამდენხანში დავინახავ პირველ შედეგს?", a: "გვერდის აქტივობისა და წვდომის ზრდა პირველივე კვირაში შეიმჩნევა, ხოლო სტაბილური გაყიდვების ზრდა რეკლამის ოპტიმიზაციიდან 2-3 კვირაში იწყება." }
     ]
   }
 };
@@ -1332,36 +2371,63 @@ const urlParams = new URLSearchParams(window.location.search);
 const serviceKey = urlParams.get('service') || 'branding';
 const data = SERVICES_DATA[serviceKey] || SERVICES_DATA.branding;
 
-// Populate DOM
+// Populate DOM Header/Hero
+document.getElementById('breadcrumb-service').textContent = data.eyebrow;
 document.getElementById('service-eyebrow').textContent = data.eyebrow;
 document.getElementById('service-title').innerHTML = data.title;
 document.getElementById('service-desc').textContent = data.desc;
 document.getElementById('contact-service').value = data.eyebrow;
 
-// Set title tag
-document.title = `${data.eyebrow} - Metaფორა Agency`;
+// Populate SEO / Meta
+document.title = data.metaTitle || `${data.eyebrow} - Metaფორა Agency`;
+const metaDesc = document.getElementById('meta-description');
+if (metaDesc) metaDesc.content = data.metaDesc || "";
+const ogTitle = document.getElementById('og-title');
+if (ogTitle) ogTitle.content = data.metaTitle || document.title;
+const ogDesc = document.getElementById('og-description');
+if (ogDesc) ogDesc.content = data.metaDesc || "";
+const ogImg = document.getElementById('og-image');
+if (ogImg) ogImg.content = window.location.origin + '/' + data.heroImage;
+const ogUrl = document.getElementById('og-url');
+if (ogUrl) ogUrl.content = window.location.href;
 
-// Render chips
 const chipsContainer = document.getElementById('service-chips');
 chipsContainer.innerHTML = data.chips.map(chip => `<span class="service-chip">${chip}</span>`).join('');
 
-// Render sub-services
-const grid = document.getElementById('sub-services-grid');
-grid.innerHTML = data.subServices.map(sub => `
-  <div class="sub-card">
-    <div class="card-icon-wrapper">
-      <div class="card-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
+const heroImg = document.getElementById('service-hero-img');
+if (heroImg) {
+  heroImg.src = data.heroImage;
+}
+
+// Section 2: Intro
+document.getElementById('intro-h2').innerHTML = data.introH2;
+document.getElementById('intro-p1').textContent = data.introP1;
+document.getElementById('intro-p2').textContent = data.introP2;
+
+const statsBar = document.getElementById('intro-stats-bar');
+statsBar.innerHTML = data.stats.map(s => `
+  <div class="stat-box">
+    <span class="stat-num">${s.num}</span>
+    <span class="stat-lbl">${s.lbl}</span>
+  </div>
+`).join('');
+
+// Section 3: Products Grid (Pricing Grid)
+const productsGrid = document.getElementById('products-grid');
+productsGrid.innerHTML = data.products.map(p => `
+  <div class="product-card ${p.popular ? 'popular' : ''}">
+    <div class="product-img">
+      <img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="fallback-img-fallback" style="display: none; background: linear-gradient(135deg, var(--acc2) 0%, var(--acc) 100%);">
+        <span>✨</span>
       </div>
     </div>
-    <div class="card-body">
-      <h3 class="card-title">${sub.title}</h3>
-      <p class="card-desc">${sub.desc}</p>
-      <ul class="feature-list">
-        ${sub.features.map(f => `
-          <li class="feature-item">
+    <div class="product-body">
+      <h3>${p.title}</h3>
+      <p class="product-subtitle">${p.desc}</p>
+      <ul class="product-bullets">
+        ${p.features.map(f => `
+          <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
@@ -1369,9 +2435,130 @@ grid.innerHTML = data.subServices.map(sub => `
           </li>
         `).join('')}
       </ul>
+      <div class="product-meta">
+        <div class="meta-row">
+          <span class="meta-term">⏱️ ვადა</span>
+          <span class="meta-price">${p.term}</span>
+        </div>
+        <button class="btn-price-ask" onclick="askBotAboutPrice('${serviceKey}', '${p.title}')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          გაიგე ფასი ჩატში
+        </button>
+      </div>
     </div>
   </div>
 `).join('');
+
+// Section 4: Process Timeline
+const processTimeline = document.getElementById('process-timeline');
+processTimeline.innerHTML = data.process.map(step => `
+  <div class="process-step">
+    <div class="step-number-icon">
+      <span class="step-num">${step.num}</span>
+      <div class="step-icon-box">${step.icon}</div>
+    </div>
+    <h4>${step.title}</h4>
+    <p>${step.desc}</p>
+  </div>
+`).join('');
+
+// Section 5: Portfolio Grid
+const portfolioGrid = document.getElementById('portfolio-grid');
+portfolioGrid.innerHTML = data.portfolio.map(p => `
+  <div class="portfolio-card">
+    <div class="portfolio-thumb">
+      <img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="fallback-img-fallback" style="display: none; background: linear-gradient(135deg, var(--acc2) 0%, var(--acc) 100%);">
+        <span>🎨</span>
+      </div>
+    </div>
+    <div class="portfolio-card-body">
+      <span class="client-name">${p.client}</span>
+      <h4>${p.title}</h4>
+      <p class="challenge-text">${p.desc}</p>
+      <div class="result-box">
+        <span>🏆</span> ${p.result}
+      </div>
+      <a href="index.html#portfolio" class="btn-portfolio-link">
+        ნახე სრულად 
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+`).join('');
+
+// Section 6: Features Grid
+const featuresGrid = document.getElementById('features-grid');
+featuresGrid.innerHTML = data.features.map(f => `
+  <div class="feature-card">
+    <div class="feature-icon-box">${f.icon}</div>
+    <div class="feature-card-content">
+      <h4>${f.title}</h4>
+      <p>${f.desc}</p>
+    </div>
+  </div>
+`).join('');
+
+// Section 7: FAQ Accordion
+const faqAccordion = document.getElementById('faq-accordion');
+faqAccordion.innerHTML = data.faq.map((item, index) => `
+  <div class="faq-item">
+    <button class="faq-question">
+      <span>${item.q}</span>
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>${item.a}</p>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+initFaq();
+
+function initFaq() {
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+      
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+}
+
+function askBotAboutPrice(serviceKey, productTitle) {
+  const win = document.getElementById('chatbot-window');
+  if (win && !win.classList.contains('open')) {
+    toggleChat();
+  }
+  
+  const msgText = `მაინტერესებს სერვისის "${productTitle}" ფასი და ვადები.`;
+  appendMessage(msgText, 'user');
+  
+  const qr = document.querySelector('.quick-replies');
+  if (qr) qr.style.display = 'none';
+  
+  setTimeout(() => {
+    let reply = "";
+    if (PRICING_DB[serviceKey] && PRICING_DB[serviceKey][productTitle]) {
+      const dbItem = PRICING_DB[serviceKey][productTitle];
+      reply = `✨ სერვისის <b>"${productTitle}"</b> საორიენტაციო საფასური შეადგენს: <b>${dbItem.price}</b>.\n\n⏱️ დამზადების სავარაუდო ვადა: <b>${dbItem.term}</b>.\n\nგსურთ უფასო 30-წუთიანი კონსულტაციის დაჯავშნა დეტალების დასაზუსტებლად?`;
+    } else {
+      reply = `სერვისის "${productTitle}" ფასი ინდივიდუალურია. დაგვიკავშირდით ნომერზე ან მოგვწეროთ ფორმაში და ჩვენი გუნდი უმოკლეს დროში მოგაწვდით შეთავაზებას!`;
+    }
+    appendMessage(reply, 'bot');
+  }, 600);
+}
 
 // Chatbot functionality
 function toggleChat() {
@@ -1419,8 +2606,8 @@ function appendMessage(text, sender) {
   const msgDiv = document.createElement('div');
   msgDiv.className = `chat-message ${sender}`;
   
-  const formattedText = text.replace(/\n/g, '<br>');
-  msgDiv.innerHTML = `<div class="message-content">${formattedText}</div>`;
+  // Keep HTML tags intact for rich formatting
+  msgDiv.innerHTML = `<div class="message-content">${text.replace(/\n/g, '<br>')}</div>`;
   
   container.appendChild(msgDiv);
   container.scrollTop = container.scrollHeight;
@@ -1429,13 +2616,24 @@ function appendMessage(text, sender) {
 function getBotReply(userText) {
   const cleanText = userText.toLowerCase();
   
+  // Check if query is about a specific service price
+  for (const sKey in PRICING_DB) {
+    for (const pTitle in PRICING_DB[sKey]) {
+      const cleanTitle = pTitle.toLowerCase();
+      if (cleanText.includes(cleanTitle) && (cleanText.includes('ფასი') || cleanText.includes('ღირს') || cleanText.includes('price') || cleanText.includes('ვადები') || cleanText.includes('რა ღირს'))) {
+        const item = PRICING_DB[sKey][pTitle];
+        return `✨ სერვისის <b>"${pTitle}"</b> საორიენტაციო საფასური შეადგენს: <b>${item.price}</b>.\n\n⏱️ დამზადების სავარაუდო ვადა: <b>${item.term}</b>.\n\nგსურთ უფასო 30-წუთიანი კონსულტაციის დაჯავშნა დეტალების დასაზუსტებლად?`;
+      }
+    }
+  }
+
   if (cleanText.includes('სერვის') || cleanText.includes('რას აკეთებთ') || cleanText.includes('service')) {
     return `ჩვენ გთავაზობთ ციფრული მარკეტინგის სრულ სერვისებს:\n\n` +
            `1. 🏷️ ბრენდინგი & დიზაინი (ლოგო, ბრენდბუქი, ბეჭდვა)\n` +
            `2. 💻 ვებ დეველოპმენტი (საიტების დამზადება, UX/UI, SEO)\n` +
            `3. 📈 OOH & გარე რეკლამა (ბილბორდები, გამოფენები)\n` +
            `4. 🎥 ვიდეო წარმოება (Reels, TikTok, პრომო ვიდეოები)\n` +
-           `5. 📱 სოციალური მედია (SMM, კონტენტი, ავტომატიზაცია)`;
+           `5. 📱 სოციალური მედია (SMM, კონტენტი, ავტომატიზაცია)\n\nმოგვწერეთ კონკრეტული სერვისის დასახელება (მაგ. 'ბრენდბუქი' ან 'Landing Page') და მიიღეთ ფასი!`;
   }
   
   if (cleanText.includes('კონტაქტ') || cleanText.includes('ტელეფონ') || cleanText.includes('დაგიკავშირდეთ') || cleanText.includes('contact') || cleanText.includes('ნომერი')) {
@@ -1450,7 +2648,11 @@ function getBotReply(userText) {
   }
   
   if (cleanText.includes('ფასი') || cleanText.includes('ღირს') || cleanText.includes('price')) {
-    return `პროექტის ღირებულება ინდივიდუალურია და დამოკიდებულია თქვენს მოთხოვნებზე. დაგვიკავშირდით ნომერზე ან შეავსეთ საკონტაქტო ფორმა გვერდის ბოლოში, რათა მიიღოთ უფასო კონსულტაცია და დეტალური ხარჯთაღრიცხვა.`;
+    return `ჩვენი სერვისების ფასები იწყება:\n` +
+           `- 🏷️ ლოგო და იდენტობა: 800₾-დან\n` +
+           `- 💻 Landing Page: 1,200₾-დან\n` +
+           `- 🎥 Reels/TikTok პაკეტი: 800₾-დან\n` +
+           `- SMM ყოველთვიური მართვა: 1,500₾-დან\n\nდაწერეთ კონკრეტული პროდუქტის სახელი (მაგ. 'Brandbook' ან 'ონლაინ მაღაზია') და გეტყვით ზუსტ ფასს!`;
   }
   
   if (cleanText.includes('გამარჯობა') || cleanText.includes('სალამი') || cleanText.includes('hello') || cleanText.includes('hi') || cleanText.includes('სალამ')) {
@@ -1618,7 +2820,6 @@ window.addEventListener('click', (e) => {
 });
 // Telegram Bot Configuration
 const TELEGRAM_BOT_TOKEN = '8606073233:AAGvL2wjOkTpa-2n8NcJxRQBFKt6OFD4GWE';
-const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('chat_id')) {
   localStorage.setItem('telegram_chat_ids', urlParams.get('chat_id'));
 }

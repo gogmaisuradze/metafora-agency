@@ -2733,13 +2733,40 @@ function sendQuickReply(text) {
   }, 600);
 }
 
+const PRICING_DB = {
+  branding: {
+    "ლოგო + ბრენდბუქი": { price: "1,800 ₾ - 3,500 ₾", term: "10-14 სამუშაო დღე" },
+    "სავიზიტო ბარათები + ფირნიშები": { price: "250 ₾ - 450 ₾", term: "5-7 დღე" },
+    "ბროშურა / კატალოგი / ფლაერი": { price: "600 ₾ - 1,500 ₾", term: "7-10 დღე" }
+  },
+  ooh: {
+    "ბილბორდი (3×6 / 4×12 მ.)": { price: "1,500 ₾ - 4,000 ₾ / თვე (ლოკაციის მიხედვით)", term: "7-10 დღე" },
+    "LED ეკრანი / ციფრული გარე რეკლამა": { price: "2,500 ₾ - 6,000 ₾ / თვე", term: "5-7 დღე" },
+    "ფასადი / აბრა / ვიტრინა": { price: "2,000 ₾ - 8,000 ₾", term: "14-21 დღე" }
+  },
+  video: {
+    "TV / Web სარეკლამო რგოლი (15-30 წმ.)": { price: "4,500 ₾ - 15,000 ₾", term: "14-21 დღე" },
+    "Reels / TikTok პაკეტი (10 ვიდეო)": { price: "1,800 ₾ - 4,500 ₾", term: "7-10 დღე" },
+    "კორპორატიული ფილმი (2-3 წთ.)": { price: "5,500 ₾ - 18,000 ₾", term: "21-30 დღე" }
+  },
+  web: {
+    "Landing Page (ერთგვერდიანი საიტი)": { price: "1,800 ₾ - 3,800 ₾", term: "10-14 დღე" },
+    "კორპორატიული საიტი (5-10 გვერდი)": { price: "4,500 ₾ - 12,000 ₾", term: "21-35 დღე" },
+    "ონლაინ მაღაზია (E-commerce)": { price: "8,000 ₾ - 25,000 ₾", term: "35-60 დღე" }
+  },
+  smm: {
+    "SMM ყოველთვიური მართვა": { price: "1,500 ₾ - 3,800 ₾ / თვე", term: "ყოველთვიური" },
+    "Meta / TikTok Ads მართვა": { price: "1,500 ₾ - 4,000 ₾ / თვე (+ სარეკლამო ბიუჯეტი)", term: "ყოველთვიური" },
+    "კონტენტ პროდუქცია (Photo/Video Session)": { price: "1,200 ₾ - 3,500 ₾", term: "7-10 დღე" }
+  }
+};
+
 function appendMessage(text, sender) {
   const container = document.getElementById('chatbot-messages');
   const msgDiv = document.createElement('div');
   msgDiv.className = `chat-message ${sender}`;
   
-  const formattedText = text.replace(/\n/g, '<br>');
-  msgDiv.innerHTML = `<div class="message-content">${formattedText}</div>`;
+  msgDiv.innerHTML = `<div class="message-content">${text.replace(/\n/g, '<br>')}</div>`;
   
   container.appendChild(msgDiv);
   container.scrollTop = container.scrollHeight;
@@ -2748,13 +2775,24 @@ function appendMessage(text, sender) {
 function getBotReply(userText) {
   const cleanText = userText.toLowerCase();
   
+  // Check if query is about a specific service price
+  for (const sKey in PRICING_DB) {
+    for (const pTitle in PRICING_DB[sKey]) {
+      const cleanTitle = pTitle.toLowerCase();
+      if (cleanText.includes(cleanTitle) && (cleanText.includes('ფასი') || cleanText.includes('ღირს') || cleanText.includes('price') || cleanText.includes('ვადები') || cleanText.includes('რა ღირს'))) {
+        const item = PRICING_DB[sKey][pTitle];
+        return `✨ სერვისის <b>"${pTitle}"</b> საორიენტაციო საფასური შეადგენს: <b>${item.price}</b>.\n\n⏱️ დამზადების სავარაუდო ვადა: <b>${item.term}</b>.\n\nგსურთ უფასო 30-წუთიანი კონსულტაციის დაჯავშნა დეტალების დასაზუსტებლად?`;
+      }
+    }
+  }
+
   if (cleanText.includes('სერვის') || cleanText.includes('რას აკეთებთ') || cleanText.includes('service')) {
     return `ჩვენ გთავაზობთ ციფრული მარკეტინგის სრულ სერვისებს:\n\n` +
            `1. 🏷️ ბრენდინგი & დიზაინი (ლოგო, ბრენდბუქი, ბეჭდვა)\n` +
            `2. 💻 ვებ დეველოპმენტი (საიტების დამზადება, UX/UI, SEO)\n` +
            `3. 📈 OOH & გარე რეკლამა (ბილბორდები, გამოფენები)\n` +
            `4. 🎥 ვიდეო წარმოება (Reels, TikTok, პრომო ვიდეოები)\n` +
-           `5. 📱 სოციალური მედია (SMM, კონტენტი, ავტომატიზაცია)`;
+           `5. 📱 სოციალური მედია (SMM, კონტენტი, ავტომატიზაცია)\n\nმოგვწერეთ კონკრეტული სერვისის დასახელება (მაგ. 'ბრენდბუქი' ან 'Landing Page') და მიიღეთ ფასი!`;
   }
   
   if (cleanText.includes('კონტაქტ') || cleanText.includes('ტელეფონ') || cleanText.includes('დაგიკავშირდეთ') || cleanText.includes('contact') || cleanText.includes('ნომერი')) {
@@ -2769,14 +2807,18 @@ function getBotReply(userText) {
   }
   
   if (cleanText.includes('ფასი') || cleanText.includes('ღირს') || cleanText.includes('price')) {
-    return `პროექტის ღირებულება ინდივიდუალურია და დამოკიდებულია თქვენს მოთხოვნებზე. დაგვიკავშირდით ნომერზე ან შეავსეთ საკონტაქტო ფორმა გვერდის ბოლოში, რათა მიიღოთ უფასო კონსულტაცია და დეტალური ხარჯთაღრიცხვა.`;
+    return `ჩვენი სერვისების ფასები იწყება:\n` +
+           `- 🏷️ ლოგო და იდენტობა: 800₾-დან\n` +
+           `- 💻 Landing Page: 1,200₾-დან\n` +
+           `- 🎥 Reels/TikTok პაკეტი: 800₾-დან\n` +
+           `- SMM ყოველთვიური მართვა: 1,500₾-დან\n\nდაწერეთ კონკრეტული პროდუქტის სახელი (მაგ. 'Brandbook' ან 'ონლაინ მაღაზია') და გეტყვით ზუსტ ფასს!`;
   }
   
   if (cleanText.includes('გამარჯობა') || cleanText.includes('სალამი') || cleanText.includes('hello') || cleanText.includes('hi') || cleanText.includes('სალამ')) {
     return `გამარჯობა! 😊 რით შემიძლია დაგეხმაროთ დღეს? გსურთ გაეცნოთ ჩვენს სერვისებს თუ დაგვიკავშირდეთ?`;
   }
   
-  return `მადლობა შეტყობინებისთვის! 🙌\n\nმე ჯერ კიდევ ვსწავლობ, მაგრამ შეგიძლიათ დაგვიკავშირდეთ ნომერზე ან მოგვწეროთ ელ-ფოსტაზე: info@metafora.ge. ჩვენი გუნდი უმოკლეს დროში გიპასუხებთ!`;
+  return `მადლობა შეტყობინებისთვის! 🙌\n\nმე ჯერ კიდევ ვსწავლობ, მაგრამ შეგიძლიათ დაგვიკავშირდეთ ნომერზე ან მოგვწეროთ ელ-ფოსტაზე: info@metafora.ge. ჩვენი გუნდი უმოკსელ დროში გიპასუხებთ!`;
 }
 
 // Booking Modal functions
