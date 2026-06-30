@@ -284,6 +284,22 @@ h1 .acc{
   transform: translate(-4px, -4px) rotate(-2deg) scale(1.07);
   box-shadow: 0 8px 22px rgba(232, 82, 26, 0.35);
 }
+@keyframes pulseBlink {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(232, 82, 26, 0.2);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 8px 24px rgba(232, 82, 26, 0.7);
+  }
+}
+.pulse-blink {
+  animation: pulseBlink 1.2s infinite ease-in-out !important;
+}
+#video-overlay-text.pulse-blink:hover {
+  animation: none !important;
+}
 
 #video-overlay-text.ended-orange {
   background: var(--acc);
@@ -1473,7 +1489,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   <div class="nav-links">
     <a href="#hero">მთავარი</a>
     <div class="nav-dropdown">
-      <a href="#services-scroll" class="dropdown-trigger">სერვისები ▾</a>
+      <a href="#services-scroll" class="dropdown-trigger" onclick="startBlinkingBtn()">სერვისები ▾</a>
       <div class="dropdown-content">
         <a href="#" data-step="0">პრინტი და ბრენდინგი</a>
         <a href="#" data-step="1">გარე რეკლამა (OOH)</a>
@@ -1498,7 +1514,7 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
   <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
   <div class="mobile-menu-links">
     <a href="#hero" onclick="toggleMobileMenu()">მთავარი</a>
-    <a href="#services-scroll" onclick="toggleMobileMenu()">სერვისები</a>
+    <a href="#services-scroll" onclick="toggleMobileMenu(); startBlinkingBtn()">სერვისები</a>
     <a href="#portfolio" onclick="toggleMobileMenu()">პორტფოლიო</a>
     <a href="#about" onclick="toggleMobileMenu()">ჩვენს შესახებ</a>
     <a href="#blog" onclick="toggleMobileMenu()">ბლოგი</a>
@@ -1829,11 +1845,11 @@ footer{background:transparent;border-top:1px solid var(--border);padding:48px 48
     </div>
     <div class="footer-col">
       <h4>სერვისები</h4>
-      <a href="#services">პრინტი და ბრენდინგი</a>
-      <a href="#services">გარე რეკლამა</a>
-      <a href="#services">ვიდეო პროდუქცია</a>
-      <a href="#services">ვებ-გვერდები</a>
-      <a href="#services">სოციალური მედია</a>
+      <a href="service.html?service=branding">პრინტი და ბრენდინგი</a>
+      <a href="service.html?service=ooh">გარე რეკლამა</a>
+      <a href="service.html?service=video">ვიდეო პროდუქცია</a>
+      <a href="service.html?service=web">ვებ-გვერდები</a>
+      <a href="service.html?service=smm">სოციალური მედია</a>
     </div>
     <div class="footer-col">
       <h4>კომპანია</h4>
@@ -2675,8 +2691,8 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
     </div>
     <div class="quick-replies">
       <button class="quick-reply-btn" onclick="sendQuickReply('რა სერვისებს გვთავაზობთ?')">სერვისები 🛠️</button>
+      <button class="quick-reply-btn" onclick="sendQuickReply('საკონტაქტო ნომერი და ფასები')">ფასები & კონტაქტი ℹ️</button>
       <button class="quick-reply-btn" onclick="sendQuickReply('როგორ დაგიკავშირდეთ?')">კონტაქტი 📞</button>
-      <button class="quick-reply-btn" onclick="sendQuickReply('სად მდებარეობს თქვენი ოფისი?')">ოფისი 📍</button>
     </div>
   </div>
   <div class="chatbot-input-container">
@@ -2691,6 +2707,13 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 function toggleMobileMenu() {
   const overlay = document.getElementById('mobile-menu-overlay');
   overlay.classList.toggle('open');
+}
+
+function startBlinkingBtn() {
+  const overlay = document.getElementById('video-overlay-text');
+  if (overlay) {
+    overlay.classList.add('pulse-blink');
+  }
 }
 
 function toggleChat() {
@@ -2786,13 +2809,23 @@ function getBotReply(userText) {
     }
   }
 
-  if (cleanText.includes('სერვის') || cleanText.includes('რას აკეთებთ') || cleanText.includes('service')) {
+  if (cleanText.includes('სერვის') || cleanText.includes('რას აკეთებთ') || cleanText.includes('service') || cleanText.includes('ფასები') || cleanText.includes('ინფორმაცია') || cleanText.includes('info')) {
     return `ჩვენ გთავაზობთ ციფრული მარკეტინგის სრულ სერვისებს:\n\n` +
-           `1. 🏷️ ბრენდინგი & დიზაინი (ლოგო, ბრენდბუქი, ბეჭდვა)\n` +
-           `2. 💻 ვებ დეველოპმენტი (საიტების დამზადება, UX/UI, SEO)\n` +
-           `3. 📈 OOH & გარე რეკლამა (ბილბორდები, გამოფენები)\n` +
-           `4. 🎥 ვიდეო წარმოება (Reels, TikTok, პრომო ვიდეოები)\n` +
-           `5. 📱 სოციალური მედია (SMM, კონტენტი, ავტომატიზაცია)\n\nმოგვწერეთ კონკრეტული სერვისის დასახელება (მაგ. 'ბრენდბუქი' ან 'Landing Page') და მიიღეთ ფასი!`;
+           `1. 🏷️ <b>ბრენდინგი & დიზაინი</b> (ლოგო, ბრენდბუქი, ბეჭდვა)\n` +
+           `2. 💻 <b>ვებ დეველოპმენტი</b> (საიტების დამზადება, UX/UI, SEO)\n` +
+           `3. 📈 <b>გარე რეკლამა (OOH)</b> (ბილბორდი, LED ეკრანი, ფასადი)\n` +
+           `4. 🎥 <b>ვიდეო პროდუქცია</b> (სარეკლამო რგოლი, Reels, TikTok)\n` +
+           `5. 📱 <b>სოციალური მედია (SMM)</b> (მართვა, Ads, კონტენტი)\n\n` +
+           `ℹ️ <b>დამატებითი ინფორმაცია (ფასები & კონტაქტი):</b>\n` +
+           `💰 <b>საორიენტაციო ფასები:</b>\n` +
+           ` • 🏷️ ბრენდინგი: 250 ₾ - 3,500 ₾\n` +
+           ` • 📈 გარე რეკლამა: 1,500 ₾ - 8,000 ₾\n` +
+           ` • 🎥 ვიდეო პროდუქცია: 1,800 ₾ - 18,000 ₾\n` +
+           ` • 💻 ვებ დეველოპმენტი: 1,800 ₾ - 25,000 ₾\n` +
+           ` • 📱 სოციალური მედია: 1,200 ₾ - 4,000 ₾\n` +
+           `*(დეტალური ფასებისთვის ჩაწერეთ კონკრეტული პროდუქტი, მაგ: "Reels პაკეტი")*\n\n` +
+           `📞 <b>ტელეფონი:</b> +995 597 08 08 38\n` +
+           `📧 <b>ელ.ფოსტა:</b> info@metafora.ge`;
   }
   
   if (cleanText.includes('კონტაქტ') || cleanText.includes('ტელეფონ') || cleanText.includes('დაგიკავშირდეთ') || cleanText.includes('contact') || cleanText.includes('ნომერი')) {

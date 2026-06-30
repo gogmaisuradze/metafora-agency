@@ -1912,11 +1912,11 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:64px 4
     </div>
     <div class="footer-col">
       <h4>სერვისები</h4>
-      <a href="index.html#services-scroll">პრინტი და ბრენდინგი</a>
-      <a href="index.html#services-scroll">გარე რეკლამა</a>
-      <a href="index.html#services-scroll">ვიდეო პროდუქცია</a>
-      <a href="index.html#services-scroll">ვებ-გვერდები</a>
-      <a href="index.html#services-scroll">სოციალური მედია</a>
+      <a href="service.html?service=branding">პრინტი და ბრენდინგი</a>
+      <a href="service.html?service=ooh">გარე რეკლამა</a>
+      <a href="service.html?service=video">ვიდეო პროდუქცია</a>
+      <a href="service.html?service=web">ვებ-გვერდები</a>
+      <a href="service.html?service=smm">სოციალური მედია</a>
     </div>
     <div class="footer-col">
       <h4>კომპანია</h4>
@@ -1973,8 +1973,9 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:64px 4
     <div class="chat-message bot">
       <div class="message-content">გამარჯობა! 😊 მე ვარ Metaფორას ვირტუალური ასისტენტი. რით შემიძლია დაგეხმაროთ დღეს?</div>
       <div class="quick-replies">
-        <button class="quick-reply-btn" onclick="sendQuickReply('რა სერვისები გაქვთ?')">რა სერვისები გაქვთ?</button>
-        <button class="quick-reply-btn" onclick="sendQuickReply('როგორ დაგიკავშირდეთ?')">როგორ დაგიკავშირდეთ?</button>
+        <button class="quick-reply-btn" onclick="sendQuickReply('რა სერვისები გაქვთ?')">სერვისები 🛠️</button>
+        <button class="quick-reply-btn" onclick="sendQuickReply('საკონტაქტო ნომერი და ფასები')">ფასები & კონტაქტი ℹ️</button>
+        <button class="quick-reply-btn" onclick="sendQuickReply('როგორ დაგიკავშირდეთ?')">კონტაქტი 📞</button>
       </div>
     </div>
   </div>
@@ -2627,13 +2628,23 @@ function getBotReply(userText) {
     }
   }
 
-  if (cleanText.includes('სერვის') || cleanText.includes('რას აკეთებთ') || cleanText.includes('service')) {
+  if (cleanText.includes('სერვის') || cleanText.includes('რას აკეთებთ') || cleanText.includes('service') || cleanText.includes('ფასები') || cleanText.includes('ინფორმაცია') || cleanText.includes('info')) {
     return `ჩვენ გთავაზობთ ციფრული მარკეტინგის სრულ სერვისებს:\n\n` +
-           `1. 🏷️ ბრენდინგი & დიზაინი (ლოგო, ბრენდბუქი, ბეჭდვა)\n` +
-           `2. 💻 ვებ დეველოპმენტი (საიტების დამზადება, UX/UI, SEO)\n` +
-           `3. 📈 OOH & გარე რეკლამა (ბილბორდები, გამოფენები)\n` +
-           `4. 🎥 ვიდეო წარმოება (Reels, TikTok, პრომო ვიდეოები)\n` +
-           `5. 📱 სოციალური მედია (SMM, კონტენტი, ავტომატიზაცია)\n\nმოგვწერეთ კონკრეტული სერვისის დასახელება (მაგ. 'ბრენდბუქი' ან 'Landing Page') და მიიღეთ ფასი!`;
+           `1. 🏷️ <b>ბრენდინგი & დიზაინი</b> (ლოგო, ბრენდბუქი, ბეჭდვა)\n` +
+           `2. 💻 <b>ვებ დეველოპმენტი</b> (საიტების დამზადება, UX/UI, SEO)\n` +
+           `3. 📈 <b>გარე რეკლამა (OOH)</b> (ბილბორდები, LED ეკრანი, ფასადი)\n` +
+           `4. 🎥 <b>ვიდეო პროდუქცია</b> (სარეკლამო რგოლი, Reels, TikTok)\n` +
+           `5. 📱 <b>სოციალური მედია (SMM)</b> (მართვა, Ads, კონტენტი)\n\n` +
+           `ℹ️ <b>დამატებითი ინფორმაცია (ფასები & კონტაქტი):</b>\n` +
+           `💰 <b>საორიენტაციო ფასები:</b>\n` +
+           ` • 🏷️ ბრენდინგი: 250 ₾ - 3,500 ₾\n` +
+           ` • 📈 გარე რეკლამა: 1,500 ₾ - 8,000 ₾\n` +
+           ` • 🎥 ვიდეო პროდუქცია: 1,800 ₾ - 18,000 ₾\n` +
+           ` • 💻 ვებ დეველოპმენტი: 1,800 ₾ - 25,000 ₾\n` +
+           ` • 📱 სოციალური მედია: 1,200 ₾ - 4,000 ₾\n` +
+           `*(დეტალური ფასებისთვის ჩაწერეთ კონკრეტული პროდუქტი, მაგ: "Reels პაკეტი")*\n\n` +
+           `📞 <b>ტელეფონი:</b> +995 597 08 08 38\n` +
+           `📧 <b>ელ.ფოსტა:</b> info@metafora.ge`;
   }
   
   if (cleanText.includes('კონტაქტ') || cleanText.includes('ტელეფონ') || cleanText.includes('დაგიკავშირდეთ') || cleanText.includes('contact') || cleanText.includes('ნომერი')) {
